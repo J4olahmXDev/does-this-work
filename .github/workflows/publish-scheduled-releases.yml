@@ -1,0 +1,82 @@
+name: Publish scheduled releases
+
+on:
+  schedule:
+    # The later runs retry the same release if GitHub skips the first run.
+    - cron: '0,15,35 17 * 12 2'
+      timezone: Asia/Bangkok
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scheduled-game-releases
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.repository == 'J4olahmXDev/does-this-work'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify drafts and publish the release due today
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          read -r today time < <(TZ=Asia/Bangkok date '+%F %H%M')
+          if [[ "$GITHUB_EVENT_NAME" == schedule && "$time" < 1700 ]]; then
+            echo 'It is before the release time in Bangkok.'
+            exit 0
+          fi
+
+          api="repos/$GITHUB_REPOSITORY"
+          while read -r day tag release_id source_sha asset_sha; do
+            if [[ "$GITHUB_EVENT_NAME" == schedule && "$day" != "$today" ]]; then
+              continue
+            fi
+
+            release="$(gh api "$api/releases/$release_id")"
+            jq -e --arg tag "$tag" --arg sha "$source_sha" \
+              '.tag_name == $tag and .target_commitish == $sha' <<<"$release" >/dev/null
+            if [[ "$(jq -r .draft <<<"$release")" == false ]]; then
+              echo "$tag is already public."
+              continue
+            fi
+
+            assets="$(jq -r '.assets[] | select(.state == "uploaded") | [.name, .digest] | @tsv' <<<"$release" |
+              LC_ALL=C sort | sha256sum | cut -d ' ' -f 1)"
+            if [[ "$assets" != "$asset_sha" ]]; then
+              echo "::error::The uploaded assets for $tag differ from the verified release files."
+              exit 1
+            fi
+
+            test "$(gh api "$api/commits/$source_sha" --jq .sha)" = "$source_sha"
+            ref="refs/tags/$tag"
+            refs="$(gh api "$api/git/matching-refs/tags/$tag")"
+            ref_exists="$(jq -r --arg ref "$ref" 'any(.[]; .ref == $ref)' <<<"$refs")"
+            if [[ "$ref_exists" == true ]]; then
+              test "$(gh api "$api/commits/$tag" --jq .sha)" = "$source_sha"
+            fi
+
+            if [[ "$GITHUB_EVENT_NAME" == workflow_dispatch ]]; then
+              echo "Verified $tag draft for $day. Preview mode leaves it as a draft."
+              continue
+            fi
+
+            if [[ "$ref_exists" == false ]]; then
+              gh api --method POST "$api/git/refs" -f "ref=$ref" -f "sha=$source_sha" --jq .ref
+            fi
+            gh api --method PATCH "$api/releases/$release_id" -f "tag_name=$tag" \
+              -f "target_commitish=$source_sha" -F draft=false --jq .html_url
+            test "$(gh api "$api/releases/$release_id" --jq .draft)" = false
+          done <<'RELEASE_PLAN'
+          2026-12-01 v0.3 457214870 4e18d0057e290b8d02f3b84f8e950a00bddbd6c6 3eb04dccf0259573d570a2cacbe24bb2164aed6973a95446dbffeb9c4f849d23
+          2026-12-08 v0.3.1 457214872 9d46e58e335e4f054aa67f4fe4acdc62da81c668 f087d432702444b780da99b89d3213cea82b5ee0155833dcce293c17e009a6e6
+          2026-12-15 v0.4 457214881 22ef1d662fddab9bba372426dcd57c33c714f0c6 9117689b6752e8cf1e5a9a007c08f9ffb319190ca77e316ad34126f01d9dc596
+          2026-12-22 v0.5 457214891 0ee65c84f75bd5bdad2a89a4ad1aa7beccd4dd88 bf836026dd6dd33992fcb3dcc8e048572e16ffbe24ae4ce4b9e09a951ad1effb
+          2026-12-29 v0.6 457175038 ff4789a73c72265c031652814631c6e0553f4621 816c887a7e77f6bada7fa5ddea5e0ecc9c26d31aee775958946fda0e9fb7f40c
+          RELEASE_PLAN

@@ -42,7 +42,7 @@ The crew introduces the problem before each puzzle. The checkmark turns green wh
 
 ## Play
 
-The published downloads run on macOS 14 or later on Apple Silicon. Extract the ZIP and open the app inside.
+See [GitHub Releases](../../releases) for current downloads. The two archived builds below run on macOS 14 or later on Apple Silicon. Extract the ZIP and open the app inside.
 
 | Release | What's included |
 | --- | --- |
