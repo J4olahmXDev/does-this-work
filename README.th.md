@@ -42,7 +42,7 @@
 
 ## เล่นเกม
 
-ไฟล์ดาวน์โหลด v0.6 Beta จะอยู่ที่ [GitHub Releases](../../releases) ระหว่างนี้บิลด์เกมเองได้ตามขั้นตอนด้านล่าง
+[ดาวน์โหลด v0.6 Beta](https://github.com/J4olahmXDev/does-this-work/releases/tag/v0.6) สำหรับ Mac หรือ Windows ส่วนรุ่นเก่าอยู่ที่ [v0.2 สำหรับ Mac](https://github.com/J4olahmXDev/does-this-work/releases/tag/v0.2)
 
 | ระบบ | เปิดไฟล์นี้หลังแตก ZIP |
 | --- | --- |

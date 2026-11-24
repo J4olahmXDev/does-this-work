@@ -42,7 +42,7 @@ The crew introduces the problem before each puzzle. The checkmark turns green wh
 
 ## Play
 
-The v0.6 Beta downloads will appear on [GitHub Releases](../../releases). You can build from source below.
+[Download v0.6 Beta](https://github.com/J4olahmXDev/does-this-work/releases/tag/v0.6) for macOS or Windows. [v0.2 for macOS](https://github.com/J4olahmXDev/does-this-work/releases/tag/v0.2) is also available as an older release.
 
 | Platform | Open after extracting the ZIP |
 | --- | --- |
