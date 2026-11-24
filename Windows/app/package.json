@@ -1,0 +1,8 @@
+{
+  "name": "does-this-work",
+  "productName": "Does This Work?",
+  "version": "0.6.0",
+  "description": "An offline industrial engineering puzzle game.",
+  "main": "main.cjs",
+  "license": "MIT"
+}
