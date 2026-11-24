@@ -299,7 +299,7 @@
       ],
       "minimums": [
         5,
-        5,
+        6,
         6,
         4
       ],
@@ -310,7 +310,8 @@
         1
       ],
       "rules": [],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 1
     },
     {
       "id": "staff-4-02",
@@ -336,7 +337,7 @@
       ],
       "minimums": [
         5,
-        5,
+        6,
         6,
         2
       ],
@@ -369,7 +370,8 @@
           "station": "small"
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 1
     },
     {
       "id": "staff-4-03",
@@ -395,7 +397,7 @@
       "minimums": [
         5,
         5,
-        5,
+        6,
         4
       ],
       "capacity": [
@@ -408,7 +410,8 @@
       "initial": {
         "gus": "P1",
         "tess": "So1"
-      }
+      },
+      "shiftStep": 1
     },
     {
       "id": "staff-4-04",
@@ -461,7 +464,8 @@
       ],
       "initial": {
         "hana": "A1"
-      }
+      },
+      "shiftStep": 1
     },
     {
       "id": "staff-4-05",
@@ -487,8 +491,8 @@
       ],
       "minimums": [
         7,
-        5,
-        5,
+        6,
+        6,
         3
       ],
       "capacity": [
@@ -513,7 +517,8 @@
           ]
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 1
     },
     {
       "id": "staff-4-06",
@@ -539,9 +544,9 @@
       ],
       "minimums": [
         6,
-        6,
         7,
-        3
+        7,
+        4
       ],
       "capacity": [
         2,
@@ -568,7 +573,8 @@
       "initial": {
         "cam": "A2",
         "ivo": "W1"
-      }
+      },
+      "shiftStep": 2
     },
     {
       "id": "staff-4-07",
@@ -624,7 +630,8 @@
         "bo": "A1",
         "gus": "W1",
         "mika": "So1"
-      }
+      },
+      "shiftStep": 2
     },
     {
       "id": "staff-4-08",
@@ -648,7 +655,7 @@
         "sort"
       ],
       "minimums": [
-        7,
+        8,
         4,
         5,
         4
@@ -670,7 +677,8 @@
       ],
       "initial": {
         "jo": "P2"
-      }
+      },
+      "shiftStep": 2
     },
     {
       "id": "staff-4-09",
@@ -696,7 +704,7 @@
       ],
       "minimums": [
         7,
-        8,
+        9,
         4,
         5
       ],
@@ -729,7 +737,8 @@
           "station": "large"
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 2
     },
     {
       "id": "staff-4-10",
@@ -755,7 +764,7 @@
         "sort"
       ],
       "minimums": [
-        10,
+        11,
         7,
         7,
         4
@@ -778,7 +787,8 @@
       "initial": {
         "bo": "P2",
         "hana": "A1"
-      }
+      },
+      "shiftStep": 2
     },
     {
       "id": "staff-4-11",
@@ -803,7 +813,7 @@
         "sort"
       ],
       "minimums": [
-        3,
+        4,
         7,
         6,
         4
@@ -840,7 +850,8 @@
       "initial": {
         "fay": "W2",
         "quin": "So1"
-      }
+      },
+      "shiftStep": 3
     },
     {
       "id": "staff-4-12",
@@ -865,7 +876,7 @@
       ],
       "minimums": [
         5,
-        8,
+        9,
         5,
         5
       ],
@@ -894,7 +905,8 @@
       "initial": {
         "kit": "W1",
         "jo": "P2"
-      }
+      },
+      "shiftStep": 3
     },
     {
       "id": "staff-4-13",
@@ -949,7 +961,8 @@
       "initial": {
         "ari": "A1",
         "cam": "A3"
-      }
+      },
+      "shiftStep": 3
     },
     {
       "id": "staff-4-14",
@@ -977,7 +990,7 @@
         5,
         9,
         5,
-        3
+        4
       ],
       "capacity": [
         3,
@@ -1008,7 +1021,8 @@
           ]
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 3
     },
     {
       "id": "staff-4-15",
@@ -1058,7 +1072,8 @@
         "ivo": "W2",
         "luz": "P1",
         "tess": "So1"
-      }
+      },
+      "shiftStep": 3
     },
     {
       "id": "staff-4-16",
@@ -1117,7 +1132,8 @@
           "station": "medium"
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 4
     },
     {
       "id": "staff-4-17",
@@ -1143,7 +1159,7 @@
       "minimums": [
         6,
         7,
-        3,
+        4,
         4
       ],
       "capacity": [
@@ -1171,7 +1187,8 @@
       "initial": {
         "luz": "P2",
         "kit": "W1"
-      }
+      },
+      "shiftStep": 4
     },
     {
       "id": "staff-4-18",
@@ -1198,7 +1215,7 @@
       "minimums": [
         9,
         5,
-        5,
+        6,
         4
       ],
       "capacity": [
@@ -1233,7 +1250,8 @@
       "initial": {
         "hana": "A1",
         "eli": "P1"
-      }
+      },
+      "shiftStep": 4
     },
     {
       "id": "staff-4-19",
@@ -1300,7 +1318,8 @@
         "kit": "W1",
         "eli": "P2",
         "mika": "So1"
-      }
+      },
+      "shiftStep": 4
     },
     {
       "id": "staff-4-20",
@@ -1363,7 +1382,8 @@
       "initial": {
         "hana": "A1",
         "bo": "W1"
-      }
+      },
+      "shiftStep": 4
     },
     {
       "id": "staff-4-21",
@@ -1430,7 +1450,8 @@
           ]
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 5
     },
     {
       "id": "staff-4-22",
@@ -1458,7 +1479,7 @@
         4,
         6,
         11,
-        4
+        3
       ],
       "capacity": [
         1,
@@ -1485,7 +1506,14 @@
       "initial": {
         "jo": "A2",
         "ivo": "W1"
-      }
+      },
+      "shiftStep": 5,
+      "maximums": [
+        null,
+        8,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-4-23",
@@ -1512,7 +1540,7 @@
       "minimums": [
         8,
         8,
-        6,
+        7,
         4
       ],
       "capacity": [
@@ -1548,7 +1576,8 @@
         "dee": "A1",
         "gus": "W2",
         "quin": "So1"
-      }
+      },
+      "shiftStep": 5
     },
     {
       "id": "staff-4-24",
@@ -1604,7 +1633,8 @@
       "initial": {
         "fay": "W1",
         "luz": "A1"
-      }
+      },
+      "shiftStep": 5
     },
     {
       "id": "staff-4-25",
@@ -1674,7 +1704,8 @@
         "luz": "A1",
         "hana": "P1",
         "bo": "A2"
-      }
+      },
+      "shiftStep": 5
     },
     {
       "id": "staff-4-26",
@@ -1735,7 +1766,14 @@
       ],
       "initial": {
         "cam": "P3"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        null,
+        null,
+        null,
+        4
+      ]
     },
     {
       "id": "staff-4-27",
@@ -1760,7 +1798,7 @@
         "sort"
       ],
       "minimums": [
-        6,
+        7,
         4,
         9,
         5
@@ -1806,7 +1844,14 @@
         "ari": "A1",
         "ivo": "W3",
         "tess": "So1"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        null,
+        5,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-4-28",
@@ -1832,7 +1877,7 @@
         "sort"
       ],
       "minimums": [
-        7,
+        6,
         6,
         8,
         5
@@ -1877,7 +1922,14 @@
         "luz": "P1",
         "eli": "A2",
         "hana": "W3"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        7,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-4-29",
@@ -1904,7 +1956,7 @@
       "minimums": [
         4,
         5,
-        4,
+        5,
         4
       ],
       "capacity": [
@@ -1940,7 +1992,14 @@
         "ari": "W1",
         "kit": "P1",
         "jo": "A1"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        6,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-4-30",
@@ -1966,7 +2025,7 @@
         "sort"
       ],
       "minimums": [
-        7,
+        8,
         12,
         5,
         4
@@ -2012,7 +2071,14 @@
         "luz": "A1",
         "jo": "W1",
         "ivo": "P1"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        null,
+        null,
+        6,
+        null
+      ]
     },
     {
       "id": "staff-5-01",
@@ -2043,7 +2109,7 @@
         5,
         6,
         3,
-        4
+        5
       ],
       "capacity": [
         3,
@@ -2061,7 +2127,8 @@
           "station": "small"
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 1
     },
     {
       "id": "staff-5-02",
@@ -2089,10 +2156,10 @@
       ],
       "minimums": [
         5,
-        5,
+        6,
         6,
         5,
-        3
+        4
       ],
       "capacity": [
         3,
@@ -2117,7 +2184,8 @@
           "station": "small"
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 1
     },
     {
       "id": "staff-5-03",
@@ -2143,7 +2211,7 @@
         "seal"
       ],
       "minimums": [
-        5,
+        6,
         5,
         5,
         5,
@@ -2168,7 +2236,8 @@
       "initial": {
         "gus": "P1",
         "pax": "Se1"
-      }
+      },
+      "shiftStep": 1
     },
     {
       "id": "staff-5-04",
@@ -2194,7 +2263,7 @@
         "seal"
       ],
       "minimums": [
-        3,
+        4,
         7,
         6,
         4,
@@ -2225,7 +2294,8 @@
       ],
       "initial": {
         "hana": "A1"
-      }
+      },
+      "shiftStep": 1
     },
     {
       "id": "staff-5-05",
@@ -2255,7 +2325,7 @@
         7,
         5,
         5,
-        4,
+        5,
         3
       ],
       "capacity": [
@@ -2281,7 +2351,8 @@
           "station": "large"
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 1
     },
     {
       "id": "staff-5-06",
@@ -2340,7 +2411,8 @@
       "initial": {
         "cam": "A2",
         "ivo": "W1"
-      }
+      },
+      "shiftStep": 2
     },
     {
       "id": "staff-5-07",
@@ -2367,7 +2439,7 @@
         "seal"
       ],
       "minimums": [
-        7,
+        8,
         8,
         5,
         4,
@@ -2393,7 +2465,8 @@
         "bo": "A1",
         "gus": "W1",
         "noa": "Se1"
-      }
+      },
+      "shiftStep": 2
     },
     {
       "id": "staff-5-08",
@@ -2423,7 +2496,7 @@
         4,
         5,
         5,
-        3
+        4
       ],
       "capacity": [
         2,
@@ -2450,7 +2523,8 @@
       ],
       "initial": {
         "jo": "P2"
-      }
+      },
+      "shiftStep": 2
     },
     {
       "id": "staff-5-09",
@@ -2478,7 +2552,7 @@
       ],
       "minimums": [
         7,
-        8,
+        9,
         4,
         4,
         5
@@ -2506,7 +2580,8 @@
           "station": "small"
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 2
     },
     {
       "id": "staff-5-10",
@@ -2534,7 +2609,7 @@
         "seal"
       ],
       "minimums": [
-        10,
+        11,
         7,
         7,
         4,
@@ -2566,7 +2641,8 @@
       "initial": {
         "bo": "P2",
         "hana": "A1"
-      }
+      },
+      "shiftStep": 2
     },
     {
       "id": "staff-5-11",
@@ -2593,8 +2669,8 @@
         "seal"
       ],
       "minimums": [
-        3,
-        7,
+        4,
+        8,
         6,
         5,
         4
@@ -2632,7 +2708,8 @@
       "initial": {
         "fay": "W2",
         "wren": "Se1"
-      }
+      },
+      "shiftStep": 3
     },
     {
       "id": "staff-5-12",
@@ -2659,7 +2736,7 @@
       ],
       "minimums": [
         5,
-        8,
+        9,
         5,
         5,
         4
@@ -2690,7 +2767,8 @@
       "initial": {
         "kit": "W1",
         "jo": "P2"
-      }
+      },
+      "shiftStep": 3
     },
     {
       "id": "staff-5-13",
@@ -2719,7 +2797,7 @@
       "minimums": [
         6,
         7,
-        5,
+        6,
         3,
         5
       ],
@@ -2749,7 +2827,8 @@
       "initial": {
         "ari": "A1",
         "cam": "A3"
-      }
+      },
+      "shiftStep": 3
     },
     {
       "id": "staff-5-14",
@@ -2776,7 +2855,7 @@
         "seal"
       ],
       "minimums": [
-        5,
+        6,
         9,
         5,
         5,
@@ -2805,7 +2884,8 @@
           ]
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 3
     },
     {
       "id": "staff-5-15",
@@ -2866,7 +2946,8 @@
         "ivo": "W2",
         "luz": "P1",
         "pax": "Se1"
-      }
+      },
+      "shiftStep": 3
     },
     {
       "id": "staff-5-16",
@@ -2893,7 +2974,7 @@
         "seal"
       ],
       "minimums": [
-        5,
+        6,
         7,
         4,
         4,
@@ -2922,7 +3003,8 @@
           "station": "large"
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 4
     },
     {
       "id": "staff-5-17",
@@ -2948,7 +3030,7 @@
         "seal"
       ],
       "minimums": [
-        6,
+        7,
         7,
         3,
         4,
@@ -2987,7 +3069,8 @@
       "initial": {
         "luz": "P2",
         "kit": "W1"
-      }
+      },
+      "shiftStep": 4
     },
     {
       "id": "staff-5-18",
@@ -3016,7 +3099,7 @@
       "minimums": [
         9,
         5,
-        5,
+        6,
         5,
         5
       ],
@@ -3053,7 +3136,8 @@
       "initial": {
         "hana": "A1",
         "eli": "P1"
-      }
+      },
+      "shiftStep": 4
     },
     {
       "id": "staff-5-19",
@@ -3080,7 +3164,7 @@
         "seal"
       ],
       "minimums": [
-        5,
+        6,
         7,
         8,
         4,
@@ -3124,7 +3208,8 @@
         "kit": "W1",
         "eli": "P2",
         "noa": "Se1"
-      }
+      },
+      "shiftStep": 4
     },
     {
       "id": "staff-5-20",
@@ -3156,7 +3241,7 @@
         5,
         6,
         5,
-        3
+        4
       ],
       "capacity": [
         4,
@@ -3191,7 +3276,8 @@
       "initial": {
         "hana": "A1",
         "bo": "W1"
-      }
+      },
+      "shiftStep": 4
     },
     {
       "id": "staff-5-21",
@@ -3255,7 +3341,15 @@
           "station": "large"
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 5,
+      "maximums": [
+        null,
+        14,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-5-22",
@@ -3285,7 +3379,7 @@
         4,
         6,
         11,
-        4,
+        3,
         5
       ],
       "capacity": [
@@ -3321,7 +3415,15 @@
       "initial": {
         "jo": "A2",
         "ivo": "W1"
-      }
+      },
+      "shiftStep": 5,
+      "maximums": [
+        null,
+        7,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-5-23",
@@ -3348,9 +3450,9 @@
         "seal"
       ],
       "minimums": [
+        7,
         8,
-        8,
-        6,
+        7,
         5,
         4
       ],
@@ -3381,7 +3483,15 @@
         "dee": "A1",
         "gus": "W2",
         "wren": "Se1"
-      }
+      },
+      "shiftStep": 5,
+      "maximums": [
+        8,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-5-24",
@@ -3448,7 +3558,8 @@
       "initial": {
         "fay": "W1",
         "luz": "A1"
-      }
+      },
+      "shiftStep": 5
     },
     {
       "id": "staff-5-25",
@@ -3475,10 +3586,10 @@
         "seal"
       ],
       "minimums": [
-        4,
+        5,
         9,
         7,
-        3,
+        4,
         5
       ],
       "capacity": [
@@ -3522,7 +3633,15 @@
         "luz": "A1",
         "hana": "P1",
         "bo": "A2"
-      }
+      },
+      "shiftStep": 5,
+      "maximums": [
+        null,
+        null,
+        8,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-5-26",
@@ -3587,7 +3706,15 @@
       ],
       "initial": {
         "cam": "P3"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        null,
+        null,
+        null,
+        null,
+        5
+      ]
     },
     {
       "id": "staff-5-27",
@@ -3662,7 +3789,15 @@
         "ari": "A1",
         "ivo": "W3",
         "pax": "Se1"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        null,
+        5,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-5-28",
@@ -3692,9 +3827,9 @@
       "minimums": [
         7,
         6,
-        8,
+        9,
         4,
-        4
+        5
       ],
       "capacity": [
         2,
@@ -3730,7 +3865,15 @@
         "luz": "P1",
         "eli": "A2",
         "hana": "W3"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        null,
+        7,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-5-29",
@@ -3760,7 +3903,7 @@
         4,
         5,
         4,
-        4,
+        6,
         4
       ],
       "capacity": [
@@ -3804,7 +3947,15 @@
         "ari": "W1",
         "kit": "P1",
         "jo": "A1"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        5,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-5-30",
@@ -3835,7 +3986,7 @@
         7,
         12,
         5,
-        5,
+        6,
         5
       ],
       "capacity": [
@@ -3880,7 +4031,15 @@
         "luz": "A1",
         "jo": "W1",
         "ivo": "P1"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        8,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-6-01",
@@ -3910,7 +4069,7 @@
       ],
       "minimums": [
         5,
-        5,
+        7,
         6,
         5,
         4,
@@ -3925,7 +4084,8 @@
         2
       ],
       "rules": [],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 1
     },
     {
       "id": "staff-6-02",
@@ -3955,9 +4115,9 @@
       ],
       "minimums": [
         5,
-        5,
         6,
-        5,
+        6,
+        6,
         5,
         2
       ],
@@ -3992,7 +4152,8 @@
           "station": "seal"
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 1
     },
     {
       "id": "staff-6-03",
@@ -4022,7 +4183,7 @@
       "minimums": [
         5,
         5,
-        5,
+        6,
         4,
         4,
         4
@@ -4047,7 +4208,8 @@
       "initial": {
         "gus": "P1",
         "sol": "La1"
-      }
+      },
+      "shiftStep": 1
     },
     {
       "id": "staff-6-04",
@@ -4075,7 +4237,7 @@
         "label"
       ],
       "minimums": [
-        3,
+        4,
         7,
         6,
         4,
@@ -4108,7 +4270,8 @@
       ],
       "initial": {
         "hana": "A1"
-      }
+      },
+      "shiftStep": 1
     },
     {
       "id": "staff-6-05",
@@ -4137,12 +4300,12 @@
         "label"
       ],
       "minimums": [
-        7,
+        8,
         5,
         5,
         5,
         5,
-        3
+        4
       ],
       "capacity": [
         3,
@@ -4168,7 +4331,8 @@
           ]
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 1
     },
     {
       "id": "staff-6-06",
@@ -4198,7 +4362,7 @@
       ],
       "minimums": [
         6,
-        6,
+        7,
         7,
         4,
         5,
@@ -4224,7 +4388,8 @@
       "initial": {
         "cam": "A2",
         "ivo": "W1"
-      }
+      },
+      "shiftStep": 2
     },
     {
       "id": "staff-6-07",
@@ -4257,7 +4422,7 @@
         8,
         5,
         5,
-        3,
+        4,
         5
       ],
       "capacity": [
@@ -4288,7 +4453,8 @@
         "bo": "A1",
         "gus": "W1",
         "tess": "So1"
-      }
+      },
+      "shiftStep": 2
     },
     {
       "id": "staff-6-08",
@@ -4316,7 +4482,7 @@
         "label"
       ],
       "minimums": [
-        7,
+        8,
         4,
         5,
         4,
@@ -4342,7 +4508,8 @@
       ],
       "initial": {
         "jo": "P2"
-      }
+      },
+      "shiftStep": 2
     },
     {
       "id": "staff-6-09",
@@ -4372,7 +4539,7 @@
       ],
       "minimums": [
         7,
-        8,
+        9,
         4,
         4,
         5,
@@ -4409,7 +4576,8 @@
           "station": "label"
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 2
     },
     {
       "id": "staff-6-10",
@@ -4439,9 +4607,9 @@
         "label"
       ],
       "minimums": [
-        10,
+        11,
         7,
-        7,
+        8,
         5,
         4,
         4
@@ -4473,7 +4641,8 @@
       "initial": {
         "bo": "P2",
         "hana": "A1"
-      }
+      },
+      "shiftStep": 2
     },
     {
       "id": "staff-6-11",
@@ -4505,8 +4674,8 @@
         3,
         7,
         6,
+        6,
         5,
-        4,
         4
       ],
       "capacity": [
@@ -4543,7 +4712,8 @@
       "initial": {
         "fay": "W2",
         "pax": "Se1"
-      }
+      },
+      "shiftStep": 3
     },
     {
       "id": "staff-6-12",
@@ -4572,7 +4742,7 @@
       ],
       "minimums": [
         5,
-        8,
+        9,
         5,
         3,
         5,
@@ -4605,7 +4775,8 @@
       "initial": {
         "kit": "W1",
         "jo": "P2"
-      }
+      },
+      "shiftStep": 3
     },
     {
       "id": "staff-6-13",
@@ -4661,7 +4832,8 @@
       "initial": {
         "ari": "A1",
         "cam": "A3"
-      }
+      },
+      "shiftStep": 3
     },
     {
       "id": "staff-6-14",
@@ -4690,7 +4862,7 @@
         "label"
       ],
       "minimums": [
-        5,
+        6,
         9,
         5,
         5,
@@ -4728,7 +4900,8 @@
           "station": "medium"
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 3
     },
     {
       "id": "staff-6-15",
@@ -4760,7 +4933,7 @@
       "minimums": [
         8,
         6,
-        9,
+        10,
         4,
         4,
         5
@@ -4786,7 +4959,8 @@
         "ivo": "W2",
         "luz": "P1",
         "sol": "La1"
-      }
+      },
+      "shiftStep": 3
     },
     {
       "id": "staff-6-16",
@@ -4816,7 +4990,7 @@
       ],
       "minimums": [
         5,
-        7,
+        8,
         4,
         4,
         4,
@@ -4853,7 +5027,8 @@
           "station": "sort"
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 4
     },
     {
       "id": "staff-6-17",
@@ -4881,9 +5056,9 @@
         "label"
       ],
       "minimums": [
-        6,
         7,
-        3,
+        7,
+        4,
         5,
         5,
         4
@@ -4922,7 +5097,8 @@
       "initial": {
         "luz": "P2",
         "kit": "W1"
-      }
+      },
+      "shiftStep": 4
     },
     {
       "id": "staff-6-18",
@@ -4951,7 +5127,7 @@
         "label"
       ],
       "minimums": [
-        9,
+        10,
         5,
         5,
         4,
@@ -4992,7 +5168,8 @@
       "initial": {
         "hana": "A1",
         "eli": "P1"
-      }
+      },
+      "shiftStep": 4
     },
     {
       "id": "staff-6-19",
@@ -5021,7 +5198,7 @@
         "label"
       ],
       "minimums": [
-        5,
+        6,
         7,
         8,
         5,
@@ -5067,7 +5244,8 @@
         "kit": "W1",
         "eli": "P2",
         "tess": "So1"
-      }
+      },
+      "shiftStep": 4
     },
     {
       "id": "staff-6-20",
@@ -5099,7 +5277,7 @@
       "minimums": [
         13,
         5,
-        6,
+        7,
         4,
         5,
         4
@@ -5131,7 +5309,8 @@
       "initial": {
         "hana": "A1",
         "bo": "W1"
-      }
+      },
+      "shiftStep": 4
     },
     {
       "id": "staff-6-21",
@@ -5162,7 +5341,7 @@
       ],
       "minimums": [
         7,
-        13,
+        14,
         3,
         4,
         5,
@@ -5206,7 +5385,16 @@
           "station": "small"
         }
       ],
-      "initial": {}
+      "initial": {},
+      "shiftStep": 5,
+      "maximums": [
+        null,
+        null,
+        4,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-6-22",
@@ -5240,7 +5428,7 @@
         11,
         5,
         4,
-        4
+        5
       ],
       "capacity": [
         1,
@@ -5269,7 +5457,16 @@
       "initial": {
         "jo": "A2",
         "ivo": "W1"
-      }
+      },
+      "shiftStep": 5,
+      "maximums": [
+        null,
+        7,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-6-23",
@@ -5298,7 +5495,7 @@
         "label"
       ],
       "minimums": [
-        8,
+        7,
         8,
         6,
         5,
@@ -5340,7 +5537,16 @@
         "dee": "A1",
         "gus": "W2",
         "pax": "Se1"
-      }
+      },
+      "shiftStep": 5,
+      "maximums": [
+        8,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-6-24",
@@ -5411,7 +5617,16 @@
       "initial": {
         "fay": "W1",
         "luz": "A1"
-      }
+      },
+      "shiftStep": 5,
+      "maximums": [
+        8,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-6-25",
@@ -5489,7 +5704,16 @@
         "luz": "A1",
         "hana": "P1",
         "bo": "A2"
-      }
+      },
+      "shiftStep": 5,
+      "maximums": [
+        5,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-6-26",
@@ -5523,7 +5747,7 @@
         5,
         5,
         5,
-        3
+        4
       ],
       "capacity": [
         3,
@@ -5558,7 +5782,16 @@
       ],
       "initial": {
         "cam": "P3"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        11,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-6-27",
@@ -5592,7 +5825,7 @@
         9,
         4,
         4,
-        5
+        6
       ],
       "capacity": [
         2,
@@ -5630,7 +5863,16 @@
         "ari": "A1",
         "ivo": "W3",
         "sol": "La1"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        null,
+        5,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-6-28",
@@ -5660,7 +5902,7 @@
         "label"
       ],
       "minimums": [
-        7,
+        8,
         6,
         8,
         4,
@@ -5709,7 +5951,16 @@
         "luz": "P1",
         "eli": "A2",
         "hana": "W3"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        null,
+        7,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-6-29",
@@ -5740,8 +5991,8 @@
       "minimums": [
         4,
         5,
-        4,
         5,
+        6,
         5,
         4
       ],
@@ -5780,7 +6031,16 @@
         "ari": "W1",
         "kit": "P1",
         "jo": "A1"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        5,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "staff-6-30",
@@ -5813,7 +6073,7 @@
         7,
         12,
         5,
-        4,
+        5,
         5,
         4
       ],
@@ -5860,7 +6120,16 @@
         "luz": "A1",
         "jo": "W1",
         "ivo": "P1"
-      }
+      },
+      "shiftStep": 6,
+      "maximums": [
+        null,
+        null,
+        6,
+        null,
+        null,
+        null
+      ]
     }
   ]
 }

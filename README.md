@@ -1,12 +1,13 @@
-# Does This Work? v0.3
+# Does This Work? v0.4
 
 Does This Work? is an offline English-language macOS game about industrial
 engineering decisions. Staff the Stations is the playable first stage.
 
 Play six puzzles from a single four-, five-, or six-station layout picked
 at the start of the run. Assign everyone to an allowed slot, meet each
-station's minimum power, and satisfy the shift rules. Each run draws six
-distinct puzzles from its layout's bank of 30. Only Stage 1 is playable.
+station's power goal, and satisfy the shift rules. The six puzzles progress
+from Warm-up through Production to Rush. Some Rush stations have both a
+minimum and a maximum. Each layout still has 30 puzzles. Only Stage 1 is playable.
 
 Hover over a worker in the crew tray or on the floor to see their name,
 ratings, allowed stations, and any rules that apply. The crew skills panel
@@ -17,7 +18,7 @@ drag a worker to highlight usable slots.
 
 You need macOS and Xcode selected as the active developer directory. The
 application targets macOS 14 or later, builds for the host architecture, and
-uses the local Xcode SDK. The downloadable v0.3 build was packaged for Apple
+uses the local Xcode SDK. The downloadable v0.4 build was packaged for Apple
 Silicon. This project has no external package dependencies.
 
 ```sh
@@ -26,15 +27,26 @@ Silicon. This project has no external package dependencies.
 ./Scripts/build.sh
 ```
 
-Open `outputs/Does This Work? v0.3.app` to play. The app keeps settings and
+Open `outputs/Does This Work? v0.4.app` to play. The app keeps settings and
 completed-stage progress locally. Reopening the app starts a new run while
 preserving completed-stage progress.
 
 To regenerate the checked-in puzzle bank after editing the authored scenarios,
-run `python3 Scripts/author_puzzles.py`. Sources, audio, art, and compiled
+use Python 3.10 or later and run `python3 Scripts/author_puzzles.py`. Sources, audio, art, and compiled
 puzzle definitions are included in the source distribution.
 
 ## Version history
+
+### Does This Work? v0.4
+
+- Worker speech bubbles sit above the hovered model or tray marker.
+- Workers assigned to the floor leave a muted checkmark and slot code in the tray.
+- Stations show their current power and a larger, separately labeled goal.
+- Each six-puzzle run progresses through Warm-up, Production, and Rush.
+  Targets have been retuned, and every run ends with a station that must stay
+  within a power range. Compared with v0.3, 72 puzzles accept fewer crew
+  groupings. Every puzzle still has at least three distinct plans.
+- Only Stage 1 is playable. The existing music and 27 sound effects carry forward.
 
 ### Does This Work? v0.3 — Build 4 · Geometric Crew
 

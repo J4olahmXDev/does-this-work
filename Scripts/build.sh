@@ -9,7 +9,7 @@ mkdir -p "$root/work/tmp" "$root/work/module-cache" "$root/outputs"
 export TMPDIR="$root/work/tmp/"
 export CLANG_MODULE_CACHE_PATH="$root/work/module-cache"
 scratch="$(/usr/bin/mktemp -d "$root/work/build.XXXXXXXX")"
-name='Does This Work? v0.3'
+name='Does This Work? v0.4'
 app="$scratch/$name.app"
 contents="$app/Contents"
 resources="$contents/Resources"
@@ -22,12 +22,12 @@ cat > "$contents/Info.plist" <<'PLIST'
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CFBundleDisplayName</key><string>Does This Work? v0.3</string>
-    <key>CFBundleName</key><string>Does This Work? v0.3</string>
+    <key>CFBundleDisplayName</key><string>Does This Work? v0.4</string>
+    <key>CFBundleName</key><string>Does This Work? v0.4</string>
     <key>CFBundleExecutable</key><string>DoesThisWork</string>
     <key>CFBundleIdentifier</key><string>com.doesthiswork.game</string>
-    <key>CFBundleVersion</key><string>4</string>
-    <key>CFBundleShortVersionString</key><string>0.3</string>
+    <key>CFBundleVersion</key><string>5</string>
+    <key>CFBundleShortVersionString</key><string>0.4</string>
     <key>CFBundlePackageType</key><string>APPL</string>
     <key>CFBundleDevelopmentRegion</key><string>en</string>
     <key>CFBundleLocalizations</key><array><string>en</string></array>

@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 
+from balance_puzzles import balance
 from scenarios import BRIEFS, CLOSINGS, OPENINGS, ROSTER, SCENARIOS, STATIONS, apart, banned, only
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -101,9 +102,11 @@ for station_count, (layout, ending) in LAYOUTS.items():
         if index % 5 == station_count - 4:
             greeting = OPENING_VARIANTS[station_count][index % 3]
             closing = ending
-        puzzles.append(dict(id=f"staff-{station_count}-{index+1:02}", title=title, layout=layout,
+        puzzle = dict(id=f"staff-{station_count}-{index+1:02}", title=title, layout=layout,
                             briefing=context, greeting=greeting, closing=closing, crew=crew, stations=stations,
-                            minimums=minimums, capacity=capacities, rules=rules, initial=slots))
+                            minimums=minimums, capacity=capacities, rules=rules, initial=slots)
+        balance(puzzle, workers, step=index // 5 + 1)
+        puzzles.append(puzzle)
 
 roster = [dict(id=key, name=name, style=style, ratings=dict(zip(ALL_STATIONS, skills)))
           for key, (name, style, skills) in workers.items()]

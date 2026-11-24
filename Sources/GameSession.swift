@@ -5,7 +5,7 @@ import SwiftUI
 
 enum GameIdentity {
     static let name = "Does This Work?"
-    static let version = "0.3"
+    static let version = "0.4"
     static let title = name + " v" + version
     static let qaBundleID = "com.doesthiswork.game.qa"
 }

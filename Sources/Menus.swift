@@ -221,7 +221,7 @@ struct InstructionsMenu: View {
                         HintSlot(blocked: true, strong: true)
                     }
                 }
-                helpStep("Check your plan", detail: "Everyone needs a place. Meet each minimum and check any extra rules.") {
+                helpStep("Check your plan", detail: "Everyone needs a place. Reach each power goal and stay within any power range.") {
                     MachineArt(station: .large)
                 }
             }

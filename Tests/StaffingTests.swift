@@ -37,8 +37,9 @@ func bruteCount(_ board: StaffingBoard) -> (passes: Int, physical: Int) {
             physical += 1
             guard board.puzzle.rules.allSatisfy({ $0.satisfied(by: mapping) }) else { return }
             if board.puzzle.stations.allSatisfy({ station in
-                crew.filter { mapping[$0.id] == station }.reduce(0) { $0 + $1.power(at: station) }
-                    >= board.puzzle.minimum(at: station)
+                let power = crew.filter { mapping[$0.id] == station }.reduce(0) { $0 + $1.power(at: station) }
+                return power >= board.puzzle.minimum(at: station) &&
+                    board.puzzle.maximum(at: station).map { power <= $0 } != false
             }) { passes += 1 }
             return
         }
@@ -80,7 +81,11 @@ enum StaffingTests {
             let physical = physicalGroupings(puzzle.capacity, workers: board.crew.count)
             let rate = Double(passes) / Double(physical)
             try expect(passes >= 3, "\(puzzle.id): only \(passes) station groupings pass")
-            try expect(rate <= 0.125, "\(puzzle.id): too permissive, \(passes)/\(physical)")
+            try expect(rate <= 0.01, "\(puzzle.id): too permissive, \(passes)/\(physical)")
+            if puzzle.shiftStep == 6 {
+                try expect(puzzle.stations.contains { puzzle.maximum(at: $0) != nil },
+                           "Every final shift has a capped station")
+            }
             let completed = try solve(board)
             try expect(completed.readyStationCount == puzzle.stations.count, "All station goals turn ready after solving")
             try expect(puzzle.rules.allSatisfy { completed.status(of: $0) == .met }, "Solved board meets every displayed shift rule")
@@ -92,7 +97,8 @@ enum StaffingTests {
             let encoder = JSONEncoder()
             encoder.outputFormatting = [.sortedKeys]
             return try puzzle.crew.joined(separator: ",") + "\(puzzle.stations)\(puzzle.capacity)\(puzzle.minimums)"
-                + String(decoding: encoder.encode(puzzle.rules), as: UTF8.self)
+                + String(decoding: encoder.encode(puzzle.rules), as: UTF8.self) +
+                String(decoding: encoder.encode(puzzle.maximums), as: UTF8.self)
         }
         try expect(Set(signatures).count == 90, "Distinct decisions across all 90 puzzles")
 
@@ -101,6 +107,25 @@ enum StaffingTests {
         try expect(independent.passes == tutorial.solutionCount() &&
                    independent.physical == physicalGroupings(tutorial.puzzle.capacity, workers: tutorial.crew.count),
                    "Pruning and occupancy counts match an independent exhaustive search")
+        let rush = bank.puzzles.first { $0.stations.count == 4 && $0.shiftStep == 6 }!
+        let rushedBoard = StaffingBoard(puzzle: rush, roster: roster)
+        try expect(bruteCount(rushedBoard).passes == rushedBoard.solutionCount(),
+                   "The exhaustive search agrees with the capped solver")
+        let stationIndex = rush.maximums!.firstIndex { $0 != nil }!
+        let station = rush.stations[stationIndex]
+        var forcedOverload = try JSONSerialization.jsonObject(with: JSONEncoder().encode(rush)) as! [String: Any]
+        var minimums = rush.minimums
+        minimums[stationIndex] = rush.maximum(at: station)! + 1
+        forcedOverload["maximums"] = nil
+        forcedOverload["minimums"] = minimums
+        let overloadPuzzle = try JSONDecoder().decode(Puzzle.self, from: JSONSerialization.data(withJSONObject: forcedOverload))
+        let overload = try solve(StaffingBoard(puzzle: overloadPuzzle, roster: roster))
+        var capped = rushedBoard
+        for worker in capped.crew { capped.remove(worker.id) }
+        for worker in capped.crew { _ = capped.place(worker.id, in: overload.slot(for: worker.id)!) }
+        try expect(!capped.isReady(station) && capped.issues().contains { $0.contains("over its limit") },
+                   "Overloaded station is marked unready and gives specific feedback")
+
         var restricted = StaffingBoard(puzzle: bank.puzzles[1], roster: roster)
         let press = Slot(station: .large, number: 1)
         let assembly = Slot(station: .medium, number: 1)
@@ -147,6 +172,7 @@ enum StaffingTests {
             let draw = bank.draw(using: &random)
             try expect(draw.count == 6 && Set(draw.map(\.id)).count == 6, "No repeated puzzle in a run")
             try expect(Set(draw.map { $0.stations.count }).count == 1, "Never mixes the three layouts")
+            try expect(draw.compactMap(\.shiftStep) == Array(1...6), "Draws one puzzle per successive shift step")
             seen.insert(draw[0].stations.count)
         }
         try expect(seen == Set(PuzzleBank.stationCounts), "Every layout is drawn")

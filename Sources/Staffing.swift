@@ -101,12 +101,28 @@ struct Puzzle: Codable, Identifiable {
     let crew: [String]
     let stations: [Station]
     let minimums: [Int]
+    let maximums: [Int?]?
+    let shiftStep: Int?
+
+    var pace: String {
+        switch shiftStep ?? 0 {
+        case 1...2: "Warm-up"
+        case 3...4: "Production"
+        case 5...6: "Rush"
+        default: "Shift"
+        }
+    }
     let capacity: [Int]
     let rules: [Rule]
     let initial: [String: String]
 
     func minimum(at station: Station) -> Int {
         stations.firstIndex(of: station).map { minimums[$0] } ?? 0
+    }
+
+    func maximum(at station: Station) -> Int? {
+        guard let index = stations.firstIndex(of: station) else { return nil }
+        return maximums?[index]
     }
 
     func slots(at station: Station) -> [Slot] {
@@ -132,7 +148,9 @@ struct PuzzleBank: Codable {
 
     func draw<R: RandomNumberGenerator>(using random: inout R, stationCount: Int? = nil) -> [Puzzle] {
         let count = stationCount ?? Self.stationCounts.randomElement(using: &random)!
-        return Array(puzzles.filter { $0.stations.count == count }.shuffled(using: &random).prefix(StageRun.length))
+        let layout = puzzles.filter { $0.stations.count == count }.shuffled(using: &random)
+        let progression = (1...StageRun.length).compactMap { step in layout.first { $0.shiftStep == step } }
+        return progression.count == StageRun.length ? progression : Array(layout.prefix(StageRun.length))
     }
 
     static func load(from url: URL) throws -> PuzzleBank {
@@ -154,8 +172,14 @@ struct PuzzleBank: Codable {
         }
         try require(puzzles.count == 90 && Set(puzzles.map(\.id)).count == 90, "Expected 90 unique puzzles")
         for count in Self.stationCounts {
-            try require(puzzles.filter { $0.stations.count == count }.count == 30,
-                        "Expected 30 boards with \(count) stations")
+            let layout = puzzles.filter { $0.stations.count == count }
+            try require(layout.count == 30, "Expected 30 boards with \(count) stations")
+            if layout.contains(where: { $0.shiftStep != nil }) {
+                for step in 1...StageRun.length {
+                    try require(layout.filter { $0.shiftStep == step }.count == 5,
+                                "Expected five boards at step \(step) with \(count) stations")
+                }
+            }
         }
         for puzzle in puzzles {
             let count = puzzle.stations.count
@@ -166,6 +190,11 @@ struct PuzzleBank: Codable {
                 crew.isSubset(of: knownWorkers), "\(puzzle.id): invalid crew")
             try require(puzzle.minimums.count == count && puzzle.minimums.allSatisfy { $0 > 0 },
                         "\(puzzle.id): invalid minimums")
+            if let maximums = puzzle.maximums {
+                try require(maximums.count == count && zip(puzzle.minimums, maximums).allSatisfy { minimum, maximum in
+                    maximum.map { $0 >= minimum } ?? true
+                }, "\(puzzle.id): invalid power ranges")
+            }
             try require(puzzle.capacity.count == count && puzzle.capacity.allSatisfy { (1...4).contains($0) } &&
                 puzzle.capacity.reduce(0, +) >= crew.count, "\(puzzle.id): invalid station slots")
             let slotIDs = Set(puzzle.slots.map(\.id))
@@ -284,9 +313,13 @@ struct StaffingBoard {
         }
     }
 
-    var readyStationCount: Int {
-        puzzle.stations.filter { power(at: $0) >= puzzle.minimum(at: $0) }.count
+    func isReady(_ station: Station) -> Bool {
+        let current = power(at: station)
+        return current >= puzzle.minimum(at: station) &&
+            puzzle.maximum(at: station).map { current <= $0 } != false
     }
+
+    var readyStationCount: Int { puzzle.stations.filter(isReady).count }
 
     func status(of rule: Rule) -> RuleProgress {
         let involved = rule.workers.compactMap { worker in
@@ -305,9 +338,12 @@ struct StaffingBoard {
                 : "Assign \(unassigned.joined(separator: ", ")).")
         }
         for station in puzzle.stations {
-            let needed = puzzle.minimum(at: station) - power(at: station)
+            let current = power(at: station)
+            let needed = puzzle.minimum(at: station) - current
             if needed > 0 {
                 result.append("\(station.title) needs \(needed) more power.")
+            } else if let maximum = puzzle.maximum(at: station), current > maximum {
+                result.append("\(station.title) is over its limit by \(current - maximum) power.")
             }
         }
         for rule in puzzle.rules where status(of: rule) == .needsChange {
@@ -349,6 +385,7 @@ struct StaffingBoard {
         var open = puzzle.capacity
         var totals = Array(repeating: 0, count: stations.count)
         let thresholds = puzzle.minimums
+        let caps = stations.map { puzzle.maximum(at: $0) ?? Int.max }
         var found = 0
         var first: [String: Slot]?
 
@@ -370,7 +407,7 @@ struct StaffingBoard {
                 }
                 return
             }
-            for station in eligible[row] where open[station] > 0 {
+            for station in eligible[row] where open[station] > 0 && totals[station] + power[row][station] <= caps[station] {
                 let fits = pairs[row].allSatisfy { partner, same in
                     positions[partner] < 0 || (positions[partner] == station) == same
                 }

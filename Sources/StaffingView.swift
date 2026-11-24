@@ -22,16 +22,31 @@ private struct MovingWorker {
     let point: CGPoint
 }
 
-private struct HoveredWorker {
-    let worker: Worker
-    let frame: CGRect
+private enum WorkerMarker: Hashable {
+    case tray(String)
+    case station(Slot, String)
+
+    var workerID: String {
+        switch self {
+        case .tray(let id), .station(_, let id): id
+        }
+    }
+}
+
+private struct WorkerAnchors: PreferenceKey {
+    static let defaultValue: [WorkerMarker: Anchor<CGRect>] = [:]
+
+    static func reduce(value: inout [WorkerMarker: Anchor<CGRect>],
+                       nextValue: () -> [WorkerMarker: Anchor<CGRect>]) {
+        value.merge(nextValue(), uniquingKeysWith: { _, latest in latest })
+    }
 }
 
 private final class BoardInteraction: ObservableObject {
     var frames: [Slot: CGRect] = [:]
     var trayFrame = CGRect.null
     @Published var drag: MovingWorker?
-    @Published var hover: HoveredWorker?
+    @Published var hover: WorkerMarker?
     var suppressesClick = false
 }
 
@@ -51,8 +66,8 @@ struct StaffingScreen: View {
                 Spacer()
                 VStack(alignment: .trailing, spacing: 5) {
                     Text("Puzzle \(run.index + 1) of \(run.puzzles.count)").gameFont(15, .bold)
-                    Text("\(run.board.puzzle.stations.count) stations")
-                        .gameFont(14).foregroundStyle(Palette.quiet)
+                    Text(run.board.puzzle.pace + " · \(run.board.puzzle.stations.count) stations")
+                        .gameFont(14, .semibold).foregroundStyle(Palette.quiet)
                 }.padding(.trailing, 5)
                 GameButton(title: "Pause", symbol: "pause.fill") { game.pause() }
                     .accessibilityIdentifier("game-pause")
@@ -89,6 +104,17 @@ private struct BoardView: View {
             let rowHeight = max(139, (height - wall - traySpace - 42) / 2)
             VStack(spacing: 0) {
                 FactoryWall().frame(height: wall)
+                    .overlay(alignment: .leading) {
+                        Text(board.puzzle.maximums == nil
+                             ? "Assign every worker and meet each station’s power goal."
+                             : "Assign every worker. Keep stations with a range within both limits.")
+                            .gameFont(13, .semibold)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 5)
+                            .background(Palette.paper, in: RoundedRectangle(cornerRadius: 6))
+                            .padding(.horizontal, 12)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                 floorRows(height: rowHeight)
                     .padding(.horizontal, 12)
                     .padding(.top, 9)
@@ -102,24 +128,27 @@ private struct BoardView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .overlay(alignment: .topLeading) {
-                if let hover = interaction.hover, drag == nil, game.gameActive {
-                    let width: CGFloat = 258
-                    let x = max(width / 2 + 8, min(size.size.width - width / 2 - 8, hover.frame.midX))
-                    let above = hover.frame.minY > 190
-                    WorkerSpeechBubble(board: board, worker: hover.worker, pointsDown: above,
-                                       tailOffset: hover.frame.midX - x)
-                        .frame(width: width)
-                        .alignmentGuide(.top) { above ? $0.height : 0 }
-                        .offset(x: x - width / 2, y: above ? hover.frame.minY : hover.frame.maxY)
-                        .allowsHitTesting(false)
-                        .accessibilityHidden(true)
+            .background(Palette.beige.opacity(0.54))
+            .clipShape(RoundedRectangle(cornerRadius: 17))
+            .overlay { RoundedRectangle(cornerRadius: 17).strokeBorder(Palette.line, lineWidth: 1) }
+            .overlayPreferenceValue(WorkerAnchors.self) { anchors in
+                GeometryReader { area in
+                    if let hover = interaction.hover, let anchor = anchors[hover],
+                       let worker = board.roster[hover.workerID], drag == nil, game.gameActive {
+                        let frame = area[anchor]
+                        let width: CGFloat = 248
+                        let center = max(width / 2 + 8, min(area.size.width - width / 2 - 8, frame.midX))
+                        WorkerSpeechBubble(board: board, worker: worker, tailOffset: frame.midX - center)
+                            .frame(width: width)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .frame(height: max(0, frame.minY - 3), alignment: .bottom)
+                            .offset(x: center - width / 2)
+                    }
                 }
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
             }
         }
-        .background(Palette.beige.opacity(0.54))
-        .clipShape(RoundedRectangle(cornerRadius: 17))
-        .overlay { RoundedRectangle(cornerRadius: 17).strokeBorder(Palette.line, lineWidth: 1) }
         .overlay {
             if let drag, let worker = board.roster[drag.id] {
                 WorkerArt(style: worker.style)
@@ -164,38 +193,53 @@ private struct BoardView: View {
     private func stationColumn(_ station: Station, rowHeight: Double) -> some View {
         let required = board.puzzle.minimum(at: station)
         let power = board.power(at: station)
-        let ready = power >= required
+        let maximum = board.puzzle.maximum(at: station)
+        let ready = board.isReady(station)
+        let overloaded = maximum.map { power > $0 } ?? false
         let slots = board.puzzle.slots(at: station)
-        let ratio = min(1.0, Double(power) / Double(required))
+        let ratio = min(1.0, Double(power) / Double(maximum ?? required))
+        let goal = maximum.map { "\(required)–\($0)" } ?? "\(required)+"
         return VStack(spacing: 2) {
-            HStack(spacing: 6) {
+            HStack(alignment: .firstTextBaseline, spacing: 5) {
                 RoundedRectangle(cornerRadius: 2)
-                    .fill(station.tint).frame(width: 5, height: 14)
+                    .fill(station.tint).frame(width: 4, height: 13)
                     .accessibilityHidden(true)
-                Text(station.title).gameFont(15, .bold)
-                Spacer(minLength: 2)
-                if ready {
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 12)).foregroundStyle(Palette.deepSage)
+                Text(station.title).gameFont(18, .bold)
+                Spacer(minLength: 0)
+                if ready || overloaded {
+                    Image(systemName: ready ? "checkmark.circle.fill" : "exclamationmark.circle.fill")
+                        .font(.system(size: 13))
+                        .foregroundStyle(ready ? Palette.deepSage : Palette.warn)
                         .accessibilityHidden(true)
                 }
-                Text("\(power) / \(required)").gameFont(13, .semibold).monospacedDigit()
             }
             .padding(.horizontal, 9)
-            .padding(.top, 8)
+            .padding(.top, 5)
+            .accessibilityHidden(true)
+            HStack(alignment: .firstTextBaseline, spacing: 5) {
+                Text("\(power)").gameFont(23, .bold).monospacedDigit()
+                    .foregroundStyle(overloaded ? Palette.warn : ready ? Palette.deepSage : Palette.ink)
+                Text("power").gameFont(11, .semibold).foregroundStyle(Palette.quiet)
+                Spacer(minLength: 0)
+                Text("Goal \(goal)").gameFont(15, .bold).monospacedDigit()
+                    .foregroundStyle(overloaded ? Palette.warn : Palette.ink)
+            }
+            .padding(.horizontal, 9)
+            .padding(.bottom, 2)
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel("\(station.title), \(power) of \(required) power" + (ready ? ", ready" : ""))
+            .accessibilityLabel("\(station.title), \(power) power, goal \(goal)" +
+                                (ready ? ", ready" : overloaded ? ", over limit" : ""))
             GeometryReader { meter in
                 Capsule().fill(Palette.line.opacity(0.32))
                     .overlay(alignment: .leading) {
                         if power > 0 {
-                            Capsule().fill(ready ? Palette.deepSage : station.tint)
+                            Capsule().fill(overloaded ? Palette.warn : ready ? Palette.deepSage : station.tint)
                                 .frame(width: meter.size.width * ratio)
                         }
                     }
             }
-            .frame(height: 3)
-            .padding(.horizontal, 10)
+            .frame(height: 4)
+            .padding(.horizontal, 9)
             .accessibilityHidden(true)
 
             GeometryReader { area in
@@ -212,7 +256,8 @@ private struct BoardView: View {
                             }
                         }
                     } else {
-                        let slotSize = min(46, max(26, (bayWidth * 0.53 - 7) / 2))
+                        let slotHeight = slots.count > 2 ? (surfaceHeight - 29) / 2 : surfaceHeight - 15
+                        let slotSize = min(46, max(25, slotHeight), max(26, (bayWidth * 0.53 - 7) / 2))
                         HStack(spacing: 5) {
                             MachineArt(station: station)
                                 .frame(width: bayWidth * 0.47, height: surfaceHeight)
@@ -299,8 +344,9 @@ private struct BoardView: View {
         .background(GeometryReader { size in
             Color.clear.preference(key: SlotFrames.self, value: [slot: size.frame(in: .named(boardSpace))])
         })
-        if let occupantID, let occupant {
-            slotView.modifier(WorkerHoverTarget(worker: occupant, interaction: interaction)).simultaneousGesture(dragGesture(for: occupantID))
+        if let occupantID {
+            slotView.modifier(WorkerHoverTarget(marker: .station(slot, occupantID), interaction: interaction))
+                .simultaneousGesture(dragGesture(for: occupantID))
         } else {
             slotView
         }
@@ -337,15 +383,23 @@ private struct BoardView: View {
             game.pick(worker.id)
         } label: {
             VStack(spacing: 1) {
-                WorkerArt(style: worker.style)
-                    .frame(width: 48, height: 48)
-                    .opacity(drag?.id == worker.id ? 0 : slot == nil ? 1 : 0.68)
-                Text(slot?.id ?? " ")
-                    .gameFont(10, .semibold).monospacedDigit()
-                    .foregroundStyle(Palette.deepSage)
+                if let slot {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 20, weight: .semibold))
+                        .accessibilityHidden(true)
+                    Text(slot.id).gameFont(12, .bold).monospacedDigit()
+                } else {
+                    WorkerArt(style: worker.style)
+                        .frame(width: 48, height: 48)
+                        .saturation(selected ? 0 : 1)
+                        .opacity(drag?.id == worker.id ? 0 : selected ? 0.60 : 1)
+                }
             }
+            .foregroundStyle(Palette.quiet)
             .frame(maxWidth: .infinity, minHeight: 64)
-            .background(selected ? Palette.sage.opacity(0.5) : Palette.paper, in: RoundedRectangle(cornerRadius: 8))
+            .background(selected ? Palette.sage.opacity(0.5) :
+                            slot == nil ? Palette.paper : Palette.line.opacity(0.23),
+                        in: RoundedRectangle(cornerRadius: 8))
             .overlay {
                 RoundedRectangle(cornerRadius: 8).strokeBorder(selected ? Palette.deepSage : Palette.line,
                                                                lineWidth: selected ? 2 : 1)
@@ -353,7 +407,7 @@ private struct BoardView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .modifier(WorkerHoverTarget(worker: worker, interaction: interaction))
+        .modifier(WorkerHoverTarget(marker: .tray(worker.id), interaction: interaction))
         .accessibilityIdentifier("worker-\(worker.id)")
         .accessibilityLabel(slot.map { "\(worker.name), at \($0.id)" } ?? "\(worker.name), unassigned")
         .accessibilityAddTraits(selected ? .isSelected : [])
@@ -386,27 +440,17 @@ private struct BoardView: View {
     }
 }
 
-private final class WorkerHoverGeometry: ObservableObject {
-    var frame = CGRect.zero
-}
-
 private struct WorkerHoverTarget: ViewModifier {
-    let worker: Worker
+    let marker: WorkerMarker
     let interaction: BoardInteraction
-    @StateObject private var geometry = WorkerHoverGeometry()
 
     func body(content: Content) -> some View {
         content
-            .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(boardSpace)) } action: { newFrame in
-                if interaction.hover?.worker.id == worker.id, interaction.hover?.frame == geometry.frame {
-                    interaction.hover = nil
-                }
-                geometry.frame = newFrame
-            }
+            .anchorPreference(key: WorkerAnchors.self, value: .bounds) { [marker: $0] }
             .onHover { inside in
                 if inside {
-                    interaction.hover = HoveredWorker(worker: worker, frame: geometry.frame)
-                } else if interaction.hover?.worker.id == worker.id, interaction.hover?.frame == geometry.frame {
+                    interaction.hover = marker
+                } else if interaction.hover == marker {
                     interaction.hover = nil
                 }
             }
@@ -416,7 +460,6 @@ private struct WorkerHoverTarget: ViewModifier {
 private struct WorkerSpeechBubble: View {
     let board: StaffingBoard
     let worker: Worker
-    let pointsDown: Bool
     let tailOffset: CGFloat
 
     var body: some View {
@@ -425,7 +468,6 @@ private struct WorkerSpeechBubble: View {
         let stationNames = puzzle.allowedStations(for: worker.id).map(\.title)
         let stationSkills = puzzle.stations.map { "\($0.title) \(worker.power(at: $0))" }
         return VStack(spacing: 0) {
-            if !pointsDown { SpeechTail().rotationEffect(.degrees(180)).offset(x: tailOffset) }
             VStack(alignment: .leading, spacing: 5) {
                 HStack {
                     Text(worker.name).gameFont(16, .bold)
@@ -445,7 +487,7 @@ private struct WorkerSpeechBubble: View {
             .padding(10)
             .background(Palette.paper, in: RoundedRectangle(cornerRadius: 9))
             .overlay { RoundedRectangle(cornerRadius: 9).strokeBorder(Palette.line, lineWidth: 1) }
-            if pointsDown { SpeechTail().offset(x: tailOffset) }
+            SpeechTail().offset(x: max(-110, min(110, tailOffset)))
         }
         .shadow(color: Palette.ink.opacity(0.15), radius: 6, y: 3)
     }
@@ -640,7 +682,7 @@ struct StaffingDialog: View {
                     GameButton(title: "Leave stage") { game.leaveStage() }
                 }
             case .passed:
-                dialog(title: "Puzzle complete", message: "Everyone has a place and all the stations are ready.",
+                dialog(title: "Puzzle complete", message: passedMessage,
                        symbol: "checkmark.circle.fill") {
                     GameButton(title: "Continue", style: .filled) { game.continueRun() }
                         .accessibilityIdentifier("next-puzzle")
@@ -661,6 +703,16 @@ struct StaffingDialog: View {
         .overlay { RoundedRectangle(cornerRadius: 22).strokeBorder(Palette.line, lineWidth: 1.4) }
         .shadow(color: Palette.ink.opacity(0.13), radius: 22, x: 0, y: 8)
         .accessibilityElement(children: .contain)
+    }
+
+    private var passedMessage: String {
+        guard let run = game.run, !run.isFinalPuzzle else {
+            return "Everyone has a place and all the stations are ready."
+        }
+        let next = run.puzzles[run.index + 1].pace
+        return next == run.board.puzzle.pace
+            ? "Everyone has a place and all the stations are ready."
+            : "All stations are ready. Next up: " + next + "."
     }
 
     private func dialog<Buttons: View>(title: String, message: String, symbol: String,
