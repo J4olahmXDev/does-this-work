@@ -195,6 +195,8 @@ enum BankError: Error, LocalizedError {
     }
 }
 
+enum RuleProgress: Equatable { case waiting, met, needsChange }
+
 enum MoveResult: Equatable {
     case placed, swapped, unchanged, blocked(String)
 }
@@ -282,6 +284,18 @@ struct StaffingBoard {
         }
     }
 
+    var readyStationCount: Int {
+        puzzle.stations.filter { power(at: $0) >= puzzle.minimum(at: $0) }.count
+    }
+
+    func status(of rule: Rule) -> RuleProgress {
+        let involved = rule.workers.compactMap { worker in
+            slot(for: worker).map { (worker, $0.station) }
+        }
+        guard involved.count == rule.workers.count else { return .waiting }
+        return rule.satisfied(by: Dictionary(uniqueKeysWithValues: involved)) ? .met : .needsChange
+    }
+
     func issues() -> [String] {
         var result: [String] = []
         let unassigned = crew.filter { assignments[$0.id] == nil }.map(\.name)
@@ -296,10 +310,7 @@ struct StaffingBoard {
                 result.append("\(station.title) needs \(needed) more power.")
             }
         }
-        let stations = assignments.reduce(into: [String: Station]()) { result, entry in
-            result[entry.key] = slot(for: entry.key)?.station
-        }
-        for rule in puzzle.rules where !rule.satisfied(by: stations) {
+        for rule in puzzle.rules where status(of: rule) == .needsChange {
             result.append(text(for: rule))
         }
         return result

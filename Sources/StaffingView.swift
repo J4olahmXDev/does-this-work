@@ -39,13 +39,13 @@ struct StaffingScreen: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Staff the Stations").gameFont(32, .bold)
                         .accessibilityAddTraits(.isHeader)
-                    Text("Assign everyone and meet each minimum.")
+                    Text(run.board.puzzle.title + " · " + run.board.puzzle.layout)
                         .gameFont(15).foregroundStyle(Palette.quiet)
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 5) {
                     Text("Puzzle \(run.index + 1) of \(run.puzzles.count)").gameFont(15, .bold)
-                    Text("\(run.board.puzzle.stations.count) stations · " + run.board.puzzle.title)
+                    Text("\(run.board.puzzle.stations.count) stations")
                         .gameFont(14).foregroundStyle(Palette.quiet)
                 }.padding(.trailing, 5)
                 GameButton(title: "Pause", symbol: "pause.fill") { game.pause() }
@@ -56,9 +56,9 @@ struct StaffingScreen: View {
                 HStack(alignment: .top, spacing: 16) {
                     BoardView(board: run.board)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    CrewPanel(board: run.board)
+                    CrewPanel(board: run.board, compact: size.size.height < 650)
                         .frame(width: max(418, min(650, size.size.width * 0.39)))
-                        .frame(maxHeight: .infinity)
+                        .frame(maxHeight: .infinity, alignment: .top)
                 }
             }
         }
@@ -79,12 +79,12 @@ private struct BoardView: View {
             let height = size.size.height
             let wall = min(78, max(42, height * 0.10))
             let traySpace: Double = 113
-            let rowHeight = max(139, (height - wall - traySpace - 46) / 2)
+            let rowHeight = max(139, (height - wall - traySpace - 42) / 2)
             VStack(spacing: 0) {
                 FactoryWall().frame(height: wall)
                 floorRows(height: rowHeight)
                     .padding(.horizontal, 12)
-                    .padding(.top, 5)
+                    .padding(.top, 9)
                 Spacer(minLength: 2)
                 tray.padding(.horizontal, 12).padding(.bottom, 7)
                 if game.settings.keyboardHints {
@@ -116,7 +116,7 @@ private struct BoardView: View {
     private func floorRows(height: Double) -> some View {
         let stations = board.puzzle.stations
         let firstRow = stations.count == 4 ? 2 : 3
-        return VStack(spacing: 3) {
+        return VStack(spacing: 8) {
             HStack(spacing: 8) {
                 ForEach(stations.prefix(firstRow), id: \.self) { station in
                     stationColumn(station, rowHeight: height)
@@ -135,39 +135,74 @@ private struct BoardView: View {
         let power = board.power(at: station)
         let ready = power >= required
         let slots = board.puzzle.slots(at: station)
-        return VStack(spacing: 4) {
-            MachineArt(station: station)
-                .frame(height: max(51, rowHeight - 95))
-                .padding(.horizontal, 9)
-            HStack(spacing: 4) {
+        let ratio = min(1.0, Double(power) / Double(required))
+        return VStack(spacing: 2) {
+            HStack(spacing: 6) {
+                RoundedRectangle(cornerRadius: 2)
+                    .fill(station.tint).frame(width: 5, height: 14)
+                    .accessibilityHidden(true)
+                Text(station.title).gameFont(15, .bold)
+                Spacer(minLength: 2)
                 if ready {
                     Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 12)).foregroundStyle(Palette.deepSage)
                         .accessibilityHidden(true)
-                        .foregroundStyle(Palette.deepSage)
                 }
-                Text(station.title).gameFont(15, .bold)
-                Text("\(power)/\(required)").gameFont(15, .semibold).monospacedDigit()
+                Text("\(power) / \(required)").gameFont(13, .semibold).monospacedDigit()
             }
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(ready ? Palette.sage.opacity(0.50) : Palette.paper.opacity(0.68), in: Capsule())
-            .accessibilityLabel("\(station.title), \(power) of \(required) power required" + (ready ? ", ready" : ""))
-            ViewThatFits(in: .horizontal) {
-                stationSlots(slots, size: 42)
-                stationSlots(slots, size: 36)
-                stationSlots(slots, size: 31)
+            .padding(.horizontal, 9)
+            .padding(.top, 8)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("\(station.title), \(power) of \(required) power" + (ready ? ", ready" : ""))
+            GeometryReader { meter in
+                Capsule().fill(Palette.line.opacity(0.32))
+                    .overlay(alignment: .leading) {
+                        if power > 0 {
+                            Capsule().fill(ready ? Palette.deepSage : station.tint)
+                                .frame(width: meter.size.width * ratio)
+                        }
+                    }
             }
-            .padding(.top, 3)
+            .frame(height: 3)
+            .padding(.horizontal, 10)
+            .accessibilityHidden(true)
+
+            GeometryReader { area in
+                let bayWidth = area.size.width
+                let slotSize = min(46, max(26, (bayWidth * 0.53 - 7) / 2))
+                let artWidth = min(184, bayWidth * 0.45)
+                let surfaceHeight = min(174, area.size.height)
+                HStack(spacing: 5) {
+                    MachineArt(station: station)
+                        .frame(width: artWidth, height: surfaceHeight)
+                    stationSlots(slots, size: slotSize)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                .frame(height: surfaceHeight)
+                .background(Palette.beige.opacity(0.36), in: RoundedRectangle(cornerRadius: 6))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            .padding(.horizontal, 6)
+            .padding(.bottom, 4)
         }
         .frame(maxWidth: .infinity)
-        .frame(height: rowHeight, alignment: .top)
+        .frame(height: rowHeight)
+        .background(Palette.paper.opacity(0.84), in: RoundedRectangle(cornerRadius: 10))
+        .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(Palette.line.opacity(0.86), lineWidth: 1) }
     }
 
     private func stationSlots(_ slots: [Slot], size: Double) -> some View {
-        HStack(spacing: 6) {
-            ForEach(slots) { slot in slotButton(slot, size: size) }
+        VStack(alignment: .leading, spacing: 3) {
+            HStack(spacing: 4) {
+                ForEach(slots.prefix(2)) { slot in slotButton(slot, size: size) }
+            }
+            if slots.count > 2 {
+                HStack(spacing: 4) {
+                    ForEach(slots.dropFirst(2)) { slot in slotButton(slot, size: size) }
+                }
+            }
         }
-        .fixedSize(horizontal: true, vertical: false)
+        .fixedSize(horizontal: true, vertical: true)
     }
 
     @ViewBuilder
@@ -209,7 +244,7 @@ private struct BoardView: View {
                     }
                 }
                 .frame(width: size, height: size)
-                Text(slot.id).gameFont(11, .semibold).monospacedDigit()
+                Text(slot.id).gameFont(10, .semibold).monospacedDigit()
             }
             .contentShape(Rectangle())
         }
@@ -262,7 +297,7 @@ private struct BoardView: View {
                     VStack(spacing: 2) {
                         Image(systemName: "checkmark.circle")
                             .gameFont(17).foregroundStyle(Palette.deepSage)
-                        Text(slot.id).gameFont(11, .semibold)
+                        Text(slot.id).gameFont(10, .semibold)
                     }
                     .frame(height: 37)
                 } else if drag?.id == worker.id {
@@ -317,45 +352,29 @@ private extension Image {
 private struct CrewPanel: View {
     @EnvironmentObject private var game: GameSession
     let board: StaffingBoard
+    let compact: Bool
     private let statWidth: CGFloat = 29
     private let placeWidth: CGFloat = 37
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: compact ? 5 : 11) {
+            goals
+            Divider().overlay(Palette.line.opacity(0.8))
             HStack(alignment: .firstTextBaseline) {
-                Text("Crew \(board.crew.count)").gameFont(22, .bold)
-                Spacer()
-                Text("Assigned \(board.assignments.count)/\(board.crew.count)")
-                    .gameFont(15, .semibold).monospacedDigit()
+                Text("Crew skills").gameFont(16, .bold).accessibilityAddTraits(.isHeader)
+                Spacer(minLength: 3)
+                Text("Power = assigned skills").gameFont(11).foregroundStyle(Palette.quiet)
             }
-            Text("One worker per slot. Power is the sum of assigned skills.")
-                .gameFont(13).foregroundStyle(Palette.quiet)
-                .fixedSize(horizontal: false, vertical: true)
             Text(board.puzzle.stations.map { $0.initial + " " + $0.title }.joined(separator: " · "))
-                .gameFont(11).foregroundStyle(Palette.quiet)
+                .gameFont(10).foregroundStyle(Palette.quiet)
                 .fixedSize(horizontal: false, vertical: true)
             roster
-            VStack(alignment: .leading, spacing: 5) {
-                if board.puzzle.rules.isEmpty {
-                    Text("All workers can use all stations.").gameFont(13).foregroundStyle(Palette.quiet)
-                } else {
-                    Text("Shift rules").gameFont(15, .bold)
-                    ForEach(Array(board.puzzle.rules.enumerated()), id: \.offset) { _, rule in
-                        let places = board.assignments.reduce(into: [String: Station]()) {
-                            $0[$1.key] = board.slot(for: $1.key)?.station
-                        }
-                        let failed = !rule.satisfied(by: places)
-                        Label(board.text(for: rule), systemImage: failed ? "exclamationmark.circle" : "circle.fill")
-                            .gameFont(12, failed ? .semibold : .medium)
-                            .foregroundStyle(failed ? Palette.warn : Palette.ink)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
+            if !board.puzzle.rules.isEmpty {
+                rules
             }
-            Spacer(minLength: 2)
             if let feedback = game.feedback {
                 Label(feedback.message, systemImage: feedback.problem ? "exclamationmark.circle" : "info.circle")
-                    .gameFont(13, .semibold)
+                    .gameFont(12, .semibold)
                     .foregroundStyle(feedback.problem ? Palette.warn : Palette.deepSage)
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibilityIdentifier("staff-feedback")
@@ -366,9 +385,65 @@ private struct CrewPanel: View {
             .accessibilityIdentifier("check-plan")
             .keyboardShortcut(.return, modifiers: [])
         }
-        .padding(14)
-        .background(Palette.paper.opacity(0.66), in: RoundedRectangle(cornerRadius: 17))
-        .overlay { RoundedRectangle(cornerRadius: 17).strokeBorder(Palette.line.opacity(0.8), lineWidth: 1) }
+        .padding(compact ? 10 : 13)
+        .background(Palette.paper.opacity(0.86), in: RoundedRectangle(cornerRadius: 13))
+        .overlay { RoundedRectangle(cornerRadius: 13).strokeBorder(Palette.line.opacity(0.85), lineWidth: 1) }
+    }
+
+    private var goals: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("Shift goals").gameFont(17, .bold).accessibilityAddTraits(.isHeader)
+            HStack(spacing: 6) {
+                goal("Assign workers", current: board.assignments.count, total: board.crew.count)
+                goal("Power stations", current: board.readyStationCount, total: board.puzzle.stations.count)
+                if !board.puzzle.rules.isEmpty {
+                    goal("Follow rules", current: board.puzzle.rules.filter { board.status(of: $0) == .met }.count,
+                         total: board.puzzle.rules.count)
+                }
+            }
+        }
+    }
+
+    private func goal(_ title: String, current: Int, total: Int) -> some View {
+        let met = current == total
+        return VStack(alignment: .leading, spacing: 2) {
+            Text(title).gameFont(11, .semibold).lineLimit(1)
+            HStack(spacing: 4) {
+                if met {
+                    Image(systemName: "checkmark.circle.fill").font(.system(size: 11))
+                        .foregroundStyle(Palette.deepSage)
+                        .accessibilityHidden(true)
+                }
+                Text("\(current) / \(total)").gameFont(15, .bold).monospacedDigit()
+                    .foregroundStyle(met ? Palette.deepSage : Palette.ink)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 7).padding(.vertical, compact ? 4 : 6)
+        .background(met ? Palette.sage.opacity(0.30) : Palette.beige.opacity(0.72), in: RoundedRectangle(cornerRadius: 6))
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(title), \(current) of \(total)" + (met ? ", complete" : ""))
+    }
+
+    private var rules: some View {
+        VStack(alignment: .leading, spacing: compact ? 2 : 4) {
+            Text("Shift rules").gameFont(13, .bold).accessibilityAddTraits(.isHeader)
+            ForEach(Array(board.puzzle.rules.enumerated()), id: \.offset) { _, rule in
+                let state = board.status(of: rule)
+                let status = state == .met ? "Met" : state == .waiting ? "Waiting" : "Needs change"
+                let icon = state == .met ? "checkmark.circle" : state == .waiting ? "circle.dashed" : "exclamationmark.circle"
+                let tone = state == .met ? Palette.deepSage : state == .waiting ? Palette.quiet : Palette.warn
+                HStack(alignment: .firstTextBaseline, spacing: 5) {
+                    Image(systemName: icon).font(.system(size: 11)).foregroundStyle(tone)
+                        .accessibilityHidden(true)
+                    Text(board.text(for: rule)).gameFont(11).fixedSize(horizontal: false, vertical: true)
+                    Spacer(minLength: 2)
+                    Text(status).gameFont(10, .semibold).foregroundStyle(tone)
+                        .fixedSize(horizontal: true, vertical: false)
+                }
+                .accessibilityElement(children: .combine)
+            }
+        }
     }
 
     private var roster: some View {
@@ -383,7 +458,7 @@ private struct CrewPanel: View {
             }
             .gameFont(11, .bold)
             .padding(.horizontal, 5)
-            .padding(.vertical, 6)
+            .padding(.vertical, compact ? 3 : 5)
             Divider().overlay(Palette.line)
             ForEach(board.crew) { worker in
                 workerRow(worker)
@@ -396,7 +471,15 @@ private struct CrewPanel: View {
         let stations = board.puzzle.stations
         let allowed = board.puzzle.allowedStations(for: worker.id)
         let at = board.slot(for: worker.id)?.id
-        let allowedText = allowed.count == stations.count ? "All" : allowed.map { $0.initial }.joined(separator: ", ")
+        let excluded = stations.filter { !allowed.contains($0) }
+        let allowedText: String
+        if excluded.isEmpty {
+            allowedText = "All"
+        } else if excluded.count < allowed.count {
+            allowedText = "No " + excluded.map { $0.initial }.joined(separator: ", ")
+        } else {
+            allowedText = allowed.map { $0.initial }.joined(separator: ", ")
+        }
         let ratings = stations.map { $0.title + " " + String(worker.power(at: $0)) }.joined(separator: ", ")
         let description = [worker.name, ratings, "allowed " + allowed.map { $0.title }.joined(separator: ", "),
                            at.map { "at " + $0 } ?? "unassigned"].joined(separator: "; ")
@@ -406,8 +489,8 @@ private struct CrewPanel: View {
         } label: {
             HStack(spacing: 4) {
                 HStack(spacing: 3) {
-                    WorkerArt(style: worker.style).frame(width: 19, height: 19)
-                    Text(worker.name).gameFont(13, .semibold).lineLimit(1)
+                    WorkerArt(style: worker.style).frame(width: compact ? 16 : 19, height: compact ? 16 : 19)
+                    Text(worker.name).gameFont(12, .semibold).lineLimit(1)
                 }.frame(maxWidth: .infinity, alignment: .leading)
                 ForEach(stations, id: \.self) { station in
                     Text(String(worker.power(at: station))).frame(width: statWidth).monospacedDigit()
@@ -417,7 +500,7 @@ private struct CrewPanel: View {
             }
             .gameFont(13)
             .padding(.horizontal, 5)
-            .frame(minHeight: 25)
+            .frame(minHeight: compact ? 20 : 25)
             .background(selected ? Palette.sage.opacity(0.38) : .clear)
             .contentShape(Rectangle())
         }

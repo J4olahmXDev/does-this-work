@@ -85,11 +85,18 @@ struct ShiftScene: View {
             let height = geometry.size.height
             ZStack {
                 RoundedRectangle(cornerRadius: 22).fill(Palette.beige.opacity(0.59))
+                FactoryWall()
+                    .frame(height: min(53, height * 0.15))
+                    .position(x: width * 0.5, y: min(26.5, height * 0.075))
+                    .clipShape(RoundedRectangle(cornerRadius: 22))
                 RoundedRectangle(cornerRadius: 22).strokeBorder(Palette.line, lineWidth: 1)
                 Path { path in
                     path.move(to: pt(width * 0.10, height * 0.78))
                     path.addLine(to: pt(width * 0.90, height * 0.78))
                 }.stroke(Palette.line, style: StrokeStyle(lineWidth: 2, lineCap: .round))
+                Capsule().fill(Palette.beige.opacity(0.75))
+                    .frame(width: width * 0.69, height: 8)
+                    .position(x: width * 0.5, y: height * 0.804)
                 MachineArt(station: .large)
                     .frame(width: width * 0.16, height: height * 0.47)
                     .opacity(0.69)

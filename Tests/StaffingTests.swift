@@ -81,7 +81,9 @@ enum StaffingTests {
             let rate = Double(passes) / Double(physical)
             try expect(passes >= 3, "\(puzzle.id): only \(passes) station groupings pass")
             try expect(rate <= 0.125, "\(puzzle.id): too permissive, \(passes)/\(physical)")
-            _ = try solve(board)
+            let completed = try solve(board)
+            try expect(completed.readyStationCount == puzzle.stations.count, "All station goals turn ready after solving")
+            try expect(puzzle.rules.allSatisfy { completed.status(of: $0) == .met }, "Solved board meets every displayed shift rule")
             metrics[puzzle.stations.count, default: []].append(rate)
             print("\(puzzle.id) \(puzzle.title): \(board.crew.count) workers, \(passes)/\(physical) groupings")
         }
@@ -102,14 +104,26 @@ enum StaffingTests {
         var restricted = StaffingBoard(puzzle: bank.puzzles[1], roster: roster)
         let press = Slot(station: .large, number: 1)
         let assembly = Slot(station: .medium, number: 1)
+        let restriction = restricted.puzzle.rules.first { $0.kind == .only && $0.workers.contains("dee") }!
+        try expect(restricted.status(of: restriction) == .waiting, "Rule waits for the worker")
         let old = restricted.assignments
         try expect(restricted.place("dee", in: press) == .blocked("Dee cannot work at Press."), "Eligibility is enforced")
         try expect(restricted.assignments == old, "Rejected position leaves the plan untouched")
         _ = restricted.place("dee", in: assembly)
+        try expect(restricted.status(of: restriction) == .met, "Allowed placement satisfies the displayed rule")
         _ = restricted.place("ari", in: press)
         try expect(!restricted.canPlace("ari", in: assembly), "Swap must be compatible for both workers")
         restricted.remove("dee")
         try expect(restricted.issues().contains { $0.contains("Dee") }, "Missing worker feedback")
+
+        var paired = StaffingBoard(puzzle: bank.puzzles[4], roster: roster)
+        let pair = paired.puzzle.rules.first { $0.kind == .together }!
+        try expect(paired.status(of: pair) == .waiting, "An incomplete pair is waiting")
+        _ = paired.place("cam", in: press)
+        _ = paired.place("dee", in: assembly)
+        try expect(paired.status(of: pair) == .needsChange, "A split pair needs change")
+        _ = paired.place("dee", in: Slot(station: .large, number: 2))
+        try expect(paired.status(of: pair) == .met, "Moving the pair updates its goal")
 
         var random = SystemRandomNumberGenerator()
         for count in PuzzleBank.stationCounts {

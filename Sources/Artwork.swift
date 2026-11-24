@@ -154,6 +154,19 @@ struct WorkerArt: View {
     }
 }
 
+extension Station {
+    var tint: Color {
+        switch self {
+        case .large: Palette.sage
+        case .medium: Palette.clay
+        case .small: Palette.violet
+        case .sort: Palette.blue
+        case .seal: Palette.ochre
+        case .label: Palette.blue.opacity(0.74)
+        }
+    }
+}
+
 struct MachineArt: View {
     let station: Station
 
@@ -164,50 +177,59 @@ struct MachineArt: View {
             context.translateBy(x: (size.width - 124 * factor) / 2, y: (size.height - 100 * factor) / 2)
             context.scaleBy(x: factor, y: factor)
             let art = Art(context: context)
+            let metal = station.tint
             switch station {
             case .large:
-                art.block(49, 5, 26, 16, radius: 3, fill: Palette.sage)
-                art.block(26, 19, 72, 65, radius: 4, fill: Palette.sage)
-                art.block(35, 37, 54, 37, radius: 1, fill: Palette.cream)
-                art.block(45, 67, 35, 9, radius: 2, fill: Palette.violet)
-                art.block(19, 79, 86, 12, radius: 3, fill: Palette.sage)
-                art.line([pt(62, 43), pt(62, 61), pt(56, 55), pt(62, 61), pt(68, 55)], width: 2.2)
+                art.block(48, 5, 25, 14, radius: 3, fill: metal)
+                art.block(26, 18, 70, 65, radius: 5, fill: metal)
+                art.block(37, 33, 42, 42, radius: 3, fill: Palette.paper)
+                art.block(53, 35, 11, 17, radius: 2, fill: metal, width: 1.6)
+                art.block(46, 51, 26, 7, radius: 2, fill: metal, width: 1.6)
+                art.block(44, 68, 29, 5, radius: 1, fill: Palette.violet, width: 1.4)
+                art.oval(83, 36, 8, 8, fill: Palette.paper, width: 1.4)
+                art.line([pt(87, 40), pt(89, 38)], width: 1.3)
             case .medium:
-                art.block(55, 51, 14, 32, radius: 2, fill: Palette.clay)
-                art.oval(12, 35, 100, 34, fill: Palette.clay)
-                art.oval(12, 31, 100, 29, fill: Palette.paper)
-                art.block(29, 22, 15, 16, radius: 2, fill: Palette.beige)
-                art.block(55, 15, 15, 20, radius: 2, fill: Palette.beige)
-                art.block(81, 22, 15, 16, radius: 2, fill: Palette.beige)
+                art.block(26, 56, 7, 28, radius: 2, fill: metal)
+                art.block(92, 56, 7, 28, radius: 2, fill: metal)
+                art.block(23, 48, 80, 14, radius: 3, fill: metal)
+                art.block(29, 32, 21, 15, radius: 3, fill: Palette.paper, width: 1.6)
+                art.line([pt(35, 38), pt(45, 38)], width: 1.4)
+                art.oval(54, 35, 37, 12, fill: Palette.paper, width: 1.6)
+                art.block(65, 28, 14, 10, radius: 2, fill: metal, width: 1.6)
+                art.line([pt(95, 29), pt(107, 20), pt(109, 32)], color: Palette.quiet, width: 1.75)
             case .small:
-                art.block(30, 77, 9, 11, radius: 2, fill: Palette.violet)
-                art.block(88, 77, 9, 11, radius: 2, fill: Palette.violet)
-                art.block(57, 18, 10, 22, radius: 2, fill: Palette.violet)
-                art.block(39, 10, 47, 13, radius: 3, fill: Palette.violet)
-                art.block(22, 35, 80, 45, radius: 7, fill: Palette.violet)
-                art.block(40, 48, 45, 14, radius: 1, fill: Palette.cream)
+                art.block(23, 44, 79, 40, radius: 5, fill: metal)
+                art.block(42, 22, 43, 23, radius: 6, fill: Palette.paper)
+                art.oval(75, 22, 12, 23, fill: metal, width: 1.6)
+                art.oval(79, 30, 4, 7, fill: Palette.paper, width: 1.2)
+                art.poly([pt(46, 40), pt(77, 40), pt(71, 65), pt(42, 65)], fill: Palette.paper, width: 1.6)
+                art.block(42, 68, 33, 7, radius: 2, fill: Palette.beige, width: 1.4)
             case .sort:
-                art.poly([pt(26, 28), pt(108, 28), pt(99, 64), pt(17, 64)], fill: Palette.blue)
-                for x in [39.0, 64, 89] {
-                    art.line([pt(x, 33), pt(x - 6, 58)], color: Palette.quiet, width: 1.8)
+                art.poly([pt(25, 30), pt(105, 30), pt(98, 62), pt(18, 62)], fill: metal)
+                for x in [38.0, 63, 88] {
+                    art.line([pt(x, 36), pt(x - 5, 55)], color: Palette.quiet, width: 1.6)
                 }
-                art.block(17, 64, 82, 13, radius: 3, fill: Palette.blue)
-                art.block(24, 77, 7, 9, radius: 1, fill: Palette.blue)
-                art.block(85, 77, 7, 9, radius: 1, fill: Palette.blue)
+                art.block(19, 62, 79, 16, radius: 3, fill: metal)
+                for x in [29.0, 55, 81] { art.block(x, 68, 8, 4, radius: 1, fill: Palette.paper, width: 0) }
+                art.block(24, 78, 8, 6, radius: 2, fill: metal)
+                art.block(86, 78, 8, 6, radius: 2, fill: metal)
             case .seal:
-                art.block(28, 34, 10, 42, radius: 2, fill: Palette.beige)
-                art.block(86, 34, 10, 42, radius: 2, fill: Palette.beige)
-                art.block(19, 28, 86, 14, radius: 3, fill: Palette.ochre)
-                art.block(38, 61, 48, 9, radius: 2, fill: Palette.paper)
-                art.block(12, 72, 100, 15, radius: 4, fill: Palette.ochre)
+                art.block(28, 36, 9, 35, radius: 2, fill: Palette.beige)
+                art.block(86, 36, 9, 35, radius: 2, fill: Palette.beige)
+                art.block(21, 29, 82, 14, radius: 3, fill: metal)
+                art.block(43, 57, 35, 13, radius: 2, fill: Palette.paper, width: 1.6)
+                art.line([pt(53, 62), pt(69, 62)], color: Palette.quiet, width: 1.3)
+                art.block(18, 71, 88, 13, radius: 4, fill: metal)
+                art.oval(91, 75, 5, 5, fill: Palette.paper, width: 1.1)
             case .label:
-                art.block(13, 77, 98, 10, radius: 3, fill: Palette.beige)
-                art.oval(20, 23, 49, 49, fill: Palette.blue)
-                art.oval(39, 42, 11, 11, fill: Palette.paper)
-                art.line([pt(63, 58), pt(74, 64), pt(82, 75)], color: Palette.quiet, width: 1.8)
-                art.block(80, 56, 25, 20, radius: 2, fill: Palette.clay)
-                art.block(88, 62, 10, 7, radius: 1, fill: Palette.cream, width: 0)
+                art.block(27, 66, 25, 18, radius: 4, fill: metal)
+                art.oval(21, 24, 43, 43, fill: metal)
+                art.oval(35, 39, 13, 13, fill: Palette.paper, width: 1.6)
+                art.line([pt(59, 53), pt(73, 56), pt(81, 69)], color: Palette.quiet, width: 1.6)
+                art.block(74, 63, 29, 21, radius: 2, fill: Palette.clay)
+                art.block(83, 68, 13, 7, radius: 1, fill: Palette.paper, width: 0)
             }
+            art.block(14, 84, 96, 7, radius: 2, fill: Palette.beige, width: 1.65)
         }.accessibilityHidden(true)
     }
 }

@@ -115,6 +115,10 @@ private struct MenuDiorama: View {
                     .fill(Palette.beige.opacity(0.68))
                     .overlay { RoundedRectangle(cornerRadius: 36).strokeBorder(Palette.line, lineWidth: 1.5) }
                     .padding(14)
+                FactoryWall()
+                    .frame(width: max(0, w - 28), height: min(56, h * 0.13))
+                    .position(x: w / 2, y: 14 + min(28, h * 0.065))
+                    .clipShape(RoundedRectangle(cornerRadius: 36).inset(by: 14))
                 Path { path in
                     path.move(to: pt(w * 0.39, h * 0.25))
                     path.addQuadCurve(to: pt(w * 0.73, h * 0.24), control: pt(w * 0.50, h * 0.11))
