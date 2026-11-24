@@ -1,46 +1,46 @@
 # Does This Work?
 
-An offline industrial engineering puzzle game. Assign a crew to stations, find a production bottleneck, lay out a factory, and plan a delivery route. The game supports English and Thai.
+**English** · [ไทย](README.th.md)
 
-เกมพัซเซิลวิศวกรรมอุตสาหการแบบออฟไลน์ จัดคนลงสถานี หาคอขวด วางผังโรงงาน และจัดเส้นทางส่งของ เลือกภาษาไทยหรืออังกฤษได้ใน **Settings → Language**
+The wrapping station is slowing down the line. The crew has different skills, and moving one person might leave another station short. Who would you move?
 
-![Four puzzle boards in Thai showing staffing, production bottlenecks, plant layout, and delivery routes](docs/images/four-stages-th.png)
+**Does This Work?** is an open-source, offline puzzle game about industrial engineering. It has 360 puzzles across four stages, with six puzzles per run and no countdown.
+
+![Four English-language puzzle boards showing crew assignments, a bottleneck, a factory layout, and a delivery route](docs/images/four-stages-en.png)
+
+## The four stages
+
+| Stage | What you control |
+| --- | --- |
+| **Staff the Stations** | Match workers to open slots while meeting station targets and crew rules. |
+| **Find the Bottleneck** | Move workers to increase the finished output of the entire line. |
+| **Plan the Plant** | Place machines to shorten cart trips and keep aisles clear. |
+| **Plan the Delivery Route** | Order stops to meet distance or delivery windows, including the trip back to the depot. |
+
+Before each puzzle, the crew talks through the problem. Once you have a plan, the checkmark turns green when every requirement is met.
+
+![Eli and Fay in a factory before the shift, with Eli's English speech bubble above the character](docs/images/crew-dialogue-en.png)
+
+![The English confirmation panel with gray and green checkmarks for incomplete and valid plans](docs/images/confirm-plan-states-en.png)
 
 ## Play
 
-Download **v0.6 Beta** from [GitHub Releases](../../releases), then extract the archive for your computer.
+The v0.6 Beta downloads will appear on [GitHub Releases](../../releases). You can build from source below.
 
-| Platform | Open after extracting |
+| Platform | Open after extracting the ZIP |
 | --- | --- |
-| macOS 14 or later on Apple Silicon | `Does This Work?.app` |
-| Windows 64-bit on Intel/AMD | `Does This Work.exe` inside the extracted folder |
+| macOS 14+ on Apple Silicon | `Does This Work?.app` |
+| Windows 64-bit on Intel/AMD | `Does This Work.exe` |
 
-The beta includes 360 puzzles across four stages. Each run draws six puzzles. Complete a run to unlock the next stage. The Windows build has been checked against all 360 reference solutions, and the macOS app signature has been verified. Desktop launch and playthrough testing of the packaged beta is still pending.
-
-## Screenshots
-
-**Before the shift.** The crew talks through the problem before the puzzle starts.
-
-![Two geometric workers in a factory with a Thai dialogue bubble above the speaker](docs/images/crew-dialogue-th.png)
-
-**Checking the plan.** The checkmark turns green once every condition is met.
-
-![Thai confirmation panel comparing a gray checkmark for an incomplete plan with a green checkmark for a valid plan](docs/images/confirm-plan-states-th.png)
+In the game, choose **Settings → Language** to switch between English and Thai. The Windows puzzle engine was checked against all 360 reference solutions, and the macOS bundle signature was verified. Desktop launch and playthrough testing of the packaged beta is pending.
 
 ## Build from source
 
 - **macOS.** With Xcode selected, run `cd macOS && bash Scripts/build.sh`. The app appears under `macOS/outputs/`. [macOS build and test instructions](macOS/README.md)
-- **Windows.** With Node.js and Python 3.11 or later, run `cd Windows && node qa/test.mjs` for the puzzle checks. The packaging script uses a verified copy of the Electron Windows x64 runtime. [Windows build instructions](Windows/README.md)
+- **Windows.** With Node.js and Python 3.11 or later, run `cd Windows && node qa/test.mjs` for puzzle checks. The packaging script uses a verified Electron runtime archive. [Windows build instructions](Windows/README.md)
 
-Game rules, puzzle data, dialogue, fonts, and gameplay audio are included. See the platform READMEs for build tools and validation commands.
+## Licenses and feedback
 
-## Licenses and credits
+Game code and build scripts use the [MIT License](LICENSE). Original art, audio, dialogue, and puzzles use [CC BY 4.0](ASSETS-LICENSE.md). Mali and Sarabun use the SIL Open Font License 1.1. The Windows distribution includes Electron's third-party notices.
 
-- Game code and build scripts are available under the [MIT License](LICENSE).
-- Original artwork, music, sound effects, dialogue, and puzzle designs use [CC BY 4.0](ASSETS-LICENSE.md). Credit Sua and the Does This Work? contributors when reusing these assets.
-- Mali and Sarabun are bundled under the SIL Open Font License 1.1. [Mali license](macOS/Resources/Fonts/OFL-Mali.txt) · [Sarabun license](macOS/Resources/Fonts/OFL-Sarabun.txt)
-- The Windows distribution includes Electron and its third-party license notices. See the [Windows asset credits](Windows/app/ASSETS-LICENSE.md) for paths and font credits.
-
-## Feedback
-
-For bugs or puzzle feedback, open an [issue](../../issues) with the game version, operating system, and puzzle title. For a pull request, include the tests you ran.
+Open an [issue](../../issues) for bugs or puzzle feedback. Include your game version, operating system, and puzzle title.
