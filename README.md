@@ -42,14 +42,14 @@ The crew introduces the problem before each puzzle. The checkmark turns green wh
 
 ## Play
 
-[Download v0.6 Beta](https://github.com/J4olahmXDev/does-this-work/releases/tag/v0.6) for macOS or Windows. [v0.2 for macOS](https://github.com/J4olahmXDev/does-this-work/releases/tag/v0.2) is also available as an older release.
+The published downloads run on macOS 14 or later on Apple Silicon. Extract the ZIP and open the app inside.
 
-| Platform | Open after extracting the ZIP |
+| Release | What's included |
 | --- | --- |
-| macOS 14+ on Apple Silicon | `Does This Work?.app` |
-| Windows 64-bit on Intel/AMD | `Does This Work.exe` |
+| [v0.2](https://github.com/J4olahmXDev/does-this-work/releases/tag/v0.2) | The expanded staffing stage with 90 puzzles. |
+| [v0.1.0 Demo](https://github.com/J4olahmXDev/does-this-work/releases/tag/v0.1.0) | The original English-language demo, released as IE Puzzle Game, with 30 staffing puzzles. |
 
-In the game, choose **Settings → Language** to switch between English and Thai. The Windows puzzle engine was checked against all 360 reference solutions, and the macOS bundle signature was verified. Desktop launch and playthrough testing of the packaged beta is pending.
+The screenshots above show the v0.6 development version, which you can build from source for macOS or Windows. In that version, choose **Settings → Language** to switch between English and Thai. The Windows puzzle engine was checked against all 360 reference solutions, and the macOS bundle signature was verified. Desktop launch and playthrough testing of the v0.6 packages is pending.
 
 ## Build from source
 

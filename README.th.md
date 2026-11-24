@@ -42,14 +42,14 @@
 
 ## เล่นเกม
 
-[ดาวน์โหลด v0.6 Beta](https://github.com/J4olahmXDev/does-this-work/releases/tag/v0.6) สำหรับ Mac หรือ Windows ส่วนรุ่นเก่าอยู่ที่ [v0.2 สำหรับ Mac](https://github.com/J4olahmXDev/does-this-work/releases/tag/v0.2)
+รุ่นที่เปิดให้ดาวน์โหลดตอนนี้ใช้ macOS 14 ขึ้นไปบน Apple Silicon แตก ZIP แล้วเปิดแอปที่อยู่ข้างในได้เลย
 
-| ระบบ | เปิดไฟล์นี้หลังแตก ZIP |
+| รุ่น | สิ่งที่มีในเกม |
 | --- | --- |
-| macOS 14 ขึ้นไปบน Apple Silicon | `Does This Work?.app` |
-| Windows 64 บิตบน Intel/AMD | `Does This Work.exe` |
+| [v0.2](https://github.com/J4olahmXDev/does-this-work/releases/tag/v0.2) | สเตจจัดคนลงสถานีที่เพิ่มเป็น 90 โจทย์ |
+| [เดโม v0.1.0](https://github.com/J4olahmXDev/does-this-work/releases/tag/v0.1.0) | เดโมภาษาอังกฤษรุ่นแรกในชื่อ IE Puzzle Game มีโจทย์จัดคน 30 โจทย์ |
 
-ในเกมเลือก **Settings → Language → ไทย** เพื่อเปลี่ยนภาษา ตัวตรวจคำตอบของ Windows ผ่านการเทียบครบ 360 โจทย์ และตรวจลายเซ็นแอป macOS แล้ว ชุด Beta ยังรอทดสอบการเปิดแอปและเล่นจริงจากไฟล์ที่แพ็กไว้
+ภาพด้านบนมาจากซอร์สรุ่นพัฒนา v0.6 ที่บิลด์ได้บน Mac และ Windows รุ่นนี้เปลี่ยนภาษาได้ใน **Settings → Language → ไทย** ตัวตรวจคำตอบของ Windows ผ่านการเทียบครบ 360 โจทย์ และตรวจลายเซ็นแอป macOS แล้ว ชุดเกม v0.6 ยังรอทดสอบการเปิดแอปและเล่นจริงจากไฟล์ที่แพ็กไว้
 
 ## บิลด์จากซอร์ส
 
