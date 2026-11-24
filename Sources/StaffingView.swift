@@ -22,10 +22,16 @@ private struct MovingWorker {
     let point: CGPoint
 }
 
+private struct HoveredWorker {
+    let worker: Worker
+    let frame: CGRect
+}
+
 private final class BoardInteraction: ObservableObject {
     var frames: [Slot: CGRect] = [:]
     var trayFrame = CGRect.null
     @Published var drag: MovingWorker?
+    @Published var hover: HoveredWorker?
     var suppressesClick = false
 }
 
@@ -56,8 +62,9 @@ struct StaffingScreen: View {
                 HStack(alignment: .top, spacing: 16) {
                     BoardView(board: run.board)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    CrewPanel(board: run.board, compact: size.size.height < 650)
-                        .frame(width: max(418, min(650, size.size.width * 0.39)))
+                    CrewPanel(board: run.board, compact: size.size.height < 650,
+                              spacious: size.size.height > 780)
+                        .frame(width: max(418, min(502, size.size.width * 0.39)))
                         .frame(maxHeight: .infinity, alignment: .top)
                 }
             }
@@ -95,6 +102,20 @@ private struct BoardView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .overlay(alignment: .topLeading) {
+                if let hover = interaction.hover, drag == nil, game.gameActive {
+                    let width: CGFloat = 258
+                    let x = max(width / 2 + 8, min(size.size.width - width / 2 - 8, hover.frame.midX))
+                    let above = hover.frame.minY > 190
+                    WorkerSpeechBubble(board: board, worker: hover.worker, pointsDown: above,
+                                       tailOffset: hover.frame.midX - x)
+                        .frame(width: width)
+                        .alignmentGuide(.top) { above ? $0.height : 0 }
+                        .offset(x: x - width / 2, y: above ? hover.frame.minY : hover.frame.maxY)
+                        .allowsHitTesting(false)
+                        .accessibilityHidden(true)
+                }
+            }
         }
         .background(Palette.beige.opacity(0.54))
         .clipShape(RoundedRectangle(cornerRadius: 17))
@@ -116,12 +137,22 @@ private struct BoardView: View {
     private func floorRows(height: Double) -> some View {
         let stations = board.puzzle.stations
         let firstRow = stations.count == 4 ? 2 : 3
-        return VStack(spacing: 8) {
+        return VStack(spacing: 5) {
             HStack(spacing: 8) {
                 ForEach(stations.prefix(firstRow), id: \.self) { station in
                     stationColumn(station, rowHeight: height)
                 }
             }
+            GeometryReader { aisle in
+                Path { path in
+                    path.move(to: pt(0, 1))
+                    path.addLine(to: pt(aisle.size.width, 1))
+                }
+                .stroke(Palette.line.opacity(0.8), style: StrokeStyle(lineWidth: 1, dash: [8, 7]))
+            }
+            .frame(height: 3)
+            .padding(.horizontal, 4)
+            .accessibilityHidden(true)
             HStack(spacing: 8) {
                 ForEach(stations.dropFirst(firstRow), id: \.self) { station in
                     stationColumn(station, rowHeight: height)
@@ -169,15 +200,28 @@ private struct BoardView: View {
 
             GeometryReader { area in
                 let bayWidth = area.size.width
-                let slotSize = min(46, max(26, (bayWidth * 0.53 - 7) / 2))
-                let artWidth = min(184, bayWidth * 0.45)
-                let surfaceHeight = min(174, area.size.height)
-                HStack(spacing: 5) {
-                    MachineArt(station: station)
-                        .frame(width: artWidth, height: surfaceHeight)
-                    stationSlots(slots, size: slotSize)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                let surfaceHeight = area.size.height
+                Group {
+                    if surfaceHeight >= 216 {
+                        let slotSize = min(61, (bayWidth - 40) / Double(max(2, slots.count)))
+                        VStack(spacing: 8) {
+                            MachineArt(station: station)
+                                .frame(width: bayWidth * 0.82, height: surfaceHeight * 0.64)
+                            HStack(spacing: 7) {
+                                ForEach(slots) { slot in slotButton(slot, size: slotSize) }
+                            }
+                        }
+                    } else {
+                        let slotSize = min(46, max(26, (bayWidth * 0.53 - 7) / 2))
+                        HStack(spacing: 5) {
+                            MachineArt(station: station)
+                                .frame(width: bayWidth * 0.47, height: surfaceHeight)
+                            stationSlots(slots, size: slotSize)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        }
+                    }
                 }
+                .frame(maxWidth: .infinity)
                 .frame(height: surfaceHeight)
                 .background(Palette.beige.opacity(0.36), in: RoundedRectangle(cornerRadius: 6))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -255,8 +299,8 @@ private struct BoardView: View {
         .background(GeometryReader { size in
             Color.clear.preference(key: SlotFrames.self, value: [slot: size.frame(in: .named(boardSpace))])
         })
-        if let occupantID {
-            slotView.simultaneousGesture(dragGesture(for: occupantID))
+        if let occupantID, let occupant {
+            slotView.modifier(WorkerHoverTarget(worker: occupant, interaction: interaction)).simultaneousGesture(dragGesture(for: occupantID))
         } else {
             slotView
         }
@@ -292,22 +336,15 @@ private struct BoardView: View {
             guard interaction.drag == nil, !interaction.suppressesClick else { return }
             game.pick(worker.id)
         } label: {
-            VStack(spacing: 3) {
-                if let slot {
-                    VStack(spacing: 2) {
-                        Image(systemName: "checkmark.circle")
-                            .gameFont(17).foregroundStyle(Palette.deepSage)
-                        Text(slot.id).gameFont(10, .semibold)
-                    }
-                    .frame(height: 37)
-                } else if drag?.id == worker.id {
-                    Color.clear.frame(height: 37)
-                } else {
-                    WorkerArt(style: worker.style).frame(width: 37, height: 37)
-                }
-                Text(worker.name).gameFont(12, .semibold).lineLimit(1)
+            VStack(spacing: 1) {
+                WorkerArt(style: worker.style)
+                    .frame(width: 48, height: 48)
+                    .opacity(drag?.id == worker.id ? 0 : slot == nil ? 1 : 0.68)
+                Text(slot?.id ?? " ")
+                    .gameFont(10, .semibold).monospacedDigit()
+                    .foregroundStyle(Palette.deepSage)
             }
-            .frame(maxWidth: .infinity, minHeight: 62)
+            .frame(maxWidth: .infinity, minHeight: 64)
             .background(selected ? Palette.sage.opacity(0.5) : Palette.paper, in: RoundedRectangle(cornerRadius: 8))
             .overlay {
                 RoundedRectangle(cornerRadius: 8).strokeBorder(selected ? Palette.deepSage : Palette.line,
@@ -316,6 +353,7 @@ private struct BoardView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .modifier(WorkerHoverTarget(worker: worker, interaction: interaction))
         .accessibilityIdentifier("worker-\(worker.id)")
         .accessibilityLabel(slot.map { "\(worker.name), at \($0.id)" } ?? "\(worker.name), unassigned")
         .accessibilityAddTraits(selected ? .isSelected : [])
@@ -326,7 +364,10 @@ private struct BoardView: View {
         DragGesture(minimumDistance: 7, coordinateSpace: .named(boardSpace))
             .onChanged { value in
                 guard game.gameActive else { return }
-                if drag == nil { game.pick(worker, toggle: false) }
+                if drag == nil {
+                    interaction.hover = nil
+                    game.pick(worker, toggle: false)
+                }
                 interaction.drag = MovingWorker(id: worker, point: value.location)
             }
             .onEnded { value in
@@ -345,6 +386,71 @@ private struct BoardView: View {
     }
 }
 
+private final class WorkerHoverGeometry: ObservableObject {
+    var frame = CGRect.zero
+}
+
+private struct WorkerHoverTarget: ViewModifier {
+    let worker: Worker
+    let interaction: BoardInteraction
+    @StateObject private var geometry = WorkerHoverGeometry()
+
+    func body(content: Content) -> some View {
+        content
+            .onGeometryChange(for: CGRect.self) { $0.frame(in: .named(boardSpace)) } action: { newFrame in
+                if interaction.hover?.worker.id == worker.id, interaction.hover?.frame == geometry.frame {
+                    interaction.hover = nil
+                }
+                geometry.frame = newFrame
+            }
+            .onHover { inside in
+                if inside {
+                    interaction.hover = HoveredWorker(worker: worker, frame: geometry.frame)
+                } else if interaction.hover?.worker.id == worker.id, interaction.hover?.frame == geometry.frame {
+                    interaction.hover = nil
+                }
+            }
+    }
+}
+
+private struct WorkerSpeechBubble: View {
+    let board: StaffingBoard
+    let worker: Worker
+    let pointsDown: Bool
+    let tailOffset: CGFloat
+
+    var body: some View {
+        let puzzle = board.puzzle
+        let rules = puzzle.rules.filter { $0.workers.contains(worker.id) }
+        let stationNames = puzzle.allowedStations(for: worker.id).map(\.title)
+        let stationSkills = puzzle.stations.map { "\($0.title) \(worker.power(at: $0))" }
+        return VStack(spacing: 0) {
+            if !pointsDown { SpeechTail().rotationEffect(.degrees(180)).offset(x: tailOffset) }
+            VStack(alignment: .leading, spacing: 5) {
+                HStack {
+                    Text(worker.name).gameFont(16, .bold)
+                    Spacer()
+                    Text(board.slot(for: worker.id)?.id ?? "In crew tray")
+                        .gameFont(11, .semibold).foregroundStyle(Palette.deepSage)
+                }
+                Text(stationSkills.joined(separator: " · ")).gameFont(12)
+                Text("Allowed: " + (stationNames.count == puzzle.stations.count ? "All stations" :
+                                    stationNames.joined(separator: ", ")))
+                    .gameFont(11, .semibold)
+                ForEach(Array(rules.enumerated()), id: \.offset) { _, rule in
+                    Text(board.text(for: rule)).gameFont(11)
+                }
+            }
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(10)
+            .background(Palette.paper, in: RoundedRectangle(cornerRadius: 9))
+            .overlay { RoundedRectangle(cornerRadius: 9).strokeBorder(Palette.line, lineWidth: 1) }
+            if pointsDown { SpeechTail().offset(x: tailOffset) }
+        }
+        .shadow(color: Palette.ink.opacity(0.15), radius: 6, y: 3)
+    }
+}
+
 private extension Image {
     func systemFont(size: Double) -> some View { font(.system(size: size, weight: .semibold)) }
 }
@@ -353,6 +459,7 @@ private struct CrewPanel: View {
     @EnvironmentObject private var game: GameSession
     let board: StaffingBoard
     let compact: Bool
+    let spacious: Bool
     private let statWidth: CGFloat = 29
     private let placeWidth: CGFloat = 37
 
@@ -489,8 +596,7 @@ private struct CrewPanel: View {
         } label: {
             HStack(spacing: 4) {
                 HStack(spacing: 3) {
-                    WorkerArt(style: worker.style).frame(width: compact ? 16 : 19, height: compact ? 16 : 19)
-                    Text(worker.name).gameFont(12, .semibold).lineLimit(1)
+                    WorkerArt(style: worker.style).frame(width: spacious ? 33 : compact ? 23 : 27, height: spacious ? 33 : compact ? 23 : 27)
                 }.frame(maxWidth: .infinity, alignment: .leading)
                 ForEach(stations, id: \.self) { station in
                     Text(String(worker.power(at: station))).frame(width: statWidth).monospacedDigit()
@@ -500,12 +606,13 @@ private struct CrewPanel: View {
             }
             .gameFont(13)
             .padding(.horizontal, 5)
-            .frame(minHeight: compact ? 20 : 25)
+            .frame(minHeight: spacious ? 36 : compact ? 20 : 25)
             .background(selected ? Palette.sage.opacity(0.38) : .clear)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .accessibilityLabel(description)
+        .help(description)
     }
 }
 

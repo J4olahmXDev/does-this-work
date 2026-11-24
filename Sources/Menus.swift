@@ -212,7 +212,7 @@ struct InstructionsMenu: View {
             SectionHeading(title: "How to play", subtitle: "Staff each station and reach its power target.")
             Spacer(minLength: 4)
             HStack(alignment: .top, spacing: 26) {
-                helpStep("Choose a worker", detail: "Click or drag a worker. Read their skills and allowed stations beside the board.") {
+                helpStep("Choose a worker", detail: "Click or drag a worker. Hover over a model for their name, skills, and shift rules.") {
                     WorkerArt(style: "goggles").padding(13)
                 }
                 helpStep("Choose a slot", detail: "Outlined slots accept the worker. A slash marks a slot you can't use.") {

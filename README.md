@@ -6,7 +6,12 @@ engineering decisions. Staff the Stations is the playable first stage.
 Play six puzzles from a single four-, five-, or six-station layout picked
 at the start of the run. Assign everyone to an allowed slot, meet each
 station's minimum power, and satisfy the shift rules. Each run draws six
-distinct puzzles from its layout's bank of 30.
+distinct puzzles from its layout's bank of 30. Only Stage 1 is playable.
+
+Hover over a worker in the crew tray or on the floor to see their name,
+ratings, allowed stations, and any rules that apply. The crew skills panel
+keeps the whole active crew's ratings and assignments in view. Select or
+drag a worker to highlight usable slots.
 
 ## Build and test
 
@@ -31,7 +36,25 @@ puzzle definitions are included in the source distribution.
 
 ## Version history
 
-### Does This Work? v0.3
+### Does This Work? v0.3 — Build 4 · Geometric Crew
+
+- **Changed:** Brought the eight approved geometric characters into the game
+  as vector models, with matching models and color variants for the rest of
+  the Stage 1 roster. The same art appears in the menus, on the board, and
+  during conversations.
+- **Added:** Hover over a model to see its name, skills, current slot, allowed
+  stations, and shift rules in a speech bubble. The crew tray doubles as an
+  overview of the full crew, including the workers already on the floor.
+- **Changed:** Before each puzzle, two workers stand on the floor and trade
+  lines. The speech bubble and speaker emphasis move with the conversation.
+  The second line surfaces a real rule or a relevant skill from that puzzle.
+- **Changed:** Redrew all six machines with steel panels, controls, and
+  recognizable tools. An aisle and quiet utility wall frame the numbered
+  slots and stations.
+- **Stage 1:** 90 puzzles, 30 per layout, with six puzzles per run. The music
+  and 27 effects use the previously approved recordings.
+
+### Does This Work? v0.3 — Build 3
 
 - **Changed:** Redrew all six workshop machines as flat, native vector artwork
   with shared bases and recognizable tools. Each station groups its equipment,

@@ -23,41 +23,24 @@ struct ShiftScene: View {
             workshopScene
                 .frame(minHeight: 230, maxHeight: .infinity)
 
-            VStack(alignment: .leading, spacing: 9) {
-                HStack(alignment: .firstTextBaseline, spacing: 9) {
-                    Text(line.worker.name).gameFont(20, .bold).foregroundStyle(Palette.deepSage)
-                    if intro.introduced == line.worker.id {
-                        Text("New on this shift").gameFont(13).foregroundStyle(Palette.quiet)
-                    }
-                    Spacer()
-                    Text("\(game.dialogueIndex + 1) / \(intro.lines.count)")
-                        .gameFont(13, .semibold).monospacedDigit().foregroundStyle(Palette.quiet)
-                        .accessibilityLabel("Line \(game.dialogueIndex + 1) of \(intro.lines.count)")
-                }
-                Text("“\(line.text)”").gameFont(21, .semibold)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .frame(maxWidth: .infinity, minHeight: 53, alignment: .topLeading)
-                    .accessibilityIdentifier("dialogue-line")
-
+            HStack(alignment: .center, spacing: 10) {
                 if game.dialogueIndex == 1 {
-                    HStack(spacing: 5) {
-                        ForEach(run.board.puzzle.stations, id: \.self) { station in
-                            Text("\(station.title) \(line.worker.power(at: station))")
-                                .gameFont(12, .semibold)
-                                .padding(.horizontal, 8).padding(.vertical, 4)
-                                .background(Palette.beige, in: Capsule())
-                        }
+                    ForEach(run.board.puzzle.stations, id: \.self) { station in
+                        Text("\(station.title) \(line.worker.power(at: station))")
+                            .gameFont(12, .semibold)
+                            .padding(.horizontal, 8).padding(.vertical, 4)
+                            .background(Palette.beige, in: Capsule())
                     }
-                    .frame(height: 28)
                 } else {
                     Text(intro.situation).gameFont(13).foregroundStyle(Palette.quiet)
-                        .frame(minHeight: 28, alignment: .topLeading)
                 }
+                Spacer()
+                Text("\(game.dialogueIndex + 1) / \(intro.lines.count)")
+                    .gameFont(13, .semibold).monospacedDigit().foregroundStyle(Palette.quiet)
+                    .accessibilityLabel("Line \(game.dialogueIndex + 1) of \(intro.lines.count)")
             }
-            .padding(.vertical, 14)
-            .padding(.horizontal, 19)
-            .background(Palette.paper, in: RoundedRectangle(cornerRadius: 15))
-            .overlay { RoundedRectangle(cornerRadius: 15).strokeBorder(Palette.line, lineWidth: 1) }
+            .padding(.horizontal, 9)
+            .frame(minHeight: 30)
 
             HStack(spacing: 12) {
                 if game.settings.keyboardHints {
@@ -83,51 +66,94 @@ struct ShiftScene: View {
         GeometryReader { geometry in
             let width = geometry.size.width
             let height = geometry.size.height
+            let wallHeight = min(98, height * 0.22)
+            let speakerOnLeft = intro.cast.first?.id == line.worker.id
+            let speakerX = width * (speakerOnLeft ? 0.35 : 0.65)
+            let modelSize = min(height * 0.41, 178)
+            let modelY = height * 0.82 - modelSize / 2
             ZStack {
-                RoundedRectangle(cornerRadius: 22).fill(Palette.beige.opacity(0.59))
-                FactoryWall()
-                    .frame(height: min(53, height * 0.15))
-                    .position(x: width * 0.5, y: min(26.5, height * 0.075))
-                    .clipShape(RoundedRectangle(cornerRadius: 22))
-                RoundedRectangle(cornerRadius: 22).strokeBorder(Palette.line, lineWidth: 1)
+                Palette.beige.opacity(0.54)
+                VStack(spacing: 0) {
+                    FactoryWall().frame(height: wallHeight)
+                    Spacer(minLength: 0)
+                }
                 Path { path in
-                    path.move(to: pt(width * 0.10, height * 0.78))
-                    path.addLine(to: pt(width * 0.90, height * 0.78))
-                }.stroke(Palette.line, style: StrokeStyle(lineWidth: 2, lineCap: .round))
-                Capsule().fill(Palette.beige.opacity(0.75))
-                    .frame(width: width * 0.69, height: 8)
-                    .position(x: width * 0.5, y: height * 0.804)
+                    path.move(to: pt(width * 0.06, height * 0.86))
+                    path.addLine(to: pt(width * 0.94, height * 0.86))
+                }
+                .stroke(Palette.line, style: StrokeStyle(lineWidth: 1.3, dash: [8, 7]))
                 MachineArt(station: .large)
-                    .frame(width: width * 0.16, height: height * 0.47)
-                    .opacity(0.69)
-                    .position(x: width * 0.15, y: height * 0.54)
+                    .frame(width: width * 0.19, height: height * 0.36)
+                    .opacity(0.74)
+                    .position(x: width * 0.13, y: height * 0.54)
                 MachineArt(station: run.board.puzzle.stations.last ?? .small)
-                    .frame(width: width * 0.15, height: height * 0.41)
-                    .opacity(0.72)
-                    .position(x: width * 0.84, y: height * 0.61)
-                Image(systemName: "wrench.adjustable")
-                    .gameFont(23).foregroundStyle(Palette.quiet.opacity(0.48))
-                    .rotationEffect(.degrees(-17))
-                    .position(x: width * 0.82, y: height * 0.19)
+                    .frame(width: width * 0.19, height: height * 0.36)
+                    .opacity(0.74)
+                    .position(x: width * 0.87, y: height * 0.54)
+
                 ForEach(Array(intro.cast.enumerated()), id: \.element.id) { index, worker in
                     let speaking = worker.id == line.worker.id
-                    let size = min(height * 0.57, 174)
-                    VStack(spacing: 5) {
-                        ZStack {
-                            Circle().fill(Palette.paper.opacity(speaking ? 0.90 : 0))
-                                .frame(width: size, height: size)
-                            WorkerArt(style: worker.style).frame(width: size, height: size)
-                                .scaleEffect(speaking ? 1.07 : 0.84)
-                                .opacity(speaking ? 1 : 0.70)
-                        }
-                        Text(worker.name).gameFont(16, speaking ? .bold : .semibold)
-                            .foregroundStyle(speaking ? Palette.deepSage : Palette.quiet)
-                    }
-                    .animation(game.settings.reduceMotion ? nil : .easeInOut(duration: 0.29), value: speaking)
-                    .position(x: width * (index == 0 ? 0.36 : 0.64), y: height * 0.49)
+                    WorkerArt(style: worker.style)
+                        .frame(width: modelSize, height: modelSize)
+                        .scaleEffect(speaking ? 1.13 : 0.95, anchor: .bottom)
+                        .opacity(speaking ? 1 : 0.76)
+                        .animation(game.settings.reduceMotion ? nil : .easeInOut(duration: 0.25), value: speaking)
+                        .position(x: width * (index == 0 ? 0.35 : 0.65), y: modelY)
+                }
+
+                Color.clear.overlay(alignment: .topLeading) {
+                    let bubbleWidth = min(374, width * 0.45)
+                    dialogueBubble
+                        .frame(width: bubbleWidth)
+                        .alignmentGuide(.top) { $0.height }
+                        .offset(x: speakerX - bubbleWidth / 2,
+                                y: modelY - modelSize * 0.52)
                 }
             }
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .overlay { RoundedRectangle(cornerRadius: 15).strokeBorder(Palette.line, lineWidth: 1) }
         }
+    }
+
+    private var dialogueBubble: some View {
+        VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 5) {
+                HStack(spacing: 8) {
+                    Text(line.worker.name).gameFont(16, .bold).foregroundStyle(Palette.deepSage)
+                    if intro.introduced == line.worker.id {
+                        Text("New on this shift").gameFont(11).foregroundStyle(Palette.quiet)
+                    }
+                }
+                Text("“\(line.text)”").gameFont(17, .semibold)
+                    .accessibilityIdentifier("dialogue-line")
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 13)
+            .background(Palette.paper, in: RoundedRectangle(cornerRadius: 10))
+            .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(Palette.line, lineWidth: 1) }
+            SpeechTail()
+        }
+    }
+}
+
+struct SpeechTail: View {
+    var body: some View {
+        Path { path in
+            path.move(to: .zero)
+            path.addLine(to: pt(9, 8))
+            path.addLine(to: pt(18, 0))
+        }
+        .fill(Palette.paper)
+        .overlay {
+            Path { path in
+                path.move(to: .zero)
+                path.addLine(to: pt(9, 8))
+                path.addLine(to: pt(18, 0))
+            }.stroke(Palette.line, lineWidth: 1)
+        }
+        .frame(width: 18, height: 8)
         .accessibilityHidden(true)
     }
 }

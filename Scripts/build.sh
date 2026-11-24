@@ -26,7 +26,7 @@ cat > "$contents/Info.plist" <<'PLIST'
     <key>CFBundleName</key><string>Does This Work? v0.3</string>
     <key>CFBundleExecutable</key><string>DoesThisWork</string>
     <key>CFBundleIdentifier</key><string>com.doesthiswork.game</string>
-    <key>CFBundleVersion</key><string>3</string>
+    <key>CFBundleVersion</key><string>4</string>
     <key>CFBundleShortVersionString</key><string>0.3</string>
     <key>CFBundlePackageType</key><string>APPL</string>
     <key>CFBundleDevelopmentRegion</key><string>en</string>
