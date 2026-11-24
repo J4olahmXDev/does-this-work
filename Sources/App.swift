@@ -88,23 +88,23 @@ private struct RootView: View {
         case .stages: StageMenu()
         case .settings: SettingsMenu()
         case .game:
-            if let run = game.run {
-                if game.overlay == .briefing, let intro = game.briefing {
-                    ShiftScene(run: run, intro: intro)
-                        .id(run.board.puzzle.id)
-                } else {
-                    StaffingScreen(run: run)
-                        .id(run.board.puzzle.id)
-                        .disabled(game.overlay != nil)
-                        .accessibilityHidden(game.overlay != nil)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    if let overlay = game.overlay {
-                        Palette.ink.opacity(0.19).ignoresSafeArea()
-                        StaffingDialog(overlay: overlay)
-                            .id(overlay)
-                    }
+            if game.overlay == .briefing, let intro = game.briefing {
+                ShiftScene(intro: intro).id(game.puzzleID)
+            } else {
+                Group {
+                    if let run = game.run { StaffingScreen(run: run) }
+                    else if let workshop = game.workshop { WorkshopScreen(run: workshop) }
+                }
+                .id(game.puzzleID)
+                .disabled(game.overlay != nil)
+                .accessibilityHidden(game.overlay != nil)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                if let overlay = game.overlay {
+                    Palette.ink.opacity(0.19).ignoresSafeArea()
+                    StaffingDialog(overlay: overlay).id(overlay)
                 }
             }
+
         }
     }
 

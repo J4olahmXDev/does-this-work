@@ -479,6 +479,11 @@ struct PlayerSettings: Codable, Equatable {
     var masterVolume = 0.8
     var musicVolume = 0.6
     var effectsVolume = 0.8
+    private var dialogueVolume: Double?
+    var voiceVolume: Double {
+        get { dialogueVolume ?? 0.55 }
+        set { dialogueVolume = newValue }
+    }
     var fullscreen = false
     var windowSize: WindowSize = .compact
     var largeText = false
@@ -489,6 +494,8 @@ struct PlayerSettings: Codable, Equatable {
 
 struct PlayerData: Codable, Equatable {
     var completedStageOne = false
+    var completedThrough: Int?
+    var completedStageCount: Int { max(completedStageOne ? 1 : 0, min(4, completedThrough ?? 0)) }
     var settings = PlayerSettings()
 }
 

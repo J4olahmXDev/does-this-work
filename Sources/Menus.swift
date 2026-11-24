@@ -149,53 +149,40 @@ private struct MenuDiorama: View {
 
 struct StageMenu: View {
     @EnvironmentObject private var game: GameSession
-    private let stages: [(StageArtwork, String)] = [
-        (.staffing, "Staff the Stations"),
-        (.bottleneck, "Find the Bottleneck"),
-        (.plant, "Plan the Plant"),
-        (.delivery, "Plan the Delivery Route"),
-    ]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 27) {
-            SectionHeading(title: "Choose a stage")
-            Spacer(minLength: 6)
-            HStack(spacing: 14) {
-                ForEach(stages, id: \.0.rawValue) { stage, name in
-                    let enabled = stage == .staffing
-                    VStack(spacing: 12) {
-                        StageIllustration(stage: stage)
-                            .frame(height: 110)
+        VStack(alignment: .leading, spacing: 15) {
+            SectionHeading(title: "Choose a stage", subtitle: "Play six puzzles to unlock the next stage.")
+            Spacer(minLength: 0)
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 13), GridItem(.flexible())], spacing: 13) {
+                ForEach(WorkStage.allCases) { stage in
+                    let enabled = game.unlocked(stage)
+                    let artwork = StageArtwork(rawValue: stage.rawValue) ?? .staffing
+                    HStack(spacing: 14) {
+                        StageIllustration(stage: artwork).frame(width: 120, height: 101)
                             .opacity(enabled ? 1 : 0.58)
-                        Text(name).gameFont(19, .bold)
-                            .multilineTextAlignment(.center)
-                            .frame(minHeight: 56)
-                        if enabled {
-                            if game.data.completedStageOne {
-                                Label("Completed", systemImage: "checkmark.circle")
-                                    .gameFont(13, .semibold).foregroundStyle(Palette.deepSage)
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text(stage.title).gameFont(21, .bold)
+                            Text(stage.summary).gameFont(13).foregroundStyle(Palette.quiet)
+                            Text("90 puzzles · 6 per run").gameFont(12, .semibold)
+                            if enabled {
+                                GameButton(title: game.completed(stage) ? "Replay" : "Play", style: .filled) {
+                                    game.startRun(stage)
+                                }.accessibilityIdentifier(stage == .staffing ? "stage-one-play" : "stage-\(stage.rawValue)-play")
                             } else {
-                                Text("90 puzzles · 6 per run").gameFont(13).foregroundStyle(Palette.quiet)
+                                Label("Complete the previous stage", systemImage: "lock")
+                                    .gameFont(12, .semibold).frame(minHeight: 41)
                             }
-                            GameButton(title: game.data.completedStageOne ? "Play again" : "Play",
-                                       style: .filled, expand: true) { game.startRun() }
-                                .accessibilityIdentifier("stage-one-play")
-                                .keyboardShortcut(.return, modifiers: [])
-                        } else {
-                            Label("Locked", systemImage: "lock")
-                                .gameFont(14, .semibold).foregroundStyle(Palette.quiet)
-                                .frame(minHeight: 64)
-                                .help("This stage is locked in this version.")
                         }
+                        Spacer(minLength: 0)
                     }
-                    .padding(16)
-                    .frame(maxWidth: .infinity, minHeight: 272)
-                    .background(enabled ? Palette.paper : Palette.beige.opacity(0.54),
-                                in: RoundedRectangle(cornerRadius: 18))
-                    .overlay { RoundedRectangle(cornerRadius: 18).strokeBorder(Palette.line, lineWidth: 1) }
+                    .padding(15)
+                    .frame(maxWidth: .infinity, minHeight: 150, alignment: .leading)
+                    .background(enabled ? Palette.paper : Palette.beige.opacity(0.54), in: RoundedRectangle(cornerRadius: 13))
+                    .overlay { RoundedRectangle(cornerRadius: 13).strokeBorder(Palette.line) }
                 }
             }
-            Spacer(minLength: 12)
+            Spacer(minLength: 0)
             GameButton(title: "Back", symbol: "chevron.left") { game.navigate(to: .home, cue: .back) }
                 .keyboardShortcut(.escape, modifiers: [])
         }
@@ -310,6 +297,7 @@ struct SettingsMenu: View {
                 volumeRow("Master volume", \.masterVolume)
                 volumeRow("Music", \.musicVolume)
                 volumeRow("Sound effects", \.effectsVolume)
+                volumeRow("Dialogue voices", \.voiceVolume)
             case .display:
                 row("Window mode") {
                     Picker("Window mode", selection: binding(\.fullscreen)) {

@@ -67,12 +67,17 @@ struct StaffingScreen: View {
                 VStack(alignment: .trailing, spacing: 5) {
                     Text("Puzzle \(run.index + 1) of \(run.puzzles.count)").gameFont(15, .bold)
                     Text(run.board.puzzle.pace + " · \(run.board.puzzle.stations.count) stations")
-                        .gameFont(14, .semibold).foregroundStyle(Palette.quiet)
+                        .gameFont(12, .semibold).foregroundStyle(Palette.deepSage)
+                        .padding(.vertical, 4).padding(.horizontal, 8)
+                        .background(Palette.sage.opacity(0.28), in: RoundedRectangle(cornerRadius: 6))
                 }.padding(.trailing, 5)
                 GameButton(title: "Pause", symbol: "pause.fill") { game.pause() }
                     .accessibilityIdentifier("game-pause")
                     .keyboardShortcut(.escape, modifiers: [])
             }
+            .padding(.horizontal, 13).padding(.vertical, 8)
+            .background(Palette.paper.opacity(0.76), in: RoundedRectangle(cornerRadius: 13))
+            .overlay { RoundedRectangle(cornerRadius: 13).strokeBorder(Palette.line.opacity(0.6), lineWidth: 1) }
             GeometryReader { size in
                 HStack(alignment: .top, spacing: 16) {
                     BoardView(board: run.board)
@@ -85,7 +90,7 @@ struct StaffingScreen: View {
             }
         }
         .padding(.horizontal, 24)
-        .padding(.vertical, 22)
+        .padding(.vertical, 14)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
@@ -121,7 +126,7 @@ private struct BoardView: View {
                 Spacer(minLength: 2)
                 tray.padding(.horizontal, 12).padding(.bottom, 7)
                 if game.settings.keyboardHints {
-                    Text("Esc  Pause  ·  Enter  Check plan")
+                    Text(board.issues().isEmpty ? "Esc  Pause  ·  Enter  Confirm plan" : "Esc  Pause")
                         .gameFont(11).foregroundStyle(Palette.quiet)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 13).padding(.bottom, 6)
@@ -247,7 +252,7 @@ private struct BoardView: View {
                 let surfaceHeight = area.size.height
                 Group {
                     if surfaceHeight >= 216 {
-                        let slotSize = min(61, (bayWidth - 40) / Double(max(2, slots.count)))
+                        let slotSize = min(73, (bayWidth - 40) / Double(max(2, slots.count)))
                         VStack(spacing: 8) {
                             MachineArt(station: station)
                                 .frame(width: bayWidth * 0.82, height: surfaceHeight * 0.64)
@@ -256,11 +261,11 @@ private struct BoardView: View {
                             }
                         }
                     } else {
-                        let slotHeight = slots.count > 2 ? (surfaceHeight - 29) / 2 : surfaceHeight - 15
-                        let slotSize = min(46, max(25, slotHeight), max(26, (bayWidth * 0.53 - 7) / 2))
+                        let slotHeight = slots.count > 2 ? (surfaceHeight - 5) / 2 : surfaceHeight
+                        let slotSize = min(56, max(25, slotHeight), max(26, (bayWidth * 0.62 - 8) / 2))
                         HStack(spacing: 5) {
                             MachineArt(station: station)
-                                .frame(width: bayWidth * 0.47, height: surfaceHeight)
+                                .frame(width: bayWidth * 0.36, height: surfaceHeight)
                             stationSlots(slots, size: slotSize)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
@@ -306,8 +311,7 @@ private struct BoardView: View {
             guard interaction.drag == nil, !interaction.suppressesClick else { return }
             game.act(on: slot)
         } label: {
-            VStack(spacing: 2) {
-                ZStack {
+            ZStack {
                     RoundedRectangle(cornerRadius: 8).fill(
                         selected || (target && hovered) ? Palette.sage.opacity(0.69) :
                             target ? Palette.sage.opacity(0.30) : Palette.paper.opacity(0.8))
@@ -316,8 +320,12 @@ private struct BoardView: View {
                         style: StrokeStyle(lineWidth: game.settings.strongerSlots ? 2.6 : target ? 1.8 : 1.25,
                                            dash: occupant == nil && !target && !blocked ? [4, 3] : []))
                     if let occupant, drag?.id != occupant.id {
-                        WorkerArt(style: occupant.style).padding(3)
+                        WorkerArt(style: occupant.style)
+                            .padding(.horizontal, 3).padding(.bottom, 10)
                     }
+                    Text(slot.id).gameFont(11, .bold).monospacedDigit()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                        .padding(.bottom, 2)
                     if blocked {
                         Path { path in
                             path.move(to: pt(9, size - 9))
@@ -331,10 +339,8 @@ private struct BoardView: View {
                             .background(Palette.paper, in: RoundedRectangle(cornerRadius: 3))
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
                     }
-                }
-                .frame(width: size, height: size)
-                Text(slot.id).gameFont(10, .semibold).monospacedDigit()
             }
+            .frame(width: size, height: size)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -390,7 +396,7 @@ private struct BoardView: View {
                     Text(slot.id).gameFont(12, .bold).monospacedDigit()
                 } else {
                     WorkerArt(style: worker.style)
-                        .frame(width: 48, height: 48)
+                        .frame(width: 53, height: 53)
                         .saturation(selected ? 0 : 1)
                         .opacity(drag?.id == worker.id ? 0 : selected ? 0.60 : 1)
                 }
@@ -506,7 +512,7 @@ private struct CrewPanel: View {
     private let placeWidth: CGFloat = 37
 
     var body: some View {
-        VStack(alignment: .leading, spacing: compact ? 5 : 11) {
+        VStack(alignment: .leading, spacing: compact ? 4 : 11) {
             goals
             Divider().overlay(Palette.line.opacity(0.8))
             HStack(alignment: .firstTextBaseline) {
@@ -528,11 +534,10 @@ private struct CrewPanel: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibilityIdentifier("staff-feedback")
             }
-            GameButton(title: "Check plan", symbol: "checkmark", style: .filled, expand: true) {
+            ConfirmStrip(title: "Confirm plan",
+                         detail: board.issues().first ?? "All conditions met", ready: board.issues().isEmpty) {
                 game.checkPlan()
             }
-            .accessibilityIdentifier("check-plan")
-            .keyboardShortcut(.return, modifiers: [])
         }
         .padding(compact ? 10 : 13)
         .background(Palette.paper.opacity(0.86), in: RoundedRectangle(cornerRadius: 13))
@@ -648,7 +653,7 @@ private struct CrewPanel: View {
             }
             .gameFont(13)
             .padding(.horizontal, 5)
-            .frame(minHeight: spacious ? 36 : compact ? 20 : 25)
+            .frame(minHeight: spacious ? 36 : compact ? 19 : 25)
             .background(selected ? Palette.sage.opacity(0.38) : .clear)
             .contentShape(Rectangle())
         }
@@ -689,11 +694,15 @@ struct StaffingDialog: View {
                         .keyboardShortcut(.return, modifiers: [])
                 }
             case .completed:
-                dialog(title: "Stage complete", message: "You finished all six puzzles in this run.",
-                       symbol: "checkmark.seal.fill") {
-                    GameButton(title: "Play again", style: .filled) { game.startRun() }
+                dialog(title: game.stage == .delivery ? "Game complete" : "Stage complete",
+                       message: game.nextStage.map { "Unlocked " + $0.title + "." } ??
+                           "You finished all four stages.", symbol: "checkmark.seal.fill") {
+                    if let next = game.nextStage {
+                        GameButton(title: "Next stage", style: .filled) { game.startRun(next) }
+                            .keyboardShortcut(.return, modifiers: [])
+                    }
+                    GameButton(title: "Replay") { game.startRun(game.stage) }
                     GameButton(title: "Choose a stage") { game.leaveStage() }
-                        .keyboardShortcut(.return, modifiers: [])
                 }
             }
         }
@@ -706,8 +715,12 @@ struct StaffingDialog: View {
     }
 
     private var passedMessage: String {
+        if let workshop = game.workshop, !workshop.isFinal {
+            let next = workshop.puzzles[workshop.index + 1].card.pace
+            return next == workshop.board.card.pace ? "All conditions are met." : "Next up: " + next + "."
+        }
         guard let run = game.run, !run.isFinalPuzzle else {
-            return "Everyone has a place and all the stations are ready."
+            return "All conditions are met."
         }
         let next = run.puzzles[run.index + 1].pace
         return next == run.board.puzzle.pace

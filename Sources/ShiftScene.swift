@@ -2,29 +2,27 @@ import SwiftUI
 
 struct ShiftScene: View {
     @EnvironmentObject private var game: GameSession
-    let run: StageRun
     let intro: Briefing
 
     private var line: DialogueLine { intro.lines[game.dialogueIndex] }
-    private var isLastLine: Bool { game.dialogueIndex + 1 == intro.lines.count }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Before the shift · " + run.board.puzzle.layout).gameFont(15, .semibold)
+                    Text("Before the shift · " + game.puzzleLayout).gameFont(15, .semibold)
                         .foregroundStyle(Palette.quiet)
-                    Text(run.board.puzzle.title).gameFont(32, .bold).accessibilityAddTraits(.isHeader)
+                    Text(game.puzzleTitle).gameFont(32, .bold).accessibilityAddTraits(.isHeader)
                 }
                 Spacer()
-                Text("Puzzle \(run.index + 1) of \(run.puzzles.count)").gameFont(15, .semibold)
+                Text("Puzzle \(game.puzzleIndex + 1) of 6").gameFont(15, .semibold)
             }
 
             workshopScene
                 .frame(minHeight: 230, maxHeight: .infinity)
 
             HStack(alignment: .center, spacing: 10) {
-                if game.dialogueIndex == 1 {
+                if game.dialogueIndex == 1, let run = game.run {
                     ForEach(run.board.puzzle.stations, id: \.self) { station in
                         Text("\(station.title) \(line.worker.power(at: station))")
                             .gameFont(12, .semibold)
@@ -43,23 +41,21 @@ struct ShiftScene: View {
             .frame(minHeight: 30)
 
             HStack(spacing: 12) {
-                if game.settings.keyboardHints {
-                    Text("Enter  " + (isLastLine ? "Start puzzle" : "Next") + "   ·   Esc  Skip intro")
-                        .gameFont(12).foregroundStyle(Palette.quiet)
-                }
+                Text(game.dialoguePaused ? "Scene paused" : "Scene plays automatically")
+                    .gameFont(13, .semibold).foregroundStyle(Palette.quiet)
                 Spacer()
-                GameButton(title: "Skip intro", style: .quiet) { game.beginPuzzle(skip: true) }
-                    .keyboardShortcut(.escape, modifiers: [])
-                GameButton(title: isLastLine ? "Start puzzle" : "Next", style: .filled) {
-                    game.advanceDialogue()
+                GameButton(title: game.dialoguePaused ? "Resume scene" : "Pause scene", style: .quiet) {
+                    game.toggleDialoguePause()
                 }
-                .keyboardShortcut(.return, modifiers: [])
-                .accessibilityIdentifier(isLastLine ? "start-puzzle" : "next-line")
+                GameButton(title: "Skip scene", style: .filled) { game.beginPuzzle(skip: true) }
+                    .keyboardShortcut(.escape, modifiers: [])
+                    .accessibilityIdentifier("skip-scene")
             }
         }
         .padding(29)
         .frame(maxWidth: 1150, maxHeight: .infinity)
         .frame(maxWidth: .infinity)
+        .task(id: "\(game.dialogueIndex)-\(game.dialoguePaused)") { await game.playDialogueBeat() }
     }
 
     private var workshopScene: some View {
@@ -82,14 +78,7 @@ struct ShiftScene: View {
                     path.addLine(to: pt(width * 0.94, height * 0.86))
                 }
                 .stroke(Palette.line, style: StrokeStyle(lineWidth: 1.3, dash: [8, 7]))
-                MachineArt(station: .large)
-                    .frame(width: width * 0.19, height: height * 0.36)
-                    .opacity(0.74)
-                    .position(x: width * 0.13, y: height * 0.54)
-                MachineArt(station: run.board.puzzle.stations.last ?? .small)
-                    .frame(width: width * 0.19, height: height * 0.36)
-                    .opacity(0.74)
-                    .position(x: width * 0.87, y: height * 0.54)
+                sceneProps(width: width, height: height)
 
                 ForEach(Array(intro.cast.enumerated()), id: \.element.id) { index, worker in
                     let speaking = worker.id == line.worker.id
@@ -112,6 +101,31 @@ struct ShiftScene: View {
             }
             .clipShape(RoundedRectangle(cornerRadius: 15))
             .overlay { RoundedRectangle(cornerRadius: 15).strokeBorder(Palette.line, lineWidth: 1) }
+        }
+    }
+
+    @ViewBuilder private func sceneProps(width: Double, height: Double) -> some View {
+        switch game.stage {
+        case .staffing, .bottleneck:
+            MachineArt(station: game.stage == .staffing ? .large : .small)
+                .frame(width: width * 0.19, height: height * 0.36)
+                .opacity(0.74).position(x: width * 0.13, y: height * 0.54)
+            if game.stage == .staffing {
+                MachineArt(station: game.run?.board.puzzle.stations.last ?? .small)
+                    .frame(width: width * 0.19, height: height * 0.36)
+                    .opacity(0.74).position(x: width * 0.87, y: height * 0.54)
+            } else {
+                StageIllustration(stage: .bottleneck).frame(width: width * 0.22, height: height * 0.4)
+                    .position(x: width * 0.87, y: height * 0.56)
+            }
+        case .plant:
+            StageIllustration(stage: .plant).frame(width: width * 0.22, height: height * 0.38)
+                .position(x: width * 0.87, y: height * 0.57)
+            MachineArt(station: .medium).frame(width: width * 0.18, height: height * 0.36)
+                .position(x: width * 0.13, y: height * 0.55)
+        case .delivery:
+            StageIllustration(stage: .delivery).frame(width: width * 0.30, height: height * 0.47)
+                .position(x: width * 0.85, y: height * 0.55)
         }
     }
 

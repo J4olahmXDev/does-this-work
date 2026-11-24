@@ -1,41 +1,48 @@
-# Does This Work? v0.4
+# Does This Work? v0.5
 
-Does This Work? is an offline English-language macOS game about industrial
-engineering decisions. Staff the Stations is the playable first stage.
+Does This Work? is an offline English-language macOS puzzle game about industrial engineering. Each stage draws six distinct puzzles from one 30-puzzle layout or rule mode, paced from Warm-up to Rush. Clear the run to unlock the next stage. Completed stages remain available for replay.
 
-Play six puzzles from a single four-, five-, or six-station layout picked
-at the start of the run. Assign everyone to an allowed slot, meet each
-station's power goal, and satisfy the shift rules. The six puzzles progress
-from Warm-up through Production to Rush. Some Rush stations have both a
-minimum and a maximum. Each layout still has 30 puzzles. Only Stage 1 is playable.
+## Stages
 
-Hover over a worker in the crew tray or on the floor to see their name,
-ratings, allowed stations, and any rules that apply. The crew skills panel
-keeps the whole active crew's ratings and assignments in view. Select or
-drag a worker to highlight usable slots.
+| Stage | Objective | Puzzle bank |
+| --- | --- | --- |
+| Staff the Stations | Assign every worker to an eligible position, meet station power targets, and satisfy crew rules. | 90 puzzles across 4-, 5-, and 6-station floors |
+| Find the Bottleneck | Move or swap workers on a staffed production line. Finished output is the slowest station’s capacity. | 90 puzzles across 4-, 5-, and 6-station lines |
+| Plan the Plant | Move machines between bays and shorten cart travel, weighted by the number of trips. Follow placement and fixed-equipment rules. | 90 puzzles across single-product, shared-equipment, and fixed-equipment layouts |
+| Plan the Delivery Route | Order shop stops, check the return to the depot, and meet the distance or time limit. | 90 puzzles across distance, shop-window, and changing-traffic modes |
+
+The game forecasts the impact of each move. The square checkmark becomes available when all conditions are met. The stage introduction advances automatically, with an option to pause or skip it. Planning has no real-time deadline.
 
 ## Build and test
 
-You need macOS and Xcode selected as the active developer directory. The
-application targets macOS 14 or later, builds for the host architecture, and
-uses the local Xcode SDK. The downloadable v0.4 build was packaged for Apple
-Silicon. This project has no external package dependencies.
+Use macOS and select Xcode as the active developer directory. The app targets macOS 14 or later and builds for the host architecture. The distributed app is built for Apple Silicon. There are no external package dependencies.
 
 ```sh
 ./Scripts/test.sh
+./Scripts/test_workshop.sh
 ./Scripts/test_session.sh
 ./Scripts/build.sh
 ```
 
-Open `outputs/Does This Work? v0.4.app` to play. The app keeps settings and
-completed-stage progress locally. Reopening the app starts a new run while
-preserving completed-stage progress.
+Open `outputs/Does This Work? v0.5.app`. This build reads older settings and Stage 1 completion on first launch if a v0.5 save is absent. It writes progress to its own profile. A run in progress is cleared on exit, while completed-stage progress is saved.
 
-To regenerate the checked-in puzzle bank after editing the authored scenarios,
-use Python 3.10 or later and run `python3 Scripts/author_puzzles.py`. Sources, audio, art, and compiled
-puzzle definitions are included in the source distribution.
+Puzzle definitions and audio are bundled. To regenerate them from source, run the following with Python 3.10 or later.
+
+```sh
+python3 Scripts/author_puzzles.py
+python3 Scripts/author_workshop.py
+python3 Scripts/make_stage_audio.py
+```
 
 ## Version history
+
+### Does This Work? v0.5
+
+- Added three playable stages, with 270 new boards and 360 puzzles in total.
+- Added progressive unlocks, replay, and compatibility with v0.4 completion and settings.
+- Updated the boards with larger click and drop areas and a square confirmation control with gray and green states.
+- Added timed dialogue with captions, nonverbal character voices, Pause, and Skip. Every stage has a theme and a playing layer. Settings include a separate Dialogue voices volume.
+- Retained Easy Bright for the home and settings screens and the 27 original sound effects.
 
 ### Does This Work? v0.4
 

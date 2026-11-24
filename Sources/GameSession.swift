@@ -5,7 +5,7 @@ import SwiftUI
 
 enum GameIdentity {
     static let name = "Does This Work?"
-    static let version = "0.4"
+    static let version = "0.5"
     static let title = name + " v" + version
     static let qaBundleID = "com.doesthiswork.game.qa"
 }
@@ -106,6 +106,15 @@ typealias AudioLoader = (URL) throws -> any AudioPlayback
 @MainActor
 final class GameAudio {
     private var music: (any AudioPlayback)?
+    private var themes: [WorkStage: any AudioPlayback] = [:]
+    private var layers: [WorkStage: any AudioPlayback] = [:]
+    private var voices: [String: any AudioPlayback] = [:]
+    private var voice: (any AudioPlayback)?
+    private var activeStage: WorkStage?
+    private var briefingMix = false
+    private(set) var stageMixReady = false
+    private var layerTask: Task<Void, Never>?
+    private var layerAudible = false
     private var players: [Cue: any AudioPlayback] = [:]
     private var active: [Cue.Lane: any AudioPlayback] = [:]
     private var settings = PlayerSettings()
@@ -129,6 +138,21 @@ final class GameAudio {
                 players[cue] = effect
             }
             log("Audio loaded: \(players.count) effects; music \(musicPlayer.duration)s")
+            for stage in WorkStage.allCases {
+                for (suffix, layer) in [("", false), ("-Layer", true)] {
+                    let player = try load(folder.appendingPathComponent("Stage-\(stage.rawValue)\(suffix).wav"))
+                    player.numberOfLoops = -1
+                    _ = player.prepareToPlay()
+                    if layer { layers[stage] = player } else { themes[stage] = player }
+                }
+            }
+            for name in ["cap", "beanie", "pocket", "goggles", "earmuffs", "bow",
+                         "visor", "scarf", "glasses", "badge", "star", "headband"] {
+                let player = try load(folder.appendingPathComponent("Voice-\(name).wav"))
+                _ = player.prepareToPlay()
+                voices[name] = player
+            }
+            stageMixReady = true
         } catch {
             loadFailure = "Some game audio could not be loaded."
             log("Audio load failed: \(error)")
@@ -136,18 +160,95 @@ final class GameAudio {
     }
 
     var ready: Bool { music != nil && players.count == Cue.allCases.count }
-    var musicPlaying: Bool { music?.isPlaying == true }
+    private var currentMusic: (any AudioPlayback)? {
+        if let activeStage { return themes[activeStage] }
+        return music
+    }
+    var musicPlaying: Bool { currentMusic?.isPlaying == true }
     func isPlaying(_ cue: Cue) -> Bool { players[cue]?.isPlaying == true }
 
     func start(with settings: PlayerSettings) {
         configure(settings)
-        if !musicPlaying, let music { log("Music started: \(music.play()); loop count \(music.numberOfLoops)") }
+        if !musicPlaying, let track = currentMusic {
+            log("Music started: \(track.play()); loop count \(track.numberOfLoops)")
+        }
     }
 
     func configure(_ settings: PlayerSettings) {
         self.settings = settings
-        music?.volume = options.mute ? 0 : Float(settings.masterVolume * settings.musicVolume) * volumeRatio
+        currentMusic?.volume = musicGain * (briefingMix ? 0.62 : 1)
+        if let activeStage { layers[activeStage]?.volume = layerAudible ? musicGain : 0 }
+        voice?.volume = voiceGain
         for player in players.values { player.volume = effectsGain }
+    }
+
+    private var musicGain: Float {
+        options.mute ? 0 : Float(settings.masterVolume * settings.musicVolume) * volumeRatio
+    }
+
+    private var voiceGain: Float {
+        options.mute ? 0 : Float(settings.masterVolume * settings.voiceVolume)
+    }
+
+    func soundscape(stage: WorkStage?, menu: Bool, briefing: Bool) {
+        let oldTrack = currentMusic
+        if activeStage != stage || (!menu && stage == nil) {
+            layerTask?.cancel()
+            layerAudible = false
+            if let activeStage { layers[activeStage]?.stop() }
+            oldTrack?.stop()
+            activeStage = stage
+        }
+        briefingMix = briefing
+        configure(settings)
+        guard menu || stage != nil, let track = currentMusic else { return }
+        if !track.isPlaying {
+            track.currentTime = 0
+            if let stage, let layer = layers[stage] {
+                layer.currentTime = 0
+                layer.volume = 0
+                if let base = track as? AVAudioPlayer, let companion = layer as? AVAudioPlayer {
+                    let start = base.deviceCurrentTime + 0.035
+                    _ = base.play(atTime: start)
+                    _ = companion.play(atTime: start)
+                } else {
+                    _ = track.play()
+                    _ = layer.play()
+                }
+            } else {
+                _ = track.play()
+            }
+        }
+        layerTask?.cancel()
+        guard let stage, let layer = layers[stage] else { return }
+        if briefing {
+            layerAudible = false
+            layer.setVolume(0, fadeDuration: 0.2)
+            return
+        }
+        let tempo = [112.0,116,108,118][stage.rawValue-1]
+        let bar = 240 / tempo
+        let wait = bar - track.currentTime.truncatingRemainder(dividingBy: bar)
+        layerTask = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(wait))
+            guard let self, !Task.isCancelled, self.activeStage == stage, !self.briefingMix else { return }
+            self.layerAudible = true
+            layer.setVolume(self.musicGain, fadeDuration: 0.18)
+        }
+    }
+
+    func speak(_ worker: Worker) {
+        stopVoice()
+        guard let key = worker.style.split(separator: ":").first, let player = voices[String(key)] else { return }
+        voice = player
+        player.currentTime = 0
+        player.volume = voiceGain
+        _ = player.play()
+    }
+
+    func stopVoice() {
+        voice?.stop()
+        voice = nil
     }
 
     private var effectsGain: Float {
@@ -215,6 +316,9 @@ final class GameSession: ObservableObject {
     @Published private(set) var screen: Screen = .home
     @Published private(set) var data: PlayerData
     @Published private(set) var run: StageRun?
+    @Published private(set) var workshop: WorkshopRun?
+    @Published private(set) var stage: WorkStage = .staffing
+    @Published private(set) var dialoguePaused = false
     @Published private(set) var selected: String?
     @Published private(set) var overlay: GameOverlay?
     @Published private(set) var briefing: Briefing?
@@ -228,6 +332,7 @@ final class GameSession: ObservableObject {
     let options: LaunchOptions
     private let store: PlayerStore
     private let bank: PuzzleBank?
+    private let workshopBank: WorkshopBank?
     private var returnScreen: Screen = .home
     private var didStart = false
     private var seenWorkers: Set<String> = []
@@ -238,13 +343,15 @@ final class GameSession: ObservableObject {
         self.options = options
         audio = GameAudio(resources: resources, options: options, load: loadAudio)
         let support = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        store = PlayerStore(directory: options.profile ?? support.appendingPathComponent(GameIdentity.name, isDirectory: true))
-        let oldStore = PlayerStore(directory: support.appendingPathComponent("IE Puzzle Game", isDirectory: true))
+        store = PlayerStore(directory: options.profile ?? support.appendingPathComponent(GameIdentity.title, isDirectory: true))
+        let olderStores = [GameIdentity.name, "IE Puzzle Game"].map {
+            PlayerStore(directory: support.appendingPathComponent($0, isDirectory: true))
+        }
         do {
             if options.profile == nil,
                !FileManager.default.fileExists(atPath: store.file.path),
-               FileManager.default.fileExists(atPath: oldStore.file.path) {
-                data = (try? oldStore.load()) ?? PlayerData()
+               let oldStore = olderStores.first(where: { FileManager.default.fileExists(atPath: $0.file.path) }) {
+                data = try oldStore.load()
             } else {
                 data = try store.load()
             }
@@ -259,11 +366,33 @@ final class GameSession: ObservableObject {
             bank = nil
             launchFailure = "The puzzle bank could not be opened. \(error.localizedDescription)"
         }
+        do {
+            let url = resources.appendingPathComponent("Workshop.json")
+            let loaded = try JSONDecoder().decode(WorkshopBank.self, from: Data(contentsOf: url))
+            try loaded.validate()
+            workshopBank = loaded
+        } catch {
+            workshopBank = nil
+            launchFailure = "The workshop puzzles could not be opened. \(error.localizedDescription)"
+        }
         if warning == nil { warning = audio.loadFailure }
     }
 
     var settings: PlayerSettings { data.settings }
-    var gameActive: Bool { screen == .game && overlay == nil && run != nil }
+    var gameActive: Bool { screen == .game && overlay == nil && (run != nil || workshop != nil) }
+    var puzzleIndex: Int { run?.index ?? workshop?.index ?? 0 }
+    var puzzleID: String { run?.board.puzzle.id ?? workshop?.board.card.id ?? "" }
+    var puzzleTitle: String { run?.board.puzzle.title ?? workshop?.board.card.title ?? "" }
+    var puzzleLayout: String { run?.board.puzzle.layout ?? workshop?.board.card.layout ?? "" }
+    var nextStage: WorkStage? { WorkStage(rawValue: stage.rawValue + 1) }
+    func worker(_ id: String) -> Worker? { bank?.workers.first { $0.id == id } }
+    func unlocked(_ stage: WorkStage) -> Bool { stage.rawValue <= data.completedStageCount + 1 }
+    func completed(_ stage: WorkStage) -> Bool { stage.rawValue <= data.completedStageCount }
+
+    private func refreshSound() {
+        audio.soundscape(stage: screen == .game ? stage : nil,
+                         menu: screen == .home || screen == .settings, briefing: overlay == .briefing)
+    }
     var profileFile: URL { store.file }
 
     func startAudio() {
@@ -274,6 +403,7 @@ final class GameSession: ObservableObject {
 
     func navigate(to next: Screen, cue: Cue = .click) {
         screen = next
+        refreshSound()
         audio.play(cue)
     }
 
@@ -306,8 +436,23 @@ final class GameSession: ObservableObject {
         }
     }
 
-    func startRun() {
-        guard let bank else { return }
+    func startRun(_ stage: WorkStage = .staffing, mode: Int? = nil) {
+        guard let bank, unlocked(stage) else { return }
+        self.stage = stage
+        workshop = nil
+        run = nil
+        if stage != .staffing {
+            let chosen = mode ?? (options.orderedRun ? 0 : Int.random(in: 0..<3))
+            guard let draw = workshopBank?.draw(stage, mode: chosen, ordered: options.orderedRun),
+                  draw.count == StageRun.length else { return }
+            workshop = WorkshopRun(draw)
+            selected = nil
+            feedback = nil
+            screen = .game
+            prepareBriefing()
+            audio.play(.click)
+            return
+        }
         var random = SystemRandomNumberGenerator()
         let draw: [Puzzle]
         if options.orderedRun {
@@ -385,10 +530,79 @@ final class GameSession: ObservableObject {
         audio.play(.tray)
     }
 
+    func moveFlow(worker: Int, to station: Int, swapping other: Int?) {
+        guard gameActive, case .flow(let puzzle, var plan)? = workshop?.board,
+              plan.indices.contains(worker), puzzle.stations.indices.contains(station), plan[worker] != station else { return }
+        guard puzzle.allowed[worker].contains(station) else { return reject("This worker cannot use that station.") }
+        if let other {
+            guard plan.indices.contains(other), plan[other] == station, puzzle.allowed[other].contains(plan[worker]) else {
+                return reject("These workers cannot swap stations.")
+            }
+            plan[other] = plan[worker]
+        } else if plan.filter({ $0 == station }).count >= puzzle.capacities[station] {
+            return reject("This station is full. Select a worker to swap.")
+        }
+        plan[worker] = station
+        workshop?.board = .flow(puzzle, plan)
+        feedback = nil
+        audio.play(.bottleneckFlow)
+    }
+
+    func moveMachine(_ machine: Int, to bay: Int) {
+        guard gameActive, case .plant(let puzzle, var plan)? = workshop?.board,
+              plan.indices.contains(machine), puzzle.bays.contains(bay), plan[machine] != bay else { return }
+        let occupant = plan.firstIndex(of: bay)
+        guard !puzzle.fixed.contains(machine), occupant.map({ !puzzle.fixed.contains($0) }) != false else {
+            return reject("That machine is fixed in place.")
+        }
+        if let occupant { plan[occupant] = plan[machine] }
+        plan[machine] = bay
+        workshop?.board = .plant(puzzle, plan)
+        feedback = nil
+        audio.play(.plantTile)
+    }
+
+    func toggleStop(_ stop: Int) {
+        guard gameActive, case .delivery(let puzzle, var order)? = workshop?.board,
+              stop != 0, puzzle.stops.indices.contains(stop) else { return }
+        if let index = order.firstIndex(of: stop) {
+            order.remove(at: index)
+            audio.play(.back)
+        } else {
+            order.append(stop)
+            audio.play(.deliveryStop)
+        }
+        workshop?.board = .delivery(puzzle, order)
+        feedback = nil
+    }
+
+    func reorderStop(_ stop: Int, to index: Int) {
+        guard gameActive, case .delivery(let puzzle, var order)? = workshop?.board,
+              order.indices.contains(index), let from = order.firstIndex(of: stop), from != index else { return }
+        order.remove(at: from)
+        order.insert(stop, at: index)
+        workshop?.board = .delivery(puzzle, order)
+        feedback = nil
+        audio.play(.deliveryReorder)
+    }
+
+    private func reject(_ message: String) {
+        feedback = Feedback(message: message, problem: true)
+        audio.play(.blocked)
+    }
+
     func checkPlan() {
-        guard gameActive, var current = run else { return }
-        let issues = current.check()
-        run = current
+        guard gameActive else { return }
+        let issues: [String]
+        let final: Bool
+        if var current = run {
+            issues = current.check()
+            final = current.isFinalPuzzle
+            run = current
+        } else if let workshop {
+            issues = workshop.board.issues
+            final = workshop.isFinal
+        } else { return }
         if let first = issues.first {
             feedback = Feedback(message: first, problem: true)
             audio.play(.revise)
@@ -396,11 +610,14 @@ final class GameSession: ObservableObject {
         }
         selected = nil
         feedback = nil
-        if current.isFinalPuzzle {
-            data.completedStageOne = true
+        if final {
+            let prior = data.completedStageCount
+            data.completedThrough = max(prior, stage.rawValue)
+            if stage == .staffing { data.completedStageOne = true }
             save()
             overlay = .completed
-            audio.play(.stageCleared)
+            audio.play(stage == .delivery ? .gameComplete : .stageCleared)
+            if prior < stage.rawValue && stage != .delivery { audio.play(.stageUnlocked) }
         } else {
             overlay = .passed
             audio.play(.passed)
@@ -408,15 +625,46 @@ final class GameSession: ObservableObject {
     }
 
     func continueRun() {
-        guard overlay == .passed, var current = run, current.next() else { return }
-        run = current
+        guard overlay == .passed else { return }
+        if var current = run {
+            guard current.next() else { return }
+            run = current
+        } else {
+            workshop?.next()
+        }
         prepareBriefing()
-        audio.play(.nextStaffing)
-        audio.log("Opened next puzzle: \(current.board.puzzle.id)")
+        let cue: Cue = switch stage {
+        case .staffing: .nextStaffing
+        case .bottleneck: .nextBottleneck
+        case .plant: .nextPlant
+        case .delivery: .nextDelivery
+        }
+        audio.play(cue)
+        audio.log("Opened next puzzle: " + puzzleID)
     }
 
     private func prepareBriefing() {
-        guard let board = run?.board else { return }
+        dialogueIndex = 0
+        dialoguePaused = false
+        overlay = .briefing
+        refreshSound()
+        guard let board = run?.board else {
+            guard let board = workshop?.board, let roster = bank?.roster else { return }
+            let names: [String] = switch stage {
+            case .staffing: ["ari", "hana"]
+            case .bottleneck: ["dee", "bo"]
+            case .plant: ["eli", "fay"]
+            case .delivery: ["gus", "cam"]
+            }
+            let cast = names.compactMap { roster[$0] }
+            guard cast.count == 2 else { return }
+            briefing = Briefing(cast: cast, introduced: nil, situation: board.card.layout, lines: [
+                DialogueLine(worker: cast[0], text: board.card.greeting),
+                DialogueLine(worker: cast[1], text: board.spotlight),
+                DialogueLine(worker: cast[0], text: board.card.closing)
+            ])
+            return
+        }
         let newWorkers = board.crew.filter { !seenWorkers.contains($0.id) }
         let ruleWorkers = board.puzzle.rules.flatMap(\.workers)
         let newIDs = Set(newWorkers.map(\.id))
@@ -452,8 +700,6 @@ final class GameSession: ObservableObject {
             DialogueLine(worker: speaker, text: line),
             DialogueLine(worker: coworker, text: board.puzzle.closing),
         ])
-        dialogueIndex = 0
-        overlay = .briefing
         audio.log("Dialogue ready: " + board.puzzle.id)
     }
 
@@ -461,17 +707,36 @@ final class GameSession: ObservableObject {
         guard overlay == .briefing, let briefing else { return }
         if dialogueIndex + 1 < briefing.lines.count {
             dialogueIndex += 1
-            audio.play(.click)
         } else {
             beginPuzzle()
         }
     }
 
+    func toggleDialoguePause() {
+        guard overlay == .briefing else { return }
+        dialoguePaused.toggle()
+        if dialoguePaused { audio.stopVoice() }
+        audio.play(dialoguePaused ? .pause : .resume)
+    }
+
+    func playDialogueBeat() async {
+        guard !dialoguePaused, overlay == .briefing, let line = briefing?.lines[dialogueIndex] else { return }
+        let id = puzzleID
+        let index = dialogueIndex
+        audio.speak(line.worker)
+        let seconds = max(3.4, Double(line.text.split(separator: " ").count) / 3.2 + 0.6)
+        try? await Task.sleep(for: .seconds(seconds))
+        guard !Task.isCancelled, !dialoguePaused, overlay == .briefing, puzzleID == id, dialogueIndex == index else { return }
+        advanceDialogue()
+    }
+
     func beginPuzzle(skip: Bool = false) {
         guard overlay == .briefing else { return }
+        audio.stopVoice()
         overlay = nil
         briefing = nil
-        audio.play(skip ? .back : .click)
+        refreshSound()
+        if skip { audio.play(.back) }
     }
 
     func escape() {
@@ -491,7 +756,8 @@ final class GameSession: ObservableObject {
     }
 
     func askToLeave() {
-        guard run != nil else { return }
+        guard run != nil || workshop != nil else { return }
+        audio.stopVoice()
         overlay = .leave
         audio.play(.popup)
     }
@@ -503,6 +769,8 @@ final class GameSession: ObservableObject {
 
     func leaveStage() {
         run = nil
+        workshop = nil
+        audio.stopVoice()
         briefing = nil
         selected = nil
         overlay = nil
