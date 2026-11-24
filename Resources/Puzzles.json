@@ -1,0 +1,5866 @@
+{
+  "workers": [
+    {
+      "id": "ari",
+      "name": "Ari",
+      "style": "cap",
+      "ratings": {
+        "large": 5,
+        "medium": 2,
+        "small": 1,
+        "sort": 2,
+        "seal": 1,
+        "label": 3
+      }
+    },
+    {
+      "id": "bo",
+      "name": "Bo",
+      "style": "beanie",
+      "ratings": {
+        "large": 3,
+        "medium": 3,
+        "small": 2,
+        "sort": 4,
+        "seal": 2,
+        "label": 1
+      }
+    },
+    {
+      "id": "cam",
+      "name": "Cam",
+      "style": "pocket",
+      "ratings": {
+        "large": 2,
+        "medium": 3,
+        "small": 2,
+        "sort": 3,
+        "seal": 2,
+        "label": 4
+      }
+    },
+    {
+      "id": "dee",
+      "name": "Dee",
+      "style": "goggles",
+      "ratings": {
+        "large": 2,
+        "medium": 3,
+        "small": 1,
+        "sort": 3,
+        "seal": 4,
+        "label": 2
+      }
+    },
+    {
+      "id": "eli",
+      "name": "Eli",
+      "style": "earmuffs",
+      "ratings": {
+        "large": 1,
+        "medium": 2,
+        "small": 3,
+        "sort": 2,
+        "seal": 3,
+        "label": 4
+      }
+    },
+    {
+      "id": "fay",
+      "name": "Fay",
+      "style": "bow",
+      "ratings": {
+        "large": 2,
+        "medium": 1,
+        "small": 3,
+        "sort": 2,
+        "seal": 3,
+        "label": 3
+      }
+    },
+    {
+      "id": "gus",
+      "name": "Gus",
+      "style": "visor",
+      "ratings": {
+        "large": 4,
+        "medium": 1,
+        "small": 2,
+        "sort": 4,
+        "seal": 3,
+        "label": 1
+      }
+    },
+    {
+      "id": "hana",
+      "name": "Hana",
+      "style": "scarf",
+      "ratings": {
+        "large": 1,
+        "medium": 5,
+        "small": 2,
+        "sort": 2,
+        "seal": 4,
+        "label": 3
+      }
+    },
+    {
+      "id": "ivo",
+      "name": "Ivo",
+      "style": "glasses",
+      "ratings": {
+        "large": 3,
+        "medium": 2,
+        "small": 4,
+        "sort": 3,
+        "seal": 4,
+        "label": 2
+      }
+    },
+    {
+      "id": "jo",
+      "name": "Jo",
+      "style": "badge",
+      "ratings": {
+        "large": 2,
+        "medium": 4,
+        "small": 3,
+        "sort": 2,
+        "seal": 2,
+        "label": 4
+      }
+    },
+    {
+      "id": "kit",
+      "name": "Kit",
+      "style": "star",
+      "ratings": {
+        "large": 3,
+        "medium": 1,
+        "small": 5,
+        "sort": 4,
+        "seal": 3,
+        "label": 2
+      }
+    },
+    {
+      "id": "luz",
+      "name": "Luz",
+      "style": "headband",
+      "ratings": {
+        "large": 4,
+        "medium": 4,
+        "small": 1,
+        "sort": 3,
+        "seal": 3,
+        "label": 4
+      }
+    },
+    {
+      "id": "mika",
+      "name": "Mika",
+      "style": "beanie:blue",
+      "ratings": {
+        "large": 2,
+        "medium": 3,
+        "small": 1,
+        "sort": 5,
+        "seal": 2,
+        "label": 3
+      }
+    },
+    {
+      "id": "quin",
+      "name": "Quin",
+      "style": "visor:violet",
+      "ratings": {
+        "large": 3,
+        "medium": 2,
+        "small": 3,
+        "sort": 4,
+        "seal": 3,
+        "label": 2
+      }
+    },
+    {
+      "id": "tess",
+      "name": "Tess",
+      "style": "star:blue",
+      "ratings": {
+        "large": 1,
+        "medium": 3,
+        "small": 4,
+        "sort": 5,
+        "seal": 2,
+        "label": 2
+      }
+    },
+    {
+      "id": "noa",
+      "name": "Noa",
+      "style": "earmuffs:pink",
+      "ratings": {
+        "large": 3,
+        "medium": 2,
+        "small": 2,
+        "sort": 3,
+        "seal": 5,
+        "label": 2
+      }
+    },
+    {
+      "id": "wren",
+      "name": "Wren",
+      "style": "headband:sage",
+      "ratings": {
+        "large": 2,
+        "medium": 4,
+        "small": 2,
+        "sort": 2,
+        "seal": 4,
+        "label": 3
+      }
+    },
+    {
+      "id": "pax",
+      "name": "Pax",
+      "style": "scarf:blue",
+      "ratings": {
+        "large": 2,
+        "medium": 2,
+        "small": 3,
+        "sort": 3,
+        "seal": 5,
+        "label": 2
+      }
+    },
+    {
+      "id": "rene",
+      "name": "Rene",
+      "style": "glasses:sage",
+      "ratings": {
+        "large": 1,
+        "medium": 3,
+        "small": 3,
+        "sort": 2,
+        "seal": 3,
+        "label": 5
+      }
+    },
+    {
+      "id": "uma",
+      "name": "Uma",
+      "style": "badge:pink",
+      "ratings": {
+        "large": 3,
+        "medium": 2,
+        "small": 2,
+        "sort": 3,
+        "seal": 2,
+        "label": 4
+      }
+    },
+    {
+      "id": "sol",
+      "name": "Sol",
+      "style": "cap:ochre",
+      "ratings": {
+        "large": 2,
+        "medium": 3,
+        "small": 4,
+        "sort": 2,
+        "seal": 2,
+        "label": 5
+      }
+    }
+  ],
+  "puzzles": [
+    {
+      "id": "staff-4-01",
+      "title": "First Shift",
+      "layout": "Sorting cell",
+      "briefing": "The first order is ready. Let’s give every station enough power to get started.",
+      "greeting": "I sorted one bin and somehow ended up with two more. Typical.",
+      "closing": "The sorter is on this shift, too. Leave enough power there.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "dee",
+        "eli",
+        "fay",
+        "mika"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        5,
+        5,
+        6,
+        4
+      ],
+      "capacity": [
+        3,
+        3,
+        3,
+        1
+      ],
+      "rules": [],
+      "initial": {}
+    },
+    {
+      "id": "staff-4-02",
+      "title": "A Place for Dee",
+      "layout": "Sorting cell",
+      "briefing": "We’re trying a new setup today. Start by checking which machines each person can use.",
+      "greeting": "Someone moved the station signs again. I was just getting used to them.",
+      "closing": "Then the board gets the last word. Let’s check the allowed stations.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "dee",
+        "eli",
+        "fay",
+        "quin"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        5,
+        5,
+        6,
+        2
+      ],
+      "capacity": [
+        3,
+        3,
+        3,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "dee"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "bo"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "quin"
+          ],
+          "station": "small"
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-4-03",
+      "title": "Express Packing",
+      "layout": "Sorting cell",
+      "briefing": "The packing bench is ready for a short run. Two people can share each station.",
+      "greeting": "They called it an express order. I hope that only refers to the boxes.",
+      "closing": "We can keep the pace ourselves. Let’s start with a sensible plan.",
+      "crew": [
+        "ari",
+        "eli",
+        "fay",
+        "gus",
+        "hana",
+        "tess"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        5,
+        5,
+        5,
+        4
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "rules": [],
+      "initial": {
+        "gus": "P1",
+        "tess": "So1"
+      }
+    },
+    {
+      "id": "staff-4-04",
+      "title": "One Press Only",
+      "layout": "Sorting cell",
+      "briefing": "There’s only space for one person at the press. Who can cover it alone?",
+      "greeting": "The press is lovely. The elbow room around it, less so.",
+      "closing": "One person at Press. I’ll leave the spare stool out of it.",
+      "crew": [
+        "ari",
+        "dee",
+        "hana",
+        "ivo",
+        "kit",
+        "mika"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        3,
+        7,
+        6,
+        4
+      ],
+      "capacity": [
+        1,
+        3,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "kit"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "mika"
+          ],
+          "station": "sort"
+        }
+      ],
+      "initial": {
+        "hana": "A1"
+      }
+    },
+    {
+      "id": "staff-4-05",
+      "title": "Shared Workbench",
+      "layout": "Sorting cell",
+      "briefing": "We’ve set up a shared workbench. Leave room for the pair before filling the other stations.",
+      "greeting": "I brought an extra stool. It turns out a stool doesn’t make the workbench bigger.",
+      "closing": "I’ll keep the two of you together. The stool can wait by the wall.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "dee",
+        "eli",
+        "kit",
+        "quin"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        7,
+        5,
+        5,
+        3
+      ],
+      "capacity": [
+        3,
+        2,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "cam",
+            "dee"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "quin",
+            "ari"
+          ]
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-4-06",
+      "title": "Two Corners",
+      "layout": "Sorting cell",
+      "briefing": "We’re covering two separate corners of the workshop. Keep the two specialists apart.",
+      "greeting": "Somebody put the empty bin in with the full ones. We should get organised.",
+      "closing": "The sorter is on this shift, too. Leave enough power there.",
+      "crew": [
+        "cam",
+        "fay",
+        "gus",
+        "ivo",
+        "jo",
+        "luz",
+        "tess"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        6,
+        6,
+        7,
+        3
+      ],
+      "capacity": [
+        2,
+        2,
+        3,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "gus",
+            "ivo"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "tess"
+          ],
+          "station": "large"
+        }
+      ],
+      "initial": {
+        "cam": "A2",
+        "ivo": "W1"
+      }
+    },
+    {
+      "id": "staff-4-07",
+      "title": "Morning Relief",
+      "layout": "Sorting cell",
+      "briefing": "Part of the team is already in place. Feel free to move anyone as the shift settles in.",
+      "greeting": "I put my name on my mug. Now I just need to remember which machine I left it by.",
+      "closing": "We’ll move whoever we need. Your mug is off the shift plan.",
+      "crew": [
+        "bo",
+        "dee",
+        "fay",
+        "gus",
+        "hana",
+        "kit",
+        "mika"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        7,
+        8,
+        5,
+        5
+      ],
+      "capacity": [
+        3,
+        3,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "banned",
+          "workers": [
+            "hana"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "mika",
+            "bo"
+          ]
+        }
+      ],
+      "initial": {
+        "bo": "A1",
+        "gus": "W1",
+        "mika": "So1"
+      }
+    },
+    {
+      "id": "staff-4-08",
+      "title": "The Small Batch",
+      "layout": "Sorting cell",
+      "briefing": "It’s a small order with a small crew. We only have one place by the wrapper.",
+      "greeting": "The order is smaller than my lunch. It still needs wrapping, apparently.",
+      "closing": "One wrapper, one spot. I’ll make sure the right person gets it.",
+      "crew": [
+        "ari",
+        "bo",
+        "gus",
+        "jo",
+        "kit",
+        "quin"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        7,
+        4,
+        5,
+        4
+      ],
+      "capacity": [
+        2,
+        3,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "banned",
+          "workers": [
+            "jo"
+          ],
+          "station": "small"
+        }
+      ],
+      "initial": {
+        "jo": "P2"
+      }
+    },
+    {
+      "id": "staff-4-09",
+      "title": "Double Staffing",
+      "layout": "Sorting cell",
+      "briefing": "The big machines need most of the crew today. Save the right person a place at Wrap.",
+      "greeting": "This might be the first shift where finding a place is the hard part.",
+      "closing": "Let’s use the slots wisely. We’ve all got somewhere to be.",
+      "crew": [
+        "ari",
+        "dee",
+        "eli",
+        "hana",
+        "jo",
+        "luz",
+        "tess"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        7,
+        8,
+        4,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "ari",
+            "jo"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "eli"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "tess"
+          ],
+          "station": "large"
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-4-10",
+      "title": "Extra Hands",
+      "layout": "Sorting cell",
+      "briefing": "A helper joined for the busy shift. Make room for everyone before we start.",
+      "greeting": "I heard we had an extra pair of hands. Nobody warned the floor plan.",
+      "closing": "We’ll give the extra hands a place to work, not a pile of boxes to hold.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "fay",
+        "gus",
+        "hana",
+        "kit",
+        "mika"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        10,
+        7,
+        7,
+        4
+      ],
+      "capacity": [
+        3,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "banned",
+          "workers": [
+            "gus"
+          ],
+          "station": "medium"
+        }
+      ],
+      "initial": {
+        "bo": "P2",
+        "hana": "A1"
+      }
+    },
+    {
+      "id": "staff-4-11",
+      "title": "Label Day",
+      "layout": "Sorting cell",
+      "briefing": "Today’s labels need a steady hand. The two packers want to work side by side.",
+      "greeting": "The sorter is ready. The bins, however, have formed their own queue.",
+      "closing": "The sorter is on this shift, too. Leave enough power there.",
+      "crew": [
+        "dee",
+        "eli",
+        "fay",
+        "ivo",
+        "jo",
+        "luz",
+        "quin"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        3,
+        7,
+        6,
+        4
+      ],
+      "capacity": [
+        2,
+        3,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "eli",
+            "fay"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "ivo"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "quin"
+          ],
+          "station": "sort"
+        }
+      ],
+      "initial": {
+        "fay": "W2",
+        "quin": "So1"
+      }
+    },
+    {
+      "id": "staff-4-12",
+      "title": "Only Two Seats",
+      "layout": "Sorting cell",
+      "briefing": "The workbench can only fit two. Think about where the remaining person can make a difference.",
+      "greeting": "I measured the bench twice. It remains exactly as small as before.",
+      "closing": "Two means two. The rest of us can help somewhere else.",
+      "crew": [
+        "ari",
+        "bo",
+        "hana",
+        "jo",
+        "kit",
+        "tess"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        5,
+        8,
+        5,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "bo",
+            "jo"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "tess",
+            "ari"
+          ]
+        }
+      ],
+      "initial": {
+        "kit": "W1",
+        "jo": "P2"
+      }
+    },
+    {
+      "id": "staff-4-13",
+      "title": "Cross Training",
+      "layout": "Sorting cell",
+      "briefing": "Ari is trying Assemble today. Find someone else to bring the press up to power.",
+      "greeting": "I tried a different station yesterday. My arms are still filing a complaint.",
+      "closing": "We’ll read the ratings. Everyone gets to use what they’re good at.",
+      "crew": [
+        "ari",
+        "cam",
+        "fay",
+        "gus",
+        "hana",
+        "ivo",
+        "mika"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        6,
+        7,
+        5,
+        5
+      ],
+      "capacity": [
+        2,
+        3,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "ari"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "mika"
+          ],
+          "station": "medium"
+        }
+      ],
+      "initial": {
+        "ari": "A1",
+        "cam": "A3"
+      }
+    },
+    {
+      "id": "staff-4-14",
+      "title": "Quiet Corner",
+      "layout": "Sorting cell",
+      "briefing": "The wrapper only fits one worker. The crew at the workbench can share the rest.",
+      "greeting": "Can we call it the quiet corner? The wrapper has other opinions.",
+      "closing": "Let’s set the workbench first. The quiet corner can be noisy later.",
+      "crew": [
+        "bo",
+        "cam",
+        "dee",
+        "jo",
+        "kit",
+        "luz",
+        "quin"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        5,
+        9,
+        5,
+        3
+      ],
+      "capacity": [
+        3,
+        3,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "kit"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "cam",
+            "jo"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "quin",
+            "luz"
+          ]
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-4-15",
+      "title": "Cover the Press",
+      "layout": "Sorting cell",
+      "briefing": "We’re short of power at the press. Move people around and watch the totals.",
+      "greeting": "The press made a noise when I walked by. I think it was asking for help.",
+      "closing": "Fair. We can move somebody over without leaving another machine short.",
+      "crew": [
+        "ari",
+        "dee",
+        "eli",
+        "fay",
+        "ivo",
+        "kit",
+        "luz",
+        "tess"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        8,
+        6,
+        9,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        3,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "ivo",
+            "kit"
+          ]
+        }
+      ],
+      "initial": {
+        "ivo": "W2",
+        "luz": "P1",
+        "tess": "So1"
+      }
+    },
+    {
+      "id": "staff-4-16",
+      "title": "A Balanced Shift",
+      "layout": "Sorting cell",
+      "briefing": "We’ve turned the benches to make room for a pair. Keep an eye on who can use the press.",
+      "greeting": "I sorted one bin and somehow ended up with two more. Typical.",
+      "closing": "The sorter is on this shift, too. Leave enough power there.",
+      "crew": [
+        "bo",
+        "cam",
+        "gus",
+        "hana",
+        "ivo",
+        "jo",
+        "mika"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        5,
+        7,
+        4,
+        5
+      ],
+      "capacity": [
+        3,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "jo",
+            "ivo"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "cam"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "mika"
+          ],
+          "station": "medium"
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-4-17",
+      "title": "The Paper Roll",
+      "layout": "Sorting cell",
+      "briefing": "We opened only as many places as the shift needs. Each one matters for this shift.",
+      "greeting": "I caught the paper roll before it rolled away. Can that count as my first task?",
+      "closing": "It counts as a good catch. Now let’s give everyone a spot.",
+      "crew": [
+        "dee",
+        "gus",
+        "jo",
+        "kit",
+        "luz",
+        "quin"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        6,
+        7,
+        3,
+        4
+      ],
+      "capacity": [
+        2,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "dee"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "luz",
+            "kit"
+          ]
+        }
+      ],
+      "initial": {
+        "luz": "P2",
+        "kit": "W1"
+      }
+    },
+    {
+      "id": "staff-4-18",
+      "title": "Short Assembly Line",
+      "layout": "Sorting cell",
+      "briefing": "There’s just one place at the workbench. Put someone there who can cover it alone.",
+      "greeting": "Assemble has one space. At least nobody has to argue about whose side is whose.",
+      "closing": "We’ll leave that one slot to someone with enough power to cover it.",
+      "crew": [
+        "ari",
+        "eli",
+        "fay",
+        "gus",
+        "hana",
+        "ivo",
+        "tess"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        9,
+        5,
+        5,
+        4
+      ],
+      "capacity": [
+        3,
+        1,
+        3,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "hana"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "ivo",
+            "fay"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "tess"
+          ],
+          "station": "sort"
+        }
+      ],
+      "initial": {
+        "hana": "A1",
+        "eli": "P1"
+      }
+    },
+    {
+      "id": "staff-4-19",
+      "title": "Switching Places",
+      "layout": "Sorting cell",
+      "briefing": "Everyone has a place already, but the power is uneven. Try swapping two people.",
+      "greeting": "Everyone found a spot before I’d even put my bag down. Shall we check them?",
+      "closing": "We can swap places. I’d rather fix the layout before we start.",
+      "crew": [
+        "bo",
+        "cam",
+        "eli",
+        "jo",
+        "kit",
+        "luz",
+        "mika"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        5,
+        7,
+        8,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "banned",
+          "workers": [
+            "bo"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "jo"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "mika",
+            "bo"
+          ]
+        }
+      ],
+      "initial": {
+        "bo": "A1",
+        "luz": "P1",
+        "jo": "A2",
+        "cam": "W2",
+        "kit": "W1",
+        "eli": "P2",
+        "mika": "So1"
+      }
+    },
+    {
+      "id": "staff-4-20",
+      "title": "Wide Press Team",
+      "layout": "Sorting cell",
+      "briefing": "We made room for a four-person press team. There’s still only one place at Assemble.",
+      "greeting": "We widened the press area. I can stretch my arms without apologizing now.",
+      "closing": "Good. Leave room for the pair while we sort out that one Assemble slot.",
+      "crew": [
+        "ari",
+        "bo",
+        "fay",
+        "gus",
+        "hana",
+        "kit",
+        "luz",
+        "quin"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        13,
+        5,
+        6,
+        4
+      ],
+      "capacity": [
+        4,
+        1,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "gus",
+            "bo"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "hana"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "quin"
+          ],
+          "station": "small"
+        }
+      ],
+      "initial": {
+        "hana": "A1",
+        "bo": "W1"
+      }
+    },
+    {
+      "id": "staff-4-21",
+      "title": "Assembly Rush",
+      "layout": "Sorting cell",
+      "briefing": "We’re building a larger batch today. Assemble has four places, plus a pair that works together.",
+      "greeting": "Somebody put the empty bin in with the full ones. We should get organised.",
+      "closing": "The sorter is on this shift, too. Leave enough power there.",
+      "crew": [
+        "ari",
+        "cam",
+        "dee",
+        "hana",
+        "ivo",
+        "jo",
+        "kit",
+        "tess"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        7,
+        13,
+        3,
+        5
+      ],
+      "capacity": [
+        2,
+        4,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "cam",
+            "dee"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "ivo",
+            "kit"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "jo"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "tess",
+            "ari"
+          ]
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-4-22",
+      "title": "A Tight Fit",
+      "layout": "Sorting cell",
+      "briefing": "Wrap needs extra power today. Leave enough places down there for a strong wrapping team.",
+      "greeting": "The wrapping order is taller than I am. Please don’t use me as a ruler.",
+      "closing": "We’ll check the Wrap target first. You can stay out of the measuring.",
+      "crew": [
+        "eli",
+        "hana",
+        "ivo",
+        "jo",
+        "kit",
+        "luz",
+        "mika"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        4,
+        6,
+        11,
+        4
+      ],
+      "capacity": [
+        1,
+        2,
+        3,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "luz"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "jo",
+            "ivo"
+          ]
+        }
+      ],
+      "initial": {
+        "jo": "A2",
+        "ivo": "W1"
+      }
+    },
+    {
+      "id": "staff-4-23",
+      "title": "Separate Stations",
+      "layout": "Sorting cell",
+      "briefing": "Two workers need different stations. Check their placements before you call the plan ready.",
+      "greeting": "I don’t mind working on the other side. I mind when nobody tells me which side.",
+      "closing": "Let’s read who needs to work apart before we put anyone down.",
+      "crew": [
+        "ari",
+        "bo",
+        "dee",
+        "gus",
+        "hana",
+        "kit",
+        "quin"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        8,
+        8,
+        6,
+        4
+      ],
+      "capacity": [
+        2,
+        3,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "bo",
+            "dee"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "kit"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "quin"
+          ],
+          "station": "small"
+        }
+      ],
+      "initial": {
+        "dee": "A1",
+        "gus": "W2",
+        "quin": "So1"
+      }
+    },
+    {
+      "id": "staff-4-24",
+      "title": "Room for Four",
+      "layout": "Sorting cell",
+      "briefing": "We added a place at the wrapper so the packing pair has room to work.",
+      "greeting": "We finally made room at the wrapper. I vote we keep it free of spare boxes.",
+      "closing": "The extra space is for the crew this time. Let’s use it.",
+      "crew": [
+        "ari",
+        "cam",
+        "eli",
+        "fay",
+        "jo",
+        "kit",
+        "luz",
+        "tess"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        7,
+        7,
+        10,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        4,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "eli",
+            "kit"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "ari",
+            "fay"
+          ]
+        }
+      ],
+      "initial": {
+        "fay": "W1",
+        "luz": "A1"
+      }
+    },
+    {
+      "id": "staff-4-25",
+      "title": "Skill Trade",
+      "layout": "Sorting cell",
+      "briefing": "The team has started setting up. A move that looks good for one machine may weaken another.",
+      "greeting": "My current spot has a lovely view of the shelves. Does that help the order?",
+      "closing": "A good view is a bonus. We still have to check all three totals.",
+      "crew": [
+        "bo",
+        "eli",
+        "hana",
+        "ivo",
+        "kit",
+        "luz",
+        "mika"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        4,
+        9,
+        7,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "luz"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "bo"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "hana",
+            "kit"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "mika"
+          ],
+          "station": "sort"
+        }
+      ],
+      "initial": {
+        "luz": "A1",
+        "hana": "P1",
+        "bo": "A2"
+      }
+    },
+    {
+      "id": "staff-4-26",
+      "title": "Packing Partners",
+      "layout": "Sorting cell",
+      "briefing": "The packing partners are together for this order. Leave a place for Dee at Assemble as well.",
+      "greeting": "The sorter is ready. The bins, however, have formed their own queue.",
+      "closing": "The sorter is on this shift, too. Leave enough power there.",
+      "crew": [
+        "ari",
+        "cam",
+        "dee",
+        "fay",
+        "gus",
+        "jo",
+        "quin"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        9,
+        3,
+        5,
+        3
+      ],
+      "capacity": [
+        3,
+        2,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "cam",
+            "fay"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "dee"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "quin",
+            "ari"
+          ]
+        }
+      ],
+      "initial": {
+        "cam": "P3"
+      }
+    },
+    {
+      "id": "staff-4-27",
+      "title": "One More Box",
+      "layout": "Sorting cell",
+      "briefing": "One more box is on the list. Check both the pair and the worker who needs a different station.",
+      "greeting": "One more box, they said. I’m starting to think boxes can multiply.",
+      "closing": "Let’s get the pair and the station limits sorted. Then we’ll tackle the box.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "ivo",
+        "kit",
+        "luz",
+        "tess"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        6,
+        4,
+        9,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        3,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "bo",
+            "ari"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "luz",
+            "ivo"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "kit"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "tess"
+          ],
+          "station": "large"
+        }
+      ],
+      "initial": {
+        "luz": "P1",
+        "ari": "A1",
+        "ivo": "W3",
+        "tess": "So1"
+      }
+    },
+    {
+      "id": "staff-4-28",
+      "title": "Weekend Crew",
+      "layout": "Sorting cell",
+      "briefing": "The weekend crew knows the room. A few people are already at machines, so check the whole setup.",
+      "greeting": "I came in early to get ready. I may have become ready in the wrong place.",
+      "closing": "We can move the early starters. The whole crew still needs a valid plan.",
+      "crew": [
+        "eli",
+        "fay",
+        "gus",
+        "hana",
+        "jo",
+        "kit",
+        "luz",
+        "mika"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        7,
+        6,
+        8,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        3,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "luz"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "eli",
+            "fay"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "hana",
+            "kit"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "mika",
+            "gus"
+          ]
+        }
+      ],
+      "initial": {
+        "luz": "P1",
+        "eli": "A2",
+        "hana": "W3"
+      }
+    },
+    {
+      "id": "staff-4-29",
+      "title": "Work in Pairs",
+      "layout": "Sorting cell",
+      "briefing": "Two pairs are working together this time. Find a place for each pair and keep the specialists apart.",
+      "greeting": "Two pairs on one shift. We’re one crew shirt away from a sports team.",
+      "closing": "I’ll settle for two good pairs and enough power at every machine.",
+      "crew": [
+        "ari",
+        "bo",
+        "dee",
+        "ivo",
+        "jo",
+        "kit",
+        "quin"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        4,
+        5,
+        4,
+        4
+      ],
+      "capacity": [
+        3,
+        2,
+        3,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "ari",
+            "bo"
+          ]
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "dee",
+            "jo"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "ivo",
+            "jo"
+          ]
+        }
+      ],
+      "initial": {
+        "ari": "W1",
+        "kit": "P1",
+        "jo": "A1"
+      }
+    },
+    {
+      "id": "staff-4-30",
+      "title": "Closing Shift",
+      "layout": "Sorting cell",
+      "briefing": "It’s the last order of the shift. Put the crew together so every machine can finish its work.",
+      "greeting": "I’m ready to shut the lights off as soon as that last box is wrapped.",
+      "closing": "One scene at a time. We’ll get everyone set before that last order goes out.",
+      "crew": [
+        "ari",
+        "gus",
+        "hana",
+        "ivo",
+        "jo",
+        "kit",
+        "luz",
+        "tess"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort"
+      ],
+      "minimums": [
+        7,
+        12,
+        5,
+        4
+      ],
+      "capacity": [
+        2,
+        3,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "luz"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "jo",
+            "hana"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "ari",
+            "kit"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "ivo"
+          ],
+          "station": "medium"
+        }
+      ],
+      "initial": {
+        "ari": "P2",
+        "luz": "A1",
+        "jo": "W1",
+        "ivo": "P1"
+      }
+    },
+    {
+      "id": "staff-5-01",
+      "title": "First Shift",
+      "layout": "Sealing line",
+      "briefing": "The first order is ready. Let’s give every station enough power to get started.",
+      "greeting": "I tidied the workbench. Somehow the job list got longer.",
+      "closing": "Deal. Let’s look at what everyone can do before we start moving the boxes.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "dee",
+        "eli",
+        "fay",
+        "quin",
+        "noa"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        5,
+        5,
+        6,
+        3,
+        4
+      ],
+      "capacity": [
+        3,
+        3,
+        3,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "banned",
+          "workers": [
+            "noa"
+          ],
+          "station": "small"
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-5-02",
+      "title": "A Place for Dee",
+      "layout": "Sealing line",
+      "briefing": "We’re trying a new setup today. Start by checking which machines each person can use.",
+      "greeting": "I swear these boxes grow wider on the way to the sealer.",
+      "closing": "We’re running the sealer as well. Its target is on the board.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "dee",
+        "eli",
+        "fay",
+        "tess",
+        "wren"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        5,
+        5,
+        6,
+        5,
+        3
+      ],
+      "capacity": [
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "dee"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "bo"
+          ],
+          "station": "small"
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-5-03",
+      "title": "Express Packing",
+      "layout": "Sealing line",
+      "briefing": "The packing bench is ready for a short run. Two people can share each station.",
+      "greeting": "They called it an express order. I hope that only refers to the boxes.",
+      "closing": "We can keep the pace ourselves. Let’s start with a sensible plan.",
+      "crew": [
+        "ari",
+        "eli",
+        "fay",
+        "gus",
+        "hana",
+        "mika",
+        "pax"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        5,
+        5,
+        5,
+        5,
+        4
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "pax"
+          ],
+          "station": "seal"
+        }
+      ],
+      "initial": {
+        "gus": "P1",
+        "pax": "Se1"
+      }
+    },
+    {
+      "id": "staff-5-04",
+      "title": "One Press Only",
+      "layout": "Sealing line",
+      "briefing": "There’s only space for one person at the press. Who can cover it alone?",
+      "greeting": "The press is lovely. The elbow room around it, less so.",
+      "closing": "One person at Press. I’ll leave the spare stool out of it.",
+      "crew": [
+        "ari",
+        "dee",
+        "hana",
+        "ivo",
+        "kit",
+        "quin",
+        "noa"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        3,
+        7,
+        6,
+        4,
+        3
+      ],
+      "capacity": [
+        1,
+        3,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "kit"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "quin",
+            "ari"
+          ]
+        }
+      ],
+      "initial": {
+        "hana": "A1"
+      }
+    },
+    {
+      "id": "staff-5-05",
+      "title": "Shared Workbench",
+      "layout": "Sealing line",
+      "briefing": "We’ve set up a shared workbench. Leave room for the pair before filling the other stations.",
+      "greeting": "I brought an extra stool. It turns out a stool doesn’t make the workbench bigger.",
+      "closing": "I’ll keep the two of you together. The stool can wait by the wall.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "dee",
+        "eli",
+        "kit",
+        "tess",
+        "wren"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        7,
+        5,
+        5,
+        4,
+        3
+      ],
+      "capacity": [
+        3,
+        2,
+        2,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "cam",
+            "dee"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "wren"
+          ],
+          "station": "large"
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-5-06",
+      "title": "Two Corners",
+      "layout": "Sealing line",
+      "briefing": "We’re covering two separate corners of the workshop. Keep the two specialists apart.",
+      "greeting": "The workshop suddenly feels very big when you have to call across it.",
+      "closing": "Good. We can keep them apart and still cover the whole room.",
+      "crew": [
+        "cam",
+        "fay",
+        "gus",
+        "ivo",
+        "jo",
+        "luz",
+        "mika",
+        "pax"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        6,
+        6,
+        7,
+        5,
+        4
+      ],
+      "capacity": [
+        2,
+        2,
+        3,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "gus",
+            "ivo"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "mika",
+            "gus"
+          ]
+        }
+      ],
+      "initial": {
+        "cam": "A2",
+        "ivo": "W1"
+      }
+    },
+    {
+      "id": "staff-5-07",
+      "title": "Morning Relief",
+      "layout": "Sealing line",
+      "briefing": "Part of the team is already in place. Feel free to move anyone as the shift settles in.",
+      "greeting": "Why does the sealer always get the warmest spot in the room?",
+      "closing": "We’re running the sealer as well. Its target is on the board.",
+      "crew": [
+        "bo",
+        "dee",
+        "fay",
+        "gus",
+        "hana",
+        "kit",
+        "quin",
+        "noa"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        7,
+        8,
+        5,
+        4,
+        5
+      ],
+      "capacity": [
+        3,
+        3,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "banned",
+          "workers": [
+            "hana"
+          ],
+          "station": "large"
+        }
+      ],
+      "initial": {
+        "bo": "A1",
+        "gus": "W1",
+        "noa": "Se1"
+      }
+    },
+    {
+      "id": "staff-5-08",
+      "title": "The Small Batch",
+      "layout": "Sealing line",
+      "briefing": "It’s a small order with a small crew. We only have one place by the wrapper.",
+      "greeting": "The order is smaller than my lunch. It still needs wrapping, apparently.",
+      "closing": "One wrapper, one spot. I’ll make sure the right person gets it.",
+      "crew": [
+        "ari",
+        "bo",
+        "gus",
+        "jo",
+        "kit",
+        "tess",
+        "wren"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        7,
+        4,
+        5,
+        5,
+        3
+      ],
+      "capacity": [
+        2,
+        3,
+        1,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "banned",
+          "workers": [
+            "jo"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "tess"
+          ],
+          "station": "large"
+        }
+      ],
+      "initial": {
+        "jo": "P2"
+      }
+    },
+    {
+      "id": "staff-5-09",
+      "title": "Double Staffing",
+      "layout": "Sealing line",
+      "briefing": "The big machines need most of the crew today. Save the right person a place at Wrap.",
+      "greeting": "This might be the first shift where finding a place is the hard part.",
+      "closing": "Let’s use the slots wisely. We’ve all got somewhere to be.",
+      "crew": [
+        "ari",
+        "dee",
+        "eli",
+        "hana",
+        "jo",
+        "luz",
+        "mika",
+        "pax"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        7,
+        8,
+        4,
+        4,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "ari",
+            "jo"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "eli"
+          ],
+          "station": "small"
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-5-10",
+      "title": "Extra Hands",
+      "layout": "Sealing line",
+      "briefing": "A helper joined for the busy shift. Make room for everyone before we start.",
+      "greeting": "I heard we had an extra pair of hands. Nobody warned the floor plan.",
+      "closing": "We’ll give the extra hands a place to work, not a pile of boxes to hold.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "fay",
+        "gus",
+        "hana",
+        "kit",
+        "quin",
+        "noa"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        10,
+        7,
+        7,
+        4,
+        5
+      ],
+      "capacity": [
+        3,
+        2,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "banned",
+          "workers": [
+            "gus"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "quin"
+          ],
+          "station": "sort"
+        }
+      ],
+      "initial": {
+        "bo": "P2",
+        "hana": "A1"
+      }
+    },
+    {
+      "id": "staff-5-11",
+      "title": "Label Day",
+      "layout": "Sealing line",
+      "briefing": "Today’s labels need a steady hand. The two packers want to work side by side.",
+      "greeting": "I like labels. I like them even more when they’re stuck on straight.",
+      "closing": "Then let’s put the pair together before anybody peels a label.",
+      "crew": [
+        "dee",
+        "eli",
+        "fay",
+        "ivo",
+        "jo",
+        "luz",
+        "tess",
+        "wren"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        3,
+        7,
+        6,
+        5,
+        4
+      ],
+      "capacity": [
+        2,
+        3,
+        2,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "eli",
+            "fay"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "ivo"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "wren",
+            "ivo"
+          ]
+        }
+      ],
+      "initial": {
+        "fay": "W2",
+        "wren": "Se1"
+      }
+    },
+    {
+      "id": "staff-5-12",
+      "title": "Only Two Seats",
+      "layout": "Sealing line",
+      "briefing": "The workbench can only fit two. Think about where the remaining person can make a difference.",
+      "greeting": "I brought the seal strips. Please tell me that’s the right tray this time.",
+      "closing": "We’re running the sealer as well. Its target is on the board.",
+      "crew": [
+        "ari",
+        "bo",
+        "hana",
+        "jo",
+        "kit",
+        "mika",
+        "pax"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        5,
+        8,
+        5,
+        5,
+        4
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "bo",
+            "jo"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "mika"
+          ],
+          "station": "medium"
+        }
+      ],
+      "initial": {
+        "kit": "W1",
+        "jo": "P2"
+      }
+    },
+    {
+      "id": "staff-5-13",
+      "title": "Cross Training",
+      "layout": "Sealing line",
+      "briefing": "Ari is trying Assemble today. Find someone else to bring the press up to power.",
+      "greeting": "I tried a different station yesterday. My arms are still filing a complaint.",
+      "closing": "We’ll read the ratings. Everyone gets to use what they’re good at.",
+      "crew": [
+        "ari",
+        "cam",
+        "fay",
+        "gus",
+        "hana",
+        "ivo",
+        "quin",
+        "noa"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        6,
+        7,
+        5,
+        3,
+        5
+      ],
+      "capacity": [
+        2,
+        3,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "ari"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "noa",
+            "cam"
+          ]
+        }
+      ],
+      "initial": {
+        "ari": "A1",
+        "cam": "A3"
+      }
+    },
+    {
+      "id": "staff-5-14",
+      "title": "Quiet Corner",
+      "layout": "Sealing line",
+      "briefing": "The wrapper only fits one worker. The crew at the workbench can share the rest.",
+      "greeting": "Can we call it the quiet corner? The wrapper has other opinions.",
+      "closing": "Let’s set the workbench first. The quiet corner can be noisy later.",
+      "crew": [
+        "bo",
+        "cam",
+        "dee",
+        "jo",
+        "kit",
+        "luz",
+        "tess",
+        "wren"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        5,
+        9,
+        5,
+        5,
+        4
+      ],
+      "capacity": [
+        3,
+        3,
+        1,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "kit"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "cam",
+            "jo"
+          ]
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-5-15",
+      "title": "Cover the Press",
+      "layout": "Sealing line",
+      "briefing": "We’re short of power at the press. Move people around and watch the totals.",
+      "greeting": "The press made a noise when I walked by. I think it was asking for help.",
+      "closing": "Fair. We can move somebody over without leaving another machine short.",
+      "crew": [
+        "ari",
+        "dee",
+        "eli",
+        "fay",
+        "ivo",
+        "kit",
+        "luz",
+        "mika",
+        "pax"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        8,
+        6,
+        9,
+        5,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        3,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "ivo",
+            "kit"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "pax"
+          ],
+          "station": "medium"
+        }
+      ],
+      "initial": {
+        "ivo": "W2",
+        "luz": "P1",
+        "pax": "Se1"
+      }
+    },
+    {
+      "id": "staff-5-16",
+      "title": "A Balanced Shift",
+      "layout": "Sealing line",
+      "briefing": "We’ve turned the benches to make room for a pair. Keep an eye on who can use the press.",
+      "greeting": "I moved the benches so we could work together. Now I can’t find my pencil.",
+      "closing": "Right. I’ll read the pairing rule while you look for the pencil.",
+      "crew": [
+        "bo",
+        "cam",
+        "gus",
+        "hana",
+        "ivo",
+        "jo",
+        "quin",
+        "noa"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        5,
+        7,
+        4,
+        4,
+        4
+      ],
+      "capacity": [
+        3,
+        2,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "jo",
+            "ivo"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "cam"
+          ],
+          "station": "large"
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-5-17",
+      "title": "The Paper Roll",
+      "layout": "Sealing line",
+      "briefing": "We opened only as many places as the shift needs. Each one matters for this shift.",
+      "greeting": "I swear these boxes grow wider on the way to the sealer.",
+      "closing": "We’re running the sealer as well. Its target is on the board.",
+      "crew": [
+        "dee",
+        "gus",
+        "jo",
+        "kit",
+        "luz",
+        "tess",
+        "wren"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        6,
+        7,
+        3,
+        4,
+        4
+      ],
+      "capacity": [
+        2,
+        2,
+        1,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "dee"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "luz",
+            "kit"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "wren"
+          ],
+          "station": "seal"
+        }
+      ],
+      "initial": {
+        "luz": "P2",
+        "kit": "W1"
+      }
+    },
+    {
+      "id": "staff-5-18",
+      "title": "Short Assembly Line",
+      "layout": "Sealing line",
+      "briefing": "There’s just one place at the workbench. Put someone there who can cover it alone.",
+      "greeting": "Assemble has one space. At least nobody has to argue about whose side is whose.",
+      "closing": "We’ll leave that one slot to someone with enough power to cover it.",
+      "crew": [
+        "ari",
+        "eli",
+        "fay",
+        "gus",
+        "hana",
+        "ivo",
+        "mika",
+        "pax"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        9,
+        5,
+        5,
+        5,
+        5
+      ],
+      "capacity": [
+        3,
+        1,
+        3,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "hana"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "ivo",
+            "fay"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "mika",
+            "ari"
+          ]
+        }
+      ],
+      "initial": {
+        "hana": "A1",
+        "eli": "P1"
+      }
+    },
+    {
+      "id": "staff-5-19",
+      "title": "Switching Places",
+      "layout": "Sealing line",
+      "briefing": "Everyone has a place already, but the power is uneven. Try swapping two people.",
+      "greeting": "Everyone found a spot before I’d even put my bag down. Shall we check them?",
+      "closing": "We can swap places. I’d rather fix the layout before we start.",
+      "crew": [
+        "bo",
+        "cam",
+        "eli",
+        "jo",
+        "kit",
+        "luz",
+        "quin",
+        "noa"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        5,
+        7,
+        8,
+        4,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "banned",
+          "workers": [
+            "bo"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "jo"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "noa"
+          ],
+          "station": "small"
+        }
+      ],
+      "initial": {
+        "bo": "A1",
+        "luz": "P1",
+        "jo": "A2",
+        "cam": "W2",
+        "kit": "W1",
+        "eli": "P2",
+        "noa": "Se1"
+      }
+    },
+    {
+      "id": "staff-5-20",
+      "title": "Wide Press Team",
+      "layout": "Sealing line",
+      "briefing": "We made room for a four-person press team. There’s still only one place at Assemble.",
+      "greeting": "We widened the press area. I can stretch my arms without apologizing now.",
+      "closing": "Good. Leave room for the pair while we sort out that one Assemble slot.",
+      "crew": [
+        "ari",
+        "bo",
+        "fay",
+        "gus",
+        "hana",
+        "kit",
+        "luz",
+        "tess",
+        "wren"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        13,
+        5,
+        6,
+        5,
+        3
+      ],
+      "capacity": [
+        4,
+        1,
+        2,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "gus",
+            "bo"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "hana"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "tess",
+            "ari"
+          ]
+        }
+      ],
+      "initial": {
+        "hana": "A1",
+        "bo": "W1"
+      }
+    },
+    {
+      "id": "staff-5-21",
+      "title": "Assembly Rush",
+      "layout": "Sealing line",
+      "briefing": "We’re building a larger batch today. Assemble has four places, plus a pair that works together.",
+      "greeting": "They said ‘one big batch.’ I thought that meant one big box.",
+      "closing": "It’s several boxes, but still one plan. Let’s sort out the team.",
+      "crew": [
+        "ari",
+        "cam",
+        "dee",
+        "hana",
+        "ivo",
+        "jo",
+        "kit",
+        "mika",
+        "pax"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        7,
+        13,
+        3,
+        4,
+        5
+      ],
+      "capacity": [
+        2,
+        4,
+        1,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "cam",
+            "dee"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "ivo",
+            "kit"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "jo"
+          ],
+          "station": "large"
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-5-22",
+      "title": "A Tight Fit",
+      "layout": "Sealing line",
+      "briefing": "Wrap needs extra power today. Leave enough places down there for a strong wrapping team.",
+      "greeting": "Why does the sealer always get the warmest spot in the room?",
+      "closing": "We’re running the sealer as well. Its target is on the board.",
+      "crew": [
+        "eli",
+        "hana",
+        "ivo",
+        "jo",
+        "kit",
+        "luz",
+        "quin",
+        "noa"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        4,
+        6,
+        11,
+        4,
+        5
+      ],
+      "capacity": [
+        1,
+        2,
+        3,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "luz"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "jo",
+            "ivo"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "quin"
+          ],
+          "station": "small"
+        }
+      ],
+      "initial": {
+        "jo": "A2",
+        "ivo": "W1"
+      }
+    },
+    {
+      "id": "staff-5-23",
+      "title": "Separate Stations",
+      "layout": "Sealing line",
+      "briefing": "Two workers need different stations. Check their placements before you call the plan ready.",
+      "greeting": "I don’t mind working on the other side. I mind when nobody tells me which side.",
+      "closing": "Let’s read who needs to work apart before we put anyone down.",
+      "crew": [
+        "ari",
+        "bo",
+        "dee",
+        "gus",
+        "hana",
+        "kit",
+        "tess",
+        "wren"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        8,
+        8,
+        6,
+        5,
+        4
+      ],
+      "capacity": [
+        2,
+        3,
+        2,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "bo",
+            "dee"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "kit"
+          ],
+          "station": "small"
+        }
+      ],
+      "initial": {
+        "dee": "A1",
+        "gus": "W2",
+        "wren": "Se1"
+      }
+    },
+    {
+      "id": "staff-5-24",
+      "title": "Room for Four",
+      "layout": "Sealing line",
+      "briefing": "We added a place at the wrapper so the packing pair has room to work.",
+      "greeting": "We finally made room at the wrapper. I vote we keep it free of spare boxes.",
+      "closing": "The extra space is for the crew this time. Let’s use it.",
+      "crew": [
+        "ari",
+        "cam",
+        "eli",
+        "fay",
+        "jo",
+        "kit",
+        "luz",
+        "mika",
+        "pax"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        7,
+        7,
+        10,
+        5,
+        4
+      ],
+      "capacity": [
+        2,
+        2,
+        4,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "eli",
+            "kit"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "ari",
+            "fay"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "mika"
+          ],
+          "station": "sort"
+        }
+      ],
+      "initial": {
+        "fay": "W1",
+        "luz": "A1"
+      }
+    },
+    {
+      "id": "staff-5-25",
+      "title": "Skill Trade",
+      "layout": "Sealing line",
+      "briefing": "The team has started setting up. A move that looks good for one machine may weaken another.",
+      "greeting": "My current spot has a lovely view of the shelves. Does that help the order?",
+      "closing": "A good view is a bonus. We still have to check all three totals.",
+      "crew": [
+        "bo",
+        "eli",
+        "hana",
+        "ivo",
+        "kit",
+        "luz",
+        "quin",
+        "noa"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        4,
+        9,
+        7,
+        3,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "luz"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "bo"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "hana",
+            "kit"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "noa",
+            "bo"
+          ]
+        }
+      ],
+      "initial": {
+        "luz": "A1",
+        "hana": "P1",
+        "bo": "A2"
+      }
+    },
+    {
+      "id": "staff-5-26",
+      "title": "Packing Partners",
+      "layout": "Sealing line",
+      "briefing": "The packing partners are together for this order. Leave a place for Dee at Assemble as well.",
+      "greeting": "I saved a good spot for my packing partner. Now I have to remember which one.",
+      "closing": "Keep the pair in mind. I’ll check where Dee can work, too.",
+      "crew": [
+        "ari",
+        "cam",
+        "dee",
+        "fay",
+        "gus",
+        "jo",
+        "tess",
+        "wren"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        9,
+        3,
+        5,
+        5,
+        4
+      ],
+      "capacity": [
+        3,
+        2,
+        2,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "cam",
+            "fay"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "dee"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "tess"
+          ],
+          "station": "large"
+        }
+      ],
+      "initial": {
+        "cam": "P3"
+      }
+    },
+    {
+      "id": "staff-5-27",
+      "title": "One More Box",
+      "layout": "Sealing line",
+      "briefing": "One more box is on the list. Check both the pair and the worker who needs a different station.",
+      "greeting": "I brought the seal strips. Please tell me that’s the right tray this time.",
+      "closing": "We’re running the sealer as well. Its target is on the board.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "ivo",
+        "kit",
+        "luz",
+        "mika",
+        "pax"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        6,
+        4,
+        9,
+        5,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        3,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "bo",
+            "ari"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "luz",
+            "ivo"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "kit"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "pax",
+            "bo"
+          ]
+        }
+      ],
+      "initial": {
+        "luz": "P1",
+        "ari": "A1",
+        "ivo": "W3",
+        "pax": "Se1"
+      }
+    },
+    {
+      "id": "staff-5-28",
+      "title": "Weekend Crew",
+      "layout": "Sealing line",
+      "briefing": "The weekend crew knows the room. A few people are already at machines, so check the whole setup.",
+      "greeting": "I came in early to get ready. I may have become ready in the wrong place.",
+      "closing": "We can move the early starters. The whole crew still needs a valid plan.",
+      "crew": [
+        "eli",
+        "fay",
+        "gus",
+        "hana",
+        "jo",
+        "kit",
+        "luz",
+        "quin",
+        "noa"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        7,
+        6,
+        8,
+        4,
+        4
+      ],
+      "capacity": [
+        2,
+        2,
+        3,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "luz"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "eli",
+            "fay"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "hana",
+            "kit"
+          ]
+        }
+      ],
+      "initial": {
+        "luz": "P1",
+        "eli": "A2",
+        "hana": "W3"
+      }
+    },
+    {
+      "id": "staff-5-29",
+      "title": "Work in Pairs",
+      "layout": "Sealing line",
+      "briefing": "Two pairs are working together this time. Find a place for each pair and keep the specialists apart.",
+      "greeting": "Two pairs on one shift. We’re one crew shirt away from a sports team.",
+      "closing": "I’ll settle for two good pairs and enough power at every machine.",
+      "crew": [
+        "ari",
+        "bo",
+        "dee",
+        "ivo",
+        "jo",
+        "kit",
+        "tess",
+        "wren"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        4,
+        5,
+        4,
+        4,
+        4
+      ],
+      "capacity": [
+        3,
+        2,
+        3,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "ari",
+            "bo"
+          ]
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "dee",
+            "jo"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "ivo",
+            "jo"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "wren"
+          ],
+          "station": "large"
+        }
+      ],
+      "initial": {
+        "ari": "W1",
+        "kit": "P1",
+        "jo": "A1"
+      }
+    },
+    {
+      "id": "staff-5-30",
+      "title": "Closing Shift",
+      "layout": "Sealing line",
+      "briefing": "It’s the last order of the shift. Put the crew together so every machine can finish its work.",
+      "greeting": "I’m ready to shut the lights off as soon as that last box is wrapped.",
+      "closing": "One scene at a time. We’ll get everyone set before that last order goes out.",
+      "crew": [
+        "ari",
+        "gus",
+        "hana",
+        "ivo",
+        "jo",
+        "kit",
+        "luz",
+        "mika",
+        "pax"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal"
+      ],
+      "minimums": [
+        7,
+        12,
+        5,
+        5,
+        5
+      ],
+      "capacity": [
+        2,
+        3,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "luz"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "jo",
+            "hana"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "ari",
+            "kit"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "ivo"
+          ],
+          "station": "medium"
+        }
+      ],
+      "initial": {
+        "ari": "P2",
+        "luz": "A1",
+        "jo": "W1",
+        "ivo": "P1"
+      }
+    },
+    {
+      "id": "staff-6-01",
+      "title": "First Shift",
+      "layout": "Dispatch floor",
+      "briefing": "The first order is ready. Let’s give every station enough power to get started.",
+      "greeting": "I tidied the workbench. Somehow the job list got longer.",
+      "closing": "Deal. Let’s look at what everyone can do before we start moving the boxes.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "dee",
+        "eli",
+        "fay",
+        "tess",
+        "wren",
+        "rene"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        5,
+        5,
+        6,
+        5,
+        4,
+        4
+      ],
+      "capacity": [
+        3,
+        3,
+        3,
+        1,
+        2,
+        2
+      ],
+      "rules": [],
+      "initial": {}
+    },
+    {
+      "id": "staff-6-02",
+      "title": "A Place for Dee",
+      "layout": "Dispatch floor",
+      "briefing": "We’re trying a new setup today. Start by checking which machines each person can use.",
+      "greeting": "Someone moved the station signs again. I was just getting used to them.",
+      "closing": "Then the board gets the last word. Let’s check the allowed stations.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "dee",
+        "eli",
+        "fay",
+        "mika",
+        "pax",
+        "uma"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        5,
+        5,
+        6,
+        5,
+        5,
+        2
+      ],
+      "capacity": [
+        3,
+        3,
+        3,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "dee"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "bo"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "pax"
+          ],
+          "station": "seal"
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-6-03",
+      "title": "Express Packing",
+      "layout": "Dispatch floor",
+      "briefing": "The packing bench is ready for a short run. Two people can share each station.",
+      "greeting": "Three parcels are waiting for labels. They look more patient than I feel.",
+      "closing": "Nothing leaves without a label. Check all six targets before we start.",
+      "crew": [
+        "ari",
+        "eli",
+        "fay",
+        "gus",
+        "hana",
+        "quin",
+        "noa",
+        "sol"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        5,
+        5,
+        5,
+        4,
+        4,
+        4
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "sol",
+            "ari"
+          ]
+        }
+      ],
+      "initial": {
+        "gus": "P1",
+        "sol": "La1"
+      }
+    },
+    {
+      "id": "staff-6-04",
+      "title": "One Press Only",
+      "layout": "Dispatch floor",
+      "briefing": "There’s only space for one person at the press. Who can cover it alone?",
+      "greeting": "The press is lovely. The elbow room around it, less so.",
+      "closing": "One person at Press. I’ll leave the spare stool out of it.",
+      "crew": [
+        "ari",
+        "dee",
+        "hana",
+        "ivo",
+        "kit",
+        "tess",
+        "wren",
+        "rene"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        3,
+        7,
+        6,
+        4,
+        4,
+        4
+      ],
+      "capacity": [
+        1,
+        3,
+        2,
+        1,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "kit"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "tess"
+          ],
+          "station": "large"
+        }
+      ],
+      "initial": {
+        "hana": "A1"
+      }
+    },
+    {
+      "id": "staff-6-05",
+      "title": "Shared Workbench",
+      "layout": "Dispatch floor",
+      "briefing": "We’ve set up a shared workbench. Leave room for the pair before filling the other stations.",
+      "greeting": "I brought an extra stool. It turns out a stool doesn’t make the workbench bigger.",
+      "closing": "I’ll keep the two of you together. The stool can wait by the wall.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "dee",
+        "eli",
+        "kit",
+        "mika",
+        "pax",
+        "uma"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        7,
+        5,
+        5,
+        5,
+        5,
+        3
+      ],
+      "capacity": [
+        3,
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "cam",
+            "dee"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "pax",
+            "ari"
+          ]
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-6-06",
+      "title": "Two Corners",
+      "layout": "Dispatch floor",
+      "briefing": "We’re covering two separate corners of the workshop. Keep the two specialists apart.",
+      "greeting": "The workshop suddenly feels very big when you have to call across it.",
+      "closing": "Good. We can keep them apart and still cover the whole room.",
+      "crew": [
+        "cam",
+        "fay",
+        "gus",
+        "ivo",
+        "jo",
+        "luz",
+        "quin",
+        "noa",
+        "sol"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        6,
+        6,
+        7,
+        4,
+        5,
+        3
+      ],
+      "capacity": [
+        2,
+        2,
+        3,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "gus",
+            "ivo"
+          ]
+        }
+      ],
+      "initial": {
+        "cam": "A2",
+        "ivo": "W1"
+      }
+    },
+    {
+      "id": "staff-6-07",
+      "title": "Morning Relief",
+      "layout": "Dispatch floor",
+      "briefing": "Part of the team is already in place. Feel free to move anyone as the shift settles in.",
+      "greeting": "I put my name on my mug. Now I just need to remember which machine I left it by.",
+      "closing": "We’ll move whoever we need. Your mug is off the shift plan.",
+      "crew": [
+        "bo",
+        "dee",
+        "fay",
+        "gus",
+        "hana",
+        "kit",
+        "tess",
+        "wren",
+        "rene"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        7,
+        8,
+        5,
+        5,
+        3,
+        5
+      ],
+      "capacity": [
+        3,
+        3,
+        2,
+        1,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "banned",
+          "workers": [
+            "hana"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "tess"
+          ],
+          "station": "large"
+        }
+      ],
+      "initial": {
+        "bo": "A1",
+        "gus": "W1",
+        "tess": "So1"
+      }
+    },
+    {
+      "id": "staff-6-08",
+      "title": "The Small Batch",
+      "layout": "Dispatch floor",
+      "briefing": "It’s a small order with a small crew. We only have one place by the wrapper.",
+      "greeting": "Somebody labelled the label dispenser. I’d like to know who did that.",
+      "closing": "Nothing leaves without a label. Check all six targets before we start.",
+      "crew": [
+        "ari",
+        "bo",
+        "gus",
+        "jo",
+        "kit",
+        "mika",
+        "pax",
+        "uma"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        7,
+        4,
+        5,
+        4,
+        5,
+        4
+      ],
+      "capacity": [
+        2,
+        3,
+        1,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "banned",
+          "workers": [
+            "jo"
+          ],
+          "station": "small"
+        }
+      ],
+      "initial": {
+        "jo": "P2"
+      }
+    },
+    {
+      "id": "staff-6-09",
+      "title": "Double Staffing",
+      "layout": "Dispatch floor",
+      "briefing": "The big machines need most of the crew today. Save the right person a place at Wrap.",
+      "greeting": "This might be the first shift where finding a place is the hard part.",
+      "closing": "Let’s use the slots wisely. We’ve all got somewhere to be.",
+      "crew": [
+        "ari",
+        "dee",
+        "eli",
+        "hana",
+        "jo",
+        "luz",
+        "quin",
+        "noa",
+        "sol"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        7,
+        8,
+        4,
+        4,
+        5,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "ari",
+            "jo"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "eli"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "sol"
+          ],
+          "station": "label"
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-6-10",
+      "title": "Extra Hands",
+      "layout": "Dispatch floor",
+      "briefing": "A helper joined for the busy shift. Make room for everyone before we start.",
+      "greeting": "I heard we had an extra pair of hands. Nobody warned the floor plan.",
+      "closing": "We’ll give the extra hands a place to work, not a pile of boxes to hold.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "fay",
+        "gus",
+        "hana",
+        "kit",
+        "tess",
+        "wren",
+        "rene"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        10,
+        7,
+        7,
+        5,
+        4,
+        4
+      ],
+      "capacity": [
+        3,
+        2,
+        2,
+        1,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "banned",
+          "workers": [
+            "gus"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "tess",
+            "ari"
+          ]
+        }
+      ],
+      "initial": {
+        "bo": "P2",
+        "hana": "A1"
+      }
+    },
+    {
+      "id": "staff-6-11",
+      "title": "Label Day",
+      "layout": "Dispatch floor",
+      "briefing": "Today’s labels need a steady hand. The two packers want to work side by side.",
+      "greeting": "I like labels. I like them even more when they’re stuck on straight.",
+      "closing": "Then let’s put the pair together before anybody peels a label.",
+      "crew": [
+        "dee",
+        "eli",
+        "fay",
+        "ivo",
+        "jo",
+        "luz",
+        "mika",
+        "pax",
+        "uma"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        3,
+        7,
+        6,
+        5,
+        4,
+        4
+      ],
+      "capacity": [
+        2,
+        3,
+        2,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "eli",
+            "fay"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "ivo"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "pax"
+          ],
+          "station": "medium"
+        }
+      ],
+      "initial": {
+        "fay": "W2",
+        "pax": "Se1"
+      }
+    },
+    {
+      "id": "staff-6-12",
+      "title": "Only Two Seats",
+      "layout": "Dispatch floor",
+      "briefing": "The workbench can only fit two. Think about where the remaining person can make a difference.",
+      "greeting": "I measured the bench twice. It remains exactly as small as before.",
+      "closing": "Two means two. The rest of us can help somewhere else.",
+      "crew": [
+        "ari",
+        "bo",
+        "hana",
+        "jo",
+        "kit",
+        "quin",
+        "noa",
+        "sol"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        5,
+        8,
+        5,
+        3,
+        5,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "bo",
+            "jo"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "sol",
+            "ari"
+          ]
+        }
+      ],
+      "initial": {
+        "kit": "W1",
+        "jo": "P2"
+      }
+    },
+    {
+      "id": "staff-6-13",
+      "title": "Cross Training",
+      "layout": "Dispatch floor",
+      "briefing": "Ari is trying Assemble today. Find someone else to bring the press up to power.",
+      "greeting": "The labels are finally in order. I’m afraid to look away.",
+      "closing": "Nothing leaves without a label. Check all six targets before we start.",
+      "crew": [
+        "ari",
+        "cam",
+        "fay",
+        "gus",
+        "hana",
+        "ivo",
+        "tess",
+        "wren",
+        "rene"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        6,
+        7,
+        5,
+        5,
+        4,
+        5
+      ],
+      "capacity": [
+        2,
+        3,
+        2,
+        1,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "ari"
+          ],
+          "station": "medium"
+        }
+      ],
+      "initial": {
+        "ari": "A1",
+        "cam": "A3"
+      }
+    },
+    {
+      "id": "staff-6-14",
+      "title": "Quiet Corner",
+      "layout": "Dispatch floor",
+      "briefing": "The wrapper only fits one worker. The crew at the workbench can share the rest.",
+      "greeting": "Can we call it the quiet corner? The wrapper has other opinions.",
+      "closing": "Let’s set the workbench first. The quiet corner can be noisy later.",
+      "crew": [
+        "bo",
+        "cam",
+        "dee",
+        "jo",
+        "kit",
+        "luz",
+        "mika",
+        "pax",
+        "uma"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        5,
+        9,
+        5,
+        5,
+        5,
+        3
+      ],
+      "capacity": [
+        3,
+        3,
+        1,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "kit"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "cam",
+            "jo"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "pax"
+          ],
+          "station": "medium"
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-6-15",
+      "title": "Cover the Press",
+      "layout": "Dispatch floor",
+      "briefing": "We’re short of power at the press. Move people around and watch the totals.",
+      "greeting": "The press made a noise when I walked by. I think it was asking for help.",
+      "closing": "Fair. We can move somebody over without leaving another machine short.",
+      "crew": [
+        "ari",
+        "dee",
+        "eli",
+        "fay",
+        "ivo",
+        "kit",
+        "luz",
+        "quin",
+        "noa",
+        "sol"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        8,
+        6,
+        9,
+        4,
+        4,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        3,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "ivo",
+            "kit"
+          ]
+        }
+      ],
+      "initial": {
+        "ivo": "W2",
+        "luz": "P1",
+        "sol": "La1"
+      }
+    },
+    {
+      "id": "staff-6-16",
+      "title": "A Balanced Shift",
+      "layout": "Dispatch floor",
+      "briefing": "We’ve turned the benches to make room for a pair. Keep an eye on who can use the press.",
+      "greeting": "I moved the benches so we could work together. Now I can’t find my pencil.",
+      "closing": "Right. I’ll read the pairing rule while you look for the pencil.",
+      "crew": [
+        "bo",
+        "cam",
+        "gus",
+        "hana",
+        "ivo",
+        "jo",
+        "tess",
+        "wren",
+        "rene"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        5,
+        7,
+        4,
+        4,
+        4,
+        5
+      ],
+      "capacity": [
+        3,
+        2,
+        2,
+        1,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "jo",
+            "ivo"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "cam"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "tess"
+          ],
+          "station": "sort"
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-6-17",
+      "title": "The Paper Roll",
+      "layout": "Dispatch floor",
+      "briefing": "We opened only as many places as the shift needs. Each one matters for this shift.",
+      "greeting": "I caught the paper roll before it rolled away. Can that count as my first task?",
+      "closing": "It counts as a good catch. Now let’s give everyone a spot.",
+      "crew": [
+        "dee",
+        "gus",
+        "jo",
+        "kit",
+        "luz",
+        "mika",
+        "pax",
+        "uma"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        6,
+        7,
+        3,
+        5,
+        5,
+        4
+      ],
+      "capacity": [
+        2,
+        2,
+        1,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "dee"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "luz",
+            "kit"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "pax",
+            "luz"
+          ]
+        }
+      ],
+      "initial": {
+        "luz": "P2",
+        "kit": "W1"
+      }
+    },
+    {
+      "id": "staff-6-18",
+      "title": "Short Assembly Line",
+      "layout": "Dispatch floor",
+      "briefing": "There’s just one place at the workbench. Put someone there who can cover it alone.",
+      "greeting": "Three parcels are waiting for labels. They look more patient than I feel.",
+      "closing": "Nothing leaves without a label. Check all six targets before we start.",
+      "crew": [
+        "ari",
+        "eli",
+        "fay",
+        "gus",
+        "hana",
+        "ivo",
+        "quin",
+        "noa",
+        "sol"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        9,
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "capacity": [
+        3,
+        1,
+        3,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "hana"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "ivo",
+            "fay"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "sol"
+          ],
+          "station": "small"
+        }
+      ],
+      "initial": {
+        "hana": "A1",
+        "eli": "P1"
+      }
+    },
+    {
+      "id": "staff-6-19",
+      "title": "Switching Places",
+      "layout": "Dispatch floor",
+      "briefing": "Everyone has a place already, but the power is uneven. Try swapping two people.",
+      "greeting": "Everyone found a spot before I’d even put my bag down. Shall we check them?",
+      "closing": "We can swap places. I’d rather fix the layout before we start.",
+      "crew": [
+        "bo",
+        "cam",
+        "eli",
+        "jo",
+        "kit",
+        "luz",
+        "tess",
+        "wren",
+        "rene"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        5,
+        7,
+        8,
+        5,
+        3,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        1,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "banned",
+          "workers": [
+            "bo"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "jo"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "tess",
+            "bo"
+          ]
+        }
+      ],
+      "initial": {
+        "bo": "A1",
+        "luz": "P1",
+        "jo": "A2",
+        "cam": "W2",
+        "kit": "W1",
+        "eli": "P2",
+        "tess": "So1"
+      }
+    },
+    {
+      "id": "staff-6-20",
+      "title": "Wide Press Team",
+      "layout": "Dispatch floor",
+      "briefing": "We made room for a four-person press team. There’s still only one place at Assemble.",
+      "greeting": "We widened the press area. I can stretch my arms without apologizing now.",
+      "closing": "Good. Leave room for the pair while we sort out that one Assemble slot.",
+      "crew": [
+        "ari",
+        "bo",
+        "fay",
+        "gus",
+        "hana",
+        "kit",
+        "luz",
+        "mika",
+        "pax",
+        "uma"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        13,
+        5,
+        6,
+        4,
+        5,
+        4
+      ],
+      "capacity": [
+        4,
+        1,
+        2,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "gus",
+            "bo"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "hana"
+          ],
+          "station": "medium"
+        }
+      ],
+      "initial": {
+        "hana": "A1",
+        "bo": "W1"
+      }
+    },
+    {
+      "id": "staff-6-21",
+      "title": "Assembly Rush",
+      "layout": "Dispatch floor",
+      "briefing": "We’re building a larger batch today. Assemble has four places, plus a pair that works together.",
+      "greeting": "They said ‘one big batch.’ I thought that meant one big box.",
+      "closing": "It’s several boxes, but still one plan. Let’s sort out the team.",
+      "crew": [
+        "ari",
+        "cam",
+        "dee",
+        "hana",
+        "ivo",
+        "jo",
+        "kit",
+        "quin",
+        "noa",
+        "sol"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        7,
+        13,
+        3,
+        4,
+        5,
+        5
+      ],
+      "capacity": [
+        2,
+        4,
+        1,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "cam",
+            "dee"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "ivo",
+            "kit"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "jo"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "sol"
+          ],
+          "station": "small"
+        }
+      ],
+      "initial": {}
+    },
+    {
+      "id": "staff-6-22",
+      "title": "A Tight Fit",
+      "layout": "Dispatch floor",
+      "briefing": "Wrap needs extra power today. Leave enough places down there for a strong wrapping team.",
+      "greeting": "The wrapping order is taller than I am. Please don’t use me as a ruler.",
+      "closing": "We’ll check the Wrap target first. You can stay out of the measuring.",
+      "crew": [
+        "eli",
+        "hana",
+        "ivo",
+        "jo",
+        "kit",
+        "luz",
+        "tess",
+        "wren",
+        "rene"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        4,
+        6,
+        11,
+        5,
+        4,
+        4
+      ],
+      "capacity": [
+        1,
+        2,
+        3,
+        1,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "luz"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "jo",
+            "ivo"
+          ]
+        }
+      ],
+      "initial": {
+        "jo": "A2",
+        "ivo": "W1"
+      }
+    },
+    {
+      "id": "staff-6-23",
+      "title": "Separate Stations",
+      "layout": "Dispatch floor",
+      "briefing": "Two workers need different stations. Check their placements before you call the plan ready.",
+      "greeting": "Somebody labelled the label dispenser. I’d like to know who did that.",
+      "closing": "Nothing leaves without a label. Check all six targets before we start.",
+      "crew": [
+        "ari",
+        "bo",
+        "dee",
+        "gus",
+        "hana",
+        "kit",
+        "mika",
+        "pax",
+        "uma"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        8,
+        8,
+        6,
+        5,
+        4,
+        4
+      ],
+      "capacity": [
+        2,
+        3,
+        2,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "apart",
+          "workers": [
+            "bo",
+            "dee"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "kit"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "pax"
+          ],
+          "station": "seal"
+        }
+      ],
+      "initial": {
+        "dee": "A1",
+        "gus": "W2",
+        "pax": "Se1"
+      }
+    },
+    {
+      "id": "staff-6-24",
+      "title": "Room for Four",
+      "layout": "Dispatch floor",
+      "briefing": "We added a place at the wrapper so the packing pair has room to work.",
+      "greeting": "We finally made room at the wrapper. I vote we keep it free of spare boxes.",
+      "closing": "The extra space is for the crew this time. Let’s use it.",
+      "crew": [
+        "ari",
+        "cam",
+        "eli",
+        "fay",
+        "jo",
+        "kit",
+        "luz",
+        "quin",
+        "noa",
+        "sol"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        7,
+        7,
+        10,
+        3,
+        5,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        4,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "eli",
+            "kit"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "ari",
+            "fay"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "sol",
+            "ari"
+          ]
+        }
+      ],
+      "initial": {
+        "fay": "W1",
+        "luz": "A1"
+      }
+    },
+    {
+      "id": "staff-6-25",
+      "title": "Skill Trade",
+      "layout": "Dispatch floor",
+      "briefing": "The team has started setting up. A move that looks good for one machine may weaken another.",
+      "greeting": "My current spot has a lovely view of the shelves. Does that help the order?",
+      "closing": "A good view is a bonus. We still have to check all three totals.",
+      "crew": [
+        "bo",
+        "eli",
+        "hana",
+        "ivo",
+        "kit",
+        "luz",
+        "tess",
+        "wren",
+        "rene"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        4,
+        9,
+        7,
+        5,
+        4,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        2,
+        1,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "luz"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "bo"
+          ],
+          "station": "small"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "hana",
+            "kit"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "tess"
+          ],
+          "station": "large"
+        }
+      ],
+      "initial": {
+        "luz": "A1",
+        "hana": "P1",
+        "bo": "A2"
+      }
+    },
+    {
+      "id": "staff-6-26",
+      "title": "Packing Partners",
+      "layout": "Dispatch floor",
+      "briefing": "The packing partners are together for this order. Leave a place for Dee at Assemble as well.",
+      "greeting": "I saved a good spot for my packing partner. Now I have to remember which one.",
+      "closing": "Keep the pair in mind. I’ll check where Dee can work, too.",
+      "crew": [
+        "ari",
+        "cam",
+        "dee",
+        "fay",
+        "gus",
+        "jo",
+        "mika",
+        "pax",
+        "uma"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        9,
+        3,
+        5,
+        5,
+        5,
+        3
+      ],
+      "capacity": [
+        3,
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "cam",
+            "fay"
+          ]
+        },
+        {
+          "kind": "only",
+          "workers": [
+            "dee"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "pax",
+            "ari"
+          ]
+        }
+      ],
+      "initial": {
+        "cam": "P3"
+      }
+    },
+    {
+      "id": "staff-6-27",
+      "title": "One More Box",
+      "layout": "Dispatch floor",
+      "briefing": "One more box is on the list. Check both the pair and the worker who needs a different station.",
+      "greeting": "One more box, they said. I’m starting to think boxes can multiply.",
+      "closing": "Let’s get the pair and the station limits sorted. Then we’ll tackle the box.",
+      "crew": [
+        "ari",
+        "bo",
+        "cam",
+        "ivo",
+        "kit",
+        "luz",
+        "quin",
+        "noa",
+        "sol"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        6,
+        4,
+        9,
+        4,
+        4,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        3,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "bo",
+            "ari"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "luz",
+            "ivo"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "kit"
+          ],
+          "station": "medium"
+        }
+      ],
+      "initial": {
+        "luz": "P1",
+        "ari": "A1",
+        "ivo": "W3",
+        "sol": "La1"
+      }
+    },
+    {
+      "id": "staff-6-28",
+      "title": "Weekend Crew",
+      "layout": "Dispatch floor",
+      "briefing": "The weekend crew knows the room. A few people are already at machines, so check the whole setup.",
+      "greeting": "The labels are finally in order. I’m afraid to look away.",
+      "closing": "Nothing leaves without a label. Check all six targets before we start.",
+      "crew": [
+        "eli",
+        "fay",
+        "gus",
+        "hana",
+        "jo",
+        "kit",
+        "luz",
+        "tess",
+        "wren",
+        "rene"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        7,
+        6,
+        8,
+        4,
+        4,
+        5
+      ],
+      "capacity": [
+        2,
+        2,
+        3,
+        1,
+        2,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "luz"
+          ],
+          "station": "large"
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "eli",
+            "fay"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "hana",
+            "kit"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "tess"
+          ],
+          "station": "large"
+        }
+      ],
+      "initial": {
+        "luz": "P1",
+        "eli": "A2",
+        "hana": "W3"
+      }
+    },
+    {
+      "id": "staff-6-29",
+      "title": "Work in Pairs",
+      "layout": "Dispatch floor",
+      "briefing": "Two pairs are working together this time. Find a place for each pair and keep the specialists apart.",
+      "greeting": "Two pairs on one shift. We’re one crew shirt away from a sports team.",
+      "closing": "I’ll settle for two good pairs and enough power at every machine.",
+      "crew": [
+        "ari",
+        "bo",
+        "dee",
+        "ivo",
+        "jo",
+        "kit",
+        "mika",
+        "pax",
+        "uma"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        4,
+        5,
+        4,
+        5,
+        5,
+        4
+      ],
+      "capacity": [
+        3,
+        2,
+        3,
+        2,
+        2,
+        1
+      ],
+      "rules": [
+        {
+          "kind": "together",
+          "workers": [
+            "ari",
+            "bo"
+          ]
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "dee",
+            "jo"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "ivo",
+            "jo"
+          ]
+        }
+      ],
+      "initial": {
+        "ari": "W1",
+        "kit": "P1",
+        "jo": "A1"
+      }
+    },
+    {
+      "id": "staff-6-30",
+      "title": "Closing Shift",
+      "layout": "Dispatch floor",
+      "briefing": "It’s the last order of the shift. Put the crew together so every machine can finish its work.",
+      "greeting": "I’m ready to shut the lights off as soon as that last box is wrapped.",
+      "closing": "One scene at a time. We’ll get everyone set before that last order goes out.",
+      "crew": [
+        "ari",
+        "gus",
+        "hana",
+        "ivo",
+        "jo",
+        "kit",
+        "luz",
+        "quin",
+        "noa",
+        "sol"
+      ],
+      "stations": [
+        "large",
+        "medium",
+        "small",
+        "sort",
+        "seal",
+        "label"
+      ],
+      "minimums": [
+        7,
+        12,
+        5,
+        4,
+        5,
+        4
+      ],
+      "capacity": [
+        2,
+        3,
+        2,
+        2,
+        1,
+        2
+      ],
+      "rules": [
+        {
+          "kind": "only",
+          "workers": [
+            "luz"
+          ],
+          "station": "medium"
+        },
+        {
+          "kind": "together",
+          "workers": [
+            "jo",
+            "hana"
+          ]
+        },
+        {
+          "kind": "apart",
+          "workers": [
+            "ari",
+            "kit"
+          ]
+        },
+        {
+          "kind": "banned",
+          "workers": [
+            "ivo"
+          ],
+          "station": "medium"
+        }
+      ],
+      "initial": {
+        "ari": "P2",
+        "luz": "A1",
+        "jo": "W1",
+        "ivo": "P1"
+      }
+    }
+  ]
+}
